@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glade Tech | Reliable tech solutions for growing businesses</title>
+    <meta name="description" content="Built with care. Rooted in experience.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --forest-darkest: #0a1612;
+            --forest-dark: #0d1f1a;
+            --forest-green: #1a3a2e;
+            --forest-mid: #234a3d;
+            --charcoal: #1c1c1c;
+            --dark-teal: #1a2f2a;
+            --cream: #f4f1e8;
+            --accent: #8b9d83;
+            --accent-secondary: #c97456;
+            --accent-tertiary: #d4a574;
+            --soft-accent: #a0b098;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            color: var(--cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background: var(--forest-darkest);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--forest-darkest) 0%, var(--forest-dark) 50%, var(--forest-green) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 800;
+            color: var(--cream);
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            line-height: 1;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--cream);
+            opacity: 0.85;
+            margin-bottom: 3rem;
+        }
+
+        .beacon-link {
+            display: inline-block;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .beacon-link:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 20px rgba(139, 157, 131, 0.6));
+        }
+
+        .beacon-link-footer {
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .beacon-link-footer:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 20px rgba(201, 116, 86, 0.6));
+        }
+
+        .hero-beacon {
+            display: block;
+            background: transparent !important;
+        }
+
+        .hero-beacon svg {
+            background: transparent !important;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            background: linear-gradient(135deg, var(--forest-green) 0%, var(--dark-teal) 100%);
+            padding: 8rem 0;
+        }
+
+        .philosophy h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--cream);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .philosophy p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        .highlight {
+            color: var(--accent-tertiary);
+            font-weight: 500;
+        }
+
+        /* Services Section */
+        .services {
+            background: linear-gradient(135deg, var(--dark-teal) 0%, var(--charcoal) 100%);
+            padding: 8rem 0;
+        }
+
+        .services h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--cream);
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: rgba(26, 58, 46, 0.3);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-tertiary);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 rgba(212, 165, 116, 0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(212, 165, 116, 0.4);
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--cream);
+            opacity: 0.9;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: linear-gradient(135deg, var(--charcoal) 0%, var(--forest-dark) 100%);
+            padding: 8rem 0;
+        }
+
+        .projects h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--cream);
+            margin-bottom: 4rem;
+            font-weight: 700;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: rgba(26, 58, 46, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(201, 169, 97, 0.2);
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 rgba(139, 157, 131, 0);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(139, 157, 131, 0.4);
+        }
+
+        .project-image {
+            height: 280px;
+            background: linear-gradient(135deg, #8b7355 0%, #b8956a 50%, #d4a574 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-image svg {
+            width: 60%;
+            height: 60%;
+        }
+
+        .project-content {
+            padding: 2rem;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-status {
+            display: inline-block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-secondary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Pulse animation for LIVE NOW badges */
+        @keyframes pulse {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(139, 157, 131, 0.5);
+                transform: scale(1);
+            }
+            50% {
+                text-shadow: 0 0 25px rgba(139, 157, 131, 1), 0 0 35px rgba(139, 157, 131, 0.8);
+                transform: scale(1.05);
+            }
+        }
+
+        .project-status.live {
+            animation: pulse 2s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .project-card p {
+            font-size: 1.05rem;
+            color: var(--cream);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        .project-link {
+            color: var(--soft-accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+            word-break: break-word;
+        }
+
+        .project-link:hover {
+            color: var(--cream);
+            border-bottom-color: var(--cream);
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            background: linear-gradient(135deg, var(--forest-darkest) 0%, var(--forest-dark) 100%);
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .how-it-works h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--cream);
+            margin-bottom: 4rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 1000px;
+            margin: 0 auto 3rem;
+        }
+
+        .process-step {
+            background: rgba(26, 58, 46, 0.3);
+            border-radius: 12px;
+            padding: 2.5rem;
+            position: relative;
+            border: 1px solid rgba(139, 157, 131, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 157, 131, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .step-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .step-1 .step-number { color: var(--accent); }
+        .step-2 .step-number { color: var(--accent-secondary); }
+        .step-3 .step-number { color: var(--accent-tertiary); }
+        .step-4 .step-number { color: var(--soft-accent); }
+
+        .step-1 { border-left: 3px solid var(--accent); }
+        .step-2 { border-left: 3px solid var(--accent-secondary); }
+        .step-3 { border-left: 3px solid var(--accent-tertiary); }
+        .step-4 { border-left: 3px solid var(--soft-accent); }
+
+        .process-step h3 {
+            font-size: 1.4rem;
+            color: var(--cream);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-step p {
+            font-size: 1.05rem;
+            color: var(--cream);
+            line-height: 1.7;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-cta {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(26, 58, 46, 0.2);
+            border-radius: 12px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .process-cta p {
+            font-size: 1.15rem;
+            color: var(--cream);
+            margin: 0;
+        }
+
+        .process-cta a {
+            color: var(--accent);
+            text-decoration: underline;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .process-cta a:hover {
+            color: var(--accent-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .step-number {
+                font-size: 2.5rem;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .process-step {
+                padding: 2rem;
+            }
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-darkest) 100%);
+            padding: 8rem 0;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--cream);
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            font-size: 1.1rem;
+        }
+
+        .contact-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .contact-links a:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--forest-darkest);
+            text-align: center;
+            padding: 2rem;
+            color: rgba(244, 241, 232, 0.4);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(201, 169, 97, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .project-image {
+                height: 220px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-image {
+                height: 180px;
+            }
+
+            .project-image svg {
+                width: 70%;
+                height: 70%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>GLADE TECH</h1>
+            <p class="tagline">Reliable tech solutions for growing businesses.</p>
+            <p class="subtitle">Built with care. Rooted in experience.</p>
+            <a href="#contact" class="beacon-link">
+                <svg class="hero-beacon" width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="fadeHero" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:transparent;stop-opacity:0" />
+      <stop offset="50%" style="stop-color:transparent;stop-opacity:0" />
+      <stop offset="100%" style="stop-color:transparent;stop-opacity:0" />
+    </radialGradient>
+    
+    <style>
+      @keyframes beacon-rotate-hero {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      
+      @keyframes morse-dot-hero {
+        0%, 90%, 100% { opacity: 0.2; }
+        95% { opacity: 1; }
+      }
+      
+      @keyframes morse-dash-hero {
+        0%, 90%, 100% { opacity: 0.2; }
+        92%, 98% { opacity: 1; }
+      }
+      
+      @keyframes signal-ring-hero {
+        0% { transform: scale(1); opacity: 0.8; }
+        100% { transform: scale(2.5); opacity: 0; }
+      }
+      
+      .beacon-hero { animation: beacon-rotate-hero 8s linear infinite; transform-origin: center; }
+      .ring-hero { animation: signal-ring-hero 2s ease-out infinite; transform-origin: center; }
+      
+      /* S = dot dot dot */
+      .s1-hero { animation: morse-dot-hero 6s ease-in-out infinite; animation-delay: 0s; }
+      .s2-hero { animation: morse-dot-hero 6s ease-in-out infinite; animation-delay: 0.3s; }
+      .s3-hero { animation: morse-dot-hero 6s ease-in-out infinite; animation-delay: 0.6s; }
+      
+      /* O = dash dash dash */
+      .o1-hero { animation: morse-dash-hero 6s ease-in-out infinite; animation-delay: 1.2s; }
+      .o2-hero { animation: morse-dash-hero 6s ease-in-out infinite; animation-delay: 1.8s; }
+      .o3-hero { animation: morse-dash-hero 6s ease-in-out infinite; animation-delay: 2.4s; }
+    </style>
+  </defs>
+  
+  <g transform="translate(150, 150)">
+    
+    <!-- Signal rings -->
+    <g class="ring-hero">
+      <circle cx="0" cy="0" r="40" fill="none" stroke="#f4a261" stroke-width="2"/>
+    </g>
+    <g class="ring-hero" style="animation-delay: 0.5s;">
+      <circle cx="0" cy="0" r="40" fill="none" stroke="#e76f51" stroke-width="2"/>
+    </g>
+    
+    <!-- Rotating beacon base -->
+    <g class="beacon-hero">
+      <circle cx="0" cy="0" r="25" fill="#a8c69f" opacity="0.4"/>
+      <path d="M 0 0 L 40 -10 L 40 10 Z" fill="#f4a261" opacity="0.8"/>
+    </g>
+    
+    <!-- Central beacon light -->
+    <circle cx="0" cy="0" r="15" fill="#f4a261" opacity="0.9"/>
+    <circle cx="0" cy="0" r="8" fill="#ffd89b"/>
+    
+    <!-- Morse code display -->
+    <g transform="translate(0, 55)">
+      <!-- S (dot dot dot) -->
+      <circle class="s1-hero" cx="-30" cy="0" r="4" fill="#f4a261"/>
+      <circle class="s2-hero" cx="-20" cy="0" r="4" fill="#f4a261"/>
+      <circle class="s3-hero" cx="-10" cy="0" r="4" fill="#f4a261"/>
+      
+      <!-- O (dash dash dash) -->
+      <rect class="o1-hero" x="-2" y="-2" width="12" height="4" fill="#e76f51"/>
+      <rect class="o2-hero" x="14" y="-2" width="12" height="4" fill="#e76f51"/>
+      <rect class="o3-hero" x="30" y="-2" width="12" height="4" fill="#e76f51"/>
+    </g>
+  </g>
+</svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy">
+        <div class="container">
+            <h2>Technology needs to serve people, not the other way around.</h2>
+            <p>I spent nearly a decade at JPMorgan Chase as a Software Engineer, building and supporting production systems. I bring that same discipline and quality to every project.</p>
+            
+            <p><strong>What I build:</strong> Websites, web applications, booking systems, and working prototypes that bring your ideas to life. All bespoke and carefully crafted to fit exactly what you need.</p>
+            
+            <p><strong>Who it's for:</strong> Solo founders with an idea that needs building. Service businesses tired of clunky systems that don't fit how you actually work. Wellness practitioners wanting booking systems that feel like yours. Anyone who knows there's a better way and needs someone to build it.</p>
+            
+            <p>Glade Tech is <span class="highlight">named after a place very dear to me, where music, nature, and community came together.</span></p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2>What I Build</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Custom Applications</h3>
+                    <p>Bespoke systems built to fit your business perfectly. Modern stack, production quality.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Booking Systems</h3>
+                    <p>Streamlined scheduling and client management for wellness and service businesses.</p>
+                </div>
+                <div class="service-card">
+                    <h3>MVPs & Prototypes</h3>
+                    <p>Fast, reliable builds that get your ideas into the world.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Business Solutions</h3>
+                    <p>Automation, integrations, and tools that free up your time and reduce manual work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            
+            <div class="process-grid">
+                <div class="process-step step-1">
+                    <div class="step-number">01</div>
+                    <h3>Discovery Call</h3>
+                    <p>We talk through your idea, what problem you're solving, and who you're building for. No jargon, no pressure - just an honest conversation about whether I'm the right fit.</p>
+                </div>
+                
+                <div class="process-step step-2">
+                    <div class="step-number">02</div>
+                    <h3>Scope & Quote</h3>
+                    <p>I'll map out what needs building, give you a fixed price, and a realistic timeline. Most projects take 2-6 weeks depending on complexity.</p>
+                </div>
+                
+                <div class="process-step step-3">
+                    <div class="step-number">03</div>
+                    <h3>Build & Iterate</h3>
+                    <p>I build in focused sprints with regular check-ins. You'll see progress throughout, not just at the end. We adjust as we go if needed.</p>
+                </div>
+                
+                <div class="process-step step-4">
+                    <div class="step-number">04</div>
+                    <h3>Launch & Support</h3>
+                    <p>Once it's live, I don't disappear. I'm here for fixes, tweaks, and questions as you grow into your new system.</p>
+                </div>
+            </div>
+            
+            <div class="process-cta">
+                <p><strong>Ready to start?</strong> <a href="#contact">Get in touch</a> and let's talk about what you're building.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects">
+        <div class="container">
+            <h2>Things I've Built</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjU2MCIgdmlld0JveD0iMCAwIDgwMCA1NjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8IS0tIEdyYWRpZW50IGZvciBkZXB0aCAtLT4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZDEiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojOGI5ZDgzO3N0b3Atb3BhY2l0eToxIiAvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNjOTc0NTY7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgCiAgICA8IS0tIEFuaW1hdGlvbiBkZWZpbml0aW9ucyAtLT4KICAgIDxzdHlsZT4KICAgICAgQGtleWZyYW1lcyByb3RhdGUgewogICAgICAgIGZyb20geyB0cmFuc2Zvcm06IHJvdGF0ZSgwZGVnKTsgfQogICAgICAgIHRvIHsgdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTsgfQogICAgICB9CiAgICAgIAogICAgICBAa2V5ZnJhbWVzIGZsb2F0IHsKICAgICAgICAwJSwgMTAwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWSgwcHgpOyB9CiAgICAgICAgNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC0xNXB4KTsgfQogICAgICB9CiAgICAgIAogICAgICBAa2V5ZnJhbWVzIHB1bHNlLXNjYWxlIHsKICAgICAgICAwJSwgMTAwJSB7IHRyYW5zZm9ybTogc2NhbGUoMSk7IH0KICAgICAgICA1MCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyB9CiAgICAgIH0KICAgICAgCiAgICAgIC5yb3RhdGluZy1ncm91cCB7CiAgICAgICAgYW5pbWF0aW9uOiByb3RhdGUgMTJzIGxpbmVhciBpbmZpbml0ZTsKICAgICAgICB0cmFuc2Zvcm0tb3JpZ2luOiBjZW50ZXI7CiAgICAgIH0KICAgICAgCiAgICAgIC5iYXItMSB7IGFuaW1hdGlvbjogZmxvYXQgMS44cyBlYXNlLWluLW91dCBpbmZpbml0ZTsgYW5pbWF0aW9uLWRlbGF5OiAwczsgfQogICAgICAuYmFyLTIgeyBhbmltYXRpb246IGZsb2F0IDEuOHMgZWFzZS1pbi1vdXQgaW5maW5pdGU7IGFuaW1hdGlvbi1kZWxheTogMC4xNXM7IH0KICAgICAgLmJhci0zIHsgYW5pbWF0aW9uOiBmbG9hdCAxLjhzIGVhc2UtaW4tb3V0IGluZmluaXRlOyBhbmltYXRpb24tZGVsYXk6IDAuM3M7IH0KICAgICAgLmJhci00IHsgYW5pbWF0aW9uOiBmbG9hdCAxLjhzIGVhc2UtaW4tb3V0IGluZmluaXRlOyBhbmltYXRpb24tZGVsYXk6IDAuNDVzOyB9CiAgICAgIC5iYXItNSB7IGFuaW1hdGlvbjogZmxvYXQgMS44cyBlYXNlLWluLW91dCBpbmZpbml0ZTsgYW5pbWF0aW9uLWRlbGF5OiAwLjZzOyB9CiAgICAgIC5iYXItNiB7IGFuaW1hdGlvbjogZmxvYXQgMS44cyBlYXNlLWluLW91dCBpbmZpbml0ZTsgYW5pbWF0aW9uLWRlbGF5OiAwLjc1czsgfQogICAgICAuYmFyLTcgeyBhbmltYXRpb246IGZsb2F0IDEuOHMgZWFzZS1pbi1vdXQgaW5maW5pdGU7IGFuaW1hdGlvbi1kZWxheTogMC45czsgfQogICAgICAuYmFyLTggeyBhbmltYXRpb246IGZsb2F0IDEuOHMgZWFzZS1pbi1vdXQgaW5maW5pdGU7IGFuaW1hdGlvbi1kZWxheTogMS4wNXM7IH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIAogIDwhLS0gQmFja2dyb3VuZCAtIHNvbGlkIHRlYWwgLS0+CiAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI1NjAiIGZpbGw9IiMxYTNhMzIiLz4KICAKICA8IS0tIFJvdGF0aW5nIG91dGVyIHJpbmcgZm9yIGRlcHRoIC0tPgogIDxnIGNsYXNzPSJyb3RhdGluZy1ncm91cCI+CiAgICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyODAiIHI9IjE4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOGI5ZDgzIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuMiIvPgogICAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMjgwIiByPSIyMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q0YTU3NCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjE1Ii8+CiAgPC9nPgogIAogIDwhLS0gQWJzdHJhY3Qgc291bmQgd2F2ZSBiYXJzIC0gZmxvYXRpbmcgaW5kZXBlbmRlbnRseSAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MDAsIDI4MCkiPgogICAgPGcgY2xhc3M9ImJhci0xIj4KICAgICAgPHJlY3QgeD0iLTIwMCIgeT0iLTQwIiB3aWR0aD0iMzUiIGhlaWdodD0iODAiIGZpbGw9IiM4YjlkODMiIHJ4PSIxNy41IiBvcGFjaXR5PSIwLjkiLz4KICAgIDwvZz4KICAgIDxnIGNsYXNzPSJiYXItMiI+CiAgICAgIDxyZWN0IHg9Ii0xNDUiIHk9Ii04MCIgd2lkdGg9IjM1IiBoZWlnaHQ9IjE2MCIgZmlsbD0idXJsKCNncmFkMSkiIHJ4PSIxNy41IiBvcGFjaXR5PSIwLjkiLz4KICAgIDwvZz4KICAgIDxnIGNsYXNzPSJiYXItMyI+CiAgICAgIDxyZWN0IHg9Ii05MCIgeT0iLTMwIiB3aWR0aD0iMzUiIGhlaWdodD0iNjAiIGZpbGw9IiM4YjlkODMiIHJ4PSIxNy41IiBvcGFjaXR5PSIwLjkiLz4KICAgIDwvZz4KICAgIDxnIGNsYXNzPSJiYXItNCI+CiAgICAgIDxyZWN0IHg9Ii0zNSIgeT0iLTEyMCIgd2lkdGg9IjM1IiBoZWlnaHQ9IjI0MCIgZmlsbD0iI2M5NzQ1NiIgcng9IjE3LjUiIG9wYWNpdHk9IjAuOTUiLz4KICAgIDwvZz4KICAgIDxnIGNsYXNzPSJiYXItNSI+CiAgICAgIDxyZWN0IHg9IjIwIiB5PSItNjAiIHdpZHRoPSIzNSIgaGVpZ2h0PSIxMjAiIGZpbGw9IiM4YjlkODMiIHJ4PSIxNy41IiBvcGFjaXR5PSIwLjkiLz4KICAgIDwvZz4KICAgIDxnIGNsYXNzPSJiYXItNiI+CiAgICAgIDxyZWN0IHg9Ijc1IiB5PSItMTAwIiB3aWR0aD0iMzUiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2dyYWQxKSIgcng9IjE3LjUiIG9wYWNpdHk9IjAuOSIvPgogICAgPC9nPgogICAgPGcgY2xhc3M9ImJhci03Ij4KICAgICAgPHJlY3QgeD0iMTMwIiB5PSItNTAiIHdpZHRoPSIzNSIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM4YjlkODMiIHJ4PSIxNy41IiBvcGFjaXR5PSIwLjkiLz4KICAgIDwvZz4KICAgIDxnIGNsYXNzPSJiYXItOCI+CiAgICAgIDxyZWN0IHg9IjE4NSIgeT0iLTcwIiB3aWR0aD0iMzUiIGhlaWdodD0iMTQwIiBmaWxsPSIjZDRhNTc0IiByeD0iMTcuNSIgb3BhY2l0eT0iMC45Ii8+CiAgICA8L2c+CiAgPC9nPgogIAogIDwhLS0gQ2VudGVyIGFjY2VudCAtLT4KICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyODAiIHI9IjUiIGZpbGw9IiNmNGYxZTgiIG9wYWNpdHk9IjAuNiIvPgo8L3N2Zz4=" alt="GhostwriterOS">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-status live">LIVE NOW</div>
+                        <h3>GhostwriterOS</h3>
+                        <p>Voice-to-post converter that transforms your spoken thoughts into polished LinkedIn content. Speak naturally, publish professionally.</p>
+                        <a href="https://ghostwriter.coach" class="project-link" target="_blank">ghostwriter.coach →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjU2MCIgdmlld0JveD0iMCAwIDgwMCA1NjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQtdmVudCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM4YjlkODM7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6I2Q0YTU3NDtzdG9wLW9wYWNpdHk6MSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAKICAgIDxzdHlsZT4KICAgICAgQGtleWZyYW1lcyByb3RhdGUtc2xvdyB7CiAgICAgICAgZnJvbSB7IHRyYW5zZm9ybTogcm90YXRlKDBkZWcpOyB9CiAgICAgICAgdG8geyB0cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpOyB9CiAgICAgIH0KICAgICAgCiAgICAgIEBrZXlmcmFtZXMgY291bnRlci1yb3RhdGUgewogICAgICAgIGZyb20geyB0cmFuc2Zvcm06IHJvdGF0ZSgwZGVnKTsgfQogICAgICAgIHRvIHsgdHJhbnNmb3JtOiByb3RhdGUoLTM2MGRlZyk7IH0KICAgICAgfQogICAgICAKICAgICAgQGtleWZyYW1lcyBmbG93IHsKICAgICAgICAwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWCgwKSBzY2FsZSgxKTsgb3BhY2l0eTogMC42OyB9CiAgICAgICAgNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVYKDIwcHgpIHNjYWxlKDEuMSk7IG9wYWNpdHk6IDE7IH0KICAgICAgICAxMDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVYKDApIHNjYWxlKDEpOyBvcGFjaXR5OiAwLjY7IH0KICAgICAgfQogICAgICAKICAgICAgLm91dGVyLXJpbmcgeyBhbmltYXRpb246IHJvdGF0ZS1zbG93IDE1cyBsaW5lYXIgaW5maW5pdGU7IHRyYW5zZm9ybS1vcmlnaW46IGNlbnRlcjsgfQogICAgICAuaW5uZXItcmluZyB7IGFuaW1hdGlvbjogY291bnRlci1yb3RhdGUgMTJzIGxpbmVhciBpbmZpbml0ZTsgdHJhbnNmb3JtLW9yaWdpbjogY2VudGVyOyB9CiAgICAgIC5mbG93LTEgeyBhbmltYXRpb246IGZsb3cgMi41cyBlYXNlLWluLW91dCBpbmZpbml0ZTsgYW5pbWF0aW9uLWRlbGF5OiAwczsgfQogICAgICAuZmxvdy0yIHsgYW5pbWF0aW9uOiBmbG93IDIuNXMgZWFzZS1pbi1vdXQgaW5maW5pdGU7IGFuaW1hdGlvbi1kZWxheTogMC40czsgfQogICAgICAuZmxvdy0zIHsgYW5pbWF0aW9uOiBmbG93IDIuNXMgZWFzZS1pbi1vdXQgaW5maW5pdGU7IGFuaW1hdGlvbi1kZWxheTogMC44czsgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgCiAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI1NjAiIGZpbGw9IiMxYTNhMzIiLz4KICAKICA8IS0tIFJvdGF0aW5nIHJpbmdzIC0tPgogIDxnIGNsYXNzPSJvdXRlci1yaW5nIj4KICAgIDxjaXJjbGUgY3g9IjQwMCIgY3k9IjI4MCIgcj0iMTUwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4YjlkODMiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4zIiBzdHJva2UtZGFzaGFycmF5PSIxMCAyMCIvPgogIDwvZz4KICAKICA8ZyBjbGFzcz0iaW5uZXItcmluZyI+CiAgICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyODAiIHI9IjEyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzk3NDU2IiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuMjUiIHN0cm9rZS1kYXNoYXJyYXk9IjUgMTUiLz4KICA8L2c+CiAgCiAgPCEtLSBNZXNzYWdlIGZsb3cgZWxlbWVudHMgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDAwLCAyODApIj4KICAgIDwhLS0gTGVmdCBtZXNzYWdlIGJ1YmJsZXMgLS0+CiAgICA8ZyBjbGFzcz0iZmxvdy0xIj4KICAgICAgPHJlY3QgeD0iLTExMCIgeT0iLTM1IiB3aWR0aD0iNzAiIGhlaWdodD0iNzAiIHJ4PSIxMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjRmMWU4IiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuOCIvPgogICAgPC9nPgogICAgCiAgICA8IS0tIENlbnRlciB0cmFuc2Zvcm1hdGlvbiAtLT4KICAgIDxnIGNsYXNzPSJmbG93LTIiPgogICAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iMjUiIGZpbGw9InVybCgjZ3JhZC12ZW50KSIgb3BhY2l0eT0iMC45Ii8+CiAgICAgIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIxNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjRmMWU4IiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNyIvPgogICAgPC9nPgogICAgCiAgICA8IS0tIFJpZ2h0IG1lc3NhZ2UgYnViYmxlcyAtLT4KICAgIDxnIGNsYXNzPSJmbG93LTMiPgogICAgICA8cmVjdCB4PSI0MCIgeT0iLTM1IiB3aWR0aD0iNzAiIGhlaWdodD0iNzAiIHJ4PSIxMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDRhNTc0IiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuOCIvPgogICAgPC9nPgogICAgCiAgICA8IS0tIENvbm5lY3Rpb24gbGluZXMgLS0+CiAgICA8bGluZSB4MT0iLTQwIiB5MT0iMCIgeDI9Ii0yNSIgeTI9IjAiIHN0cm9rZT0iIzhiOWQ4MyIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjYiLz4KICAgIDxsaW5lIHgxPSIyNSIgeTE9IjAiIHgyPSI0MCIgeTI9IjAiIHN0cm9rZT0iI2Q0YTU3NCIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjYiLz4KICA8L2c+Cjwvc3ZnPg==" alt="Vent It">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-status">IN DEVELOPMENT</div>
+                        <h3>Vent It</h3>
+                        <p>Co-parenting communication tool that transforms frustrated messages into balanced, constructive communication. Rage safely, communicate better.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjU2MCIgdmlld0JveD0iMCAwIDgwMCA1NjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQtYm9va2luZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNkNGE1NzQ7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzhiOWQ4MztzdG9wLW9wYWNpdHk6MSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAKICAgIDxzdHlsZT4KICAgICAgQGtleWZyYW1lcyBvcmJpdCB7CiAgICAgICAgZnJvbSB7IHRyYW5zZm9ybTogcm90YXRlKDBkZWcpOyB9CiAgICAgICAgdG8geyB0cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpOyB9CiAgICAgIH0KICAgICAgCiAgICAgIEBrZXlmcmFtZXMgcHVsc2UtZ2xvdyB7CiAgICAgICAgMCUsIDEwMCUgeyBvcGFjaXR5OiAwLjY7IHRyYW5zZm9ybTogc2NhbGUoMSk7IH0KICAgICAgICA1MCUgeyBvcGFjaXR5OiAxOyB0cmFuc2Zvcm06IHNjYWxlKDEuMTUpOyB9CiAgICAgIH0KICAgICAgCiAgICAgIEBrZXlmcmFtZXMgc2xpZGUgewogICAgICAgIDAlLCAxMDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVYKDApOyB9CiAgICAgICAgNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVYKDEwcHgpOyB9CiAgICAgIH0KICAgICAgCiAgICAgIC5vcmJpdC1yaW5nIHsgYW5pbWF0aW9uOiBvcmJpdCAxOHMgbGluZWFyIGluZmluaXRlOyB0cmFuc2Zvcm0tb3JpZ2luOiBjZW50ZXI7IH0KICAgICAgLmRvdC0xIHsgYW5pbWF0aW9uOiBwdWxzZS1nbG93IDEuMnMgZWFzZS1pbi1vdXQgaW5maW5pdGU7IGFuaW1hdGlvbi1kZWxheTogMHM7IH0KICAgICAgLmRvdC0yIHsgYW5pbWF0aW9uOiBwdWxzZS1nbG93IDEuMnMgZWFzZS1pbi1vdXQgaW5maW5pdGU7IGFuaW1hdGlvbi1kZWxheTogMC4yczsgfQogICAgICAuZG90LTMgeyBhbmltYXRpb246IHB1bHNlLWdsb3cgMS4ycyBlYXNlLWluLW91dCBpbmZpbml0ZTsgYW5pbWF0aW9uLWRlbGF5OiAwLjRzOyB9CiAgICAgIC5kb3QtNCB7IGFuaW1hdGlvbjogcHVsc2UtZ2xvdyAxLjJzIGVhc2UtaW4tb3V0IGluZmluaXRlOyBhbmltYXRpb24tZGVsYXk6IDAuNnM7IH0KICAgICAgLmxpbmUtZ3JvdXAgeyBhbmltYXRpb246IHNsaWRlIDJzIGVhc2UtaW4tb3V0IGluZmluaXRlOyB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICAKICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjU2MCIgZmlsbD0iIzFhM2EzMiIvPgogIAogIDwhLS0gT3JiaXRpbmcgcmluZyAtLT4KICA8ZyBjbGFzcz0ib3JiaXQtcmluZyI+CiAgICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyODAiIHI9IjE0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOGI5ZDgzIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuMiIgc3Ryb2tlLWRhc2hhcnJheT0iMjAgMTAiLz4KICA8L2c+CiAgCiAgPCEtLSBHcmlkL2NhbGVuZGFyIHN0cnVjdHVyZSAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MDAsIDI4MCkiPgogICAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogICAgPGcgY2xhc3M9ImxpbmUtZ3JvdXAiPgogICAgICA8bGluZSB4MT0iLTEwMCIgeTE9Ii02MCIgeDI9IjEwMCIgeTI9Ii02MCIgc3Ryb2tlPSIjZjRmMWU4IiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNCIvPgogICAgICA8bGluZSB4MT0iLTEwMCIgeTE9Ii0yMCIgeDI9IjEwMCIgeTI9Ii0yMCIgc3Ryb2tlPSIjZjRmMWU4IiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNCIvPgogICAgICA8bGluZSB4MT0iLTEwMCIgeTE9IjIwIiB4Mj0iMTAwIiB5Mj0iMjAiIHN0cm9rZT0iI2Y0ZjFlOCIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjQiLz4KICAgICAgPGxpbmUgeDE9Ii0xMDAiIHkxPSI2MCIgeDI9IjEwMCIgeTI9IjYwIiBzdHJva2U9IiNmNGYxZTgiIHN0cm9rZS13aWR0aD0iMiIgb3BhY2l0eT0iMC40Ii8+CiAgICA8L2c+CiAgICAKICAgIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgICA8bGluZSB4MT0iLTYwIiB5MT0iLTgwIiB4Mj0iLTYwIiB5Mj0iODAiIHN0cm9rZT0iI2Q0YTU3NCIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjMiLz4KICAgIDxsaW5lIHgxPSIwIiB5MT0iLTgwIiB4Mj0iMCIgeTI9IjgwIiBzdHJva2U9IiNkNGE1NzQiIHN0cm9rZS13aWR0aD0iMiIgb3BhY2l0eT0iMC4zIi8+CiAgICA8bGluZSB4MT0iNjAiIHkxPSItODAiIHgyPSI2MCIgeTI9IjgwIiBzdHJva2U9IiNkNGE1NzQiIHN0cm9rZS13aWR0aD0iMiIgb3BhY2l0eT0iMC4zIi8+CiAgICAKICAgIDwhLS0gQW5pbWF0ZWQgYm9va2luZyBkb3RzIC0tPgogICAgPGcgY2xhc3M9ImRvdC0xIj4KICAgICAgPGNpcmNsZSBjeD0iLTYwIiBjeT0iLTQwIiByPSIxMiIgZmlsbD0idXJsKCNncmFkLWJvb2tpbmcpIi8+CiAgICA8L2c+CiAgICA8ZyBjbGFzcz0iZG90LTIiPgogICAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iMTIiIGZpbGw9IiNjOTc0NTYiLz4KICAgIDwvZz4KICAgIDxnIGNsYXNzPSJkb3QtMyI+CiAgICAgIDxjaXJjbGUgY3g9IjYwIiBjeT0iLTQwIiByPSIxMiIgZmlsbD0idXJsKCNncmFkLWJvb2tpbmcpIi8+CiAgICA8L2c+CiAgICA8ZyBjbGFzcz0iZG90LTQiPgogICAgICA8Y2lyY2xlIGN4PSItMzAiIGN5PSI0MCIgcj0iMTIiIGZpbGw9IiM4YjlkODMiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPg==" alt="Booking Systems">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-status">IN DEVELOPMENT</div>
+                        <h3>Booking Systems</h3>
+                        <p>Custom scheduling and client management for wellness businesses - chiropractors, saunas, physiotherapists. Built for your specific needs.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjU2MCIgdmlld0JveD0iMCAwIDgwMCA1NjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQtYnJpZGdlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6IzhiOWQ4MztzdG9wLW9wYWNpdHk6MSIgLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojYzk3NDU2O3N0b3Atb3BhY2l0eToxIiAvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIAogICAgPHN0eWxlPgogICAgICBAa2V5ZnJhbWVzIHJvdGF0ZS1yaW5nIHsKICAgICAgICBmcm9tIHsgdHJhbnNmb3JtOiByb3RhdGUoMGRlZyk7IH0KICAgICAgICB0byB7IHRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7IH0KICAgICAgfQogICAgICAKICAgICAgQGtleWZyYW1lcyBmbG93LXBhcnRpY2xlIHsKICAgICAgICAwJSB7IG9mZnNldC1kaXN0YW5jZTogMCU7IG9wYWNpdHk6IDA7IH0KICAgICAgICAxMCUgeyBvcGFjaXR5OiAxOyB9CiAgICAgICAgOTAlIHsgb3BhY2l0eTogMTsgfQogICAgICAgIDEwMCUgeyBvZmZzZXQtZGlzdGFuY2U6IDEwMCU7IG9wYWNpdHk6IDA7IH0KICAgICAgfQogICAgICAKICAgICAgQGtleWZyYW1lcyBwdWxzZS1ub2RlIHsKICAgICAgICAwJSwgMTAwJSB7IHRyYW5zZm9ybTogc2NhbGUoMSk7IG9wYWNpdHk6IDAuODsgfQogICAgICAgIDUwJSB7IHRyYW5zZm9ybTogc2NhbGUoMS4yKTsgb3BhY2l0eTogMTsgfQogICAgICB9CiAgICAgIAogICAgICAub3V0ZXItY2lyY2xlIHsgYW5pbWF0aW9uOiByb3RhdGUtcmluZyAyMHMgbGluZWFyIGluZmluaXRlOyB0cmFuc2Zvcm0tb3JpZ2luOiBjZW50ZXI7IH0KICAgICAgLnBhcnRpY2xlLTEgeyBhbmltYXRpb246IGZsb3ctcGFydGljbGUgMi41cyBlYXNlLWluLW91dCBpbmZpbml0ZTsgYW5pbWF0aW9uLWRlbGF5OiAwczsgfQogICAgICAucGFydGljbGUtMiB7IGFuaW1hdGlvbjogZmxvdy1wYXJ0aWNsZSAyLjVzIGVhc2UtaW4tb3V0IGluZmluaXRlOyBhbmltYXRpb24tZGVsYXk6IDAuOHM7IH0KICAgICAgLnBhcnRpY2xlLTMgeyBhbmltYXRpb246IGZsb3ctcGFydGljbGUgMi41cyBlYXNlLWluLW91dCBpbmZpbml0ZTsgYW5pbWF0aW9uLWRlbGF5OiAxLjZzOyB9CiAgICAgIC5ub2RlLWxlZnQgeyBhbmltYXRpb246IHB1bHNlLW5vZGUgMS41cyBlYXNlLWluLW91dCBpbmZpbml0ZTsgYW5pbWF0aW9uLWRlbGF5OiAwczsgfQogICAgICAubm9kZS1yaWdodCB7IGFuaW1hdGlvbjogcHVsc2Utbm9kZSAxLjVzIGVhc2UtaW4tb3V0IGluZmluaXRlOyBhbmltYXRpb24tZGVsYXk6IDAuNzVzOyB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICAKICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjU2MCIgZmlsbD0iIzFhM2EzMiIvPgogIAogIDwhLS0gUm90YXRpbmcgb3V0ZXIgc3RydWN0dXJlIC0tPgogIDxnIGNsYXNzPSJvdXRlci1jaXJjbGUiPgogICAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMjgwIiByPSIxNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhiOWQ4MyIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjIiIHN0cm9rZS1kYXNoYXJyYXk9IjE1IDE1Ii8+CiAgPC9nPgogIAogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwMCwgMjgwKSI+CiAgICA8IS0tIExlZnQgbm9kZSAoaHVtYW4pIC0tPgogICAgPGcgY2xhc3M9Im5vZGUtbGVmdCI+CiAgICAgIDxjaXJjbGUgY3g9Ii0xMDAiIGN5PSIwIiByPSIzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjRmMWU4IiBzdHJva2Utd2lkdGg9IjMiLz4KICAgICAgPGNpcmNsZSBjeD0iLTEwMCIgY3k9IjAiIHI9IjE1IiBmaWxsPSIjOGI5ZDgzIiBvcGFjaXR5PSIwLjYiLz4KICAgIDwvZz4KICAgIAogICAgPCEtLSBSaWdodCBub2RlIChBSSkgLS0+CiAgICA8ZyBjbGFzcz0ibm9kZS1yaWdodCI+CiAgICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjAiIHI9IjMwIiBmaWxsPSJub25lIiBzdHJva2U9IiNjOTc0NTYiIHN0cm9rZS13aWR0aD0iMyIvPgogICAgICA8Y2lyY2xlIGN4PSIxMDAiIGN5PSIwIiByPSIxNSIgZmlsbD0iI2M5NzQ1NiIgb3BhY2l0eT0iMC42Ii8+CiAgICA8L2c+CiAgICAKICAgIDwhLS0gQnJpZGdlIGNvbm5lY3Rpb24gLS0+CiAgICA8cGF0aCBkPSJNIC03MCAwIFEgMCAtNjAgNzAgMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI2dyYWQtYnJpZGdlKSIgc3Ryb2tlLXdpZHRoPSIzIiBvcGFjaXR5PSIwLjciIGlkPSJicmlkZ2UtcGF0aCIvPgogICAgCiAgICA8IS0tIEZsb3dpbmcgcGFydGljbGVzIG9uIGJyaWRnZSAtLT4KICAgIDxjaXJjbGUgcj0iNiIgZmlsbD0iI2Q0YTU3NCIgY2xhc3M9InBhcnRpY2xlLTEiPgogICAgICA8YW5pbWF0ZU1vdGlvbiBkdXI9IjRzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSI+CiAgICAgICAgPG1wYXRoIGhyZWY9IiNicmlkZ2UtcGF0aCIvPgogICAgICA8L2FuaW1hdGVNb3Rpb24+CiAgICA8L2NpcmNsZT4KICAgIAogICAgPGNpcmNsZSByPSI2IiBmaWxsPSIjZjRmMWU4IiBjbGFzcz0icGFydGljbGUtMiI+CiAgICAgIDxhbmltYXRlTW90aW9uIGR1cj0iNHMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIj4KICAgICAgICA8bXBhdGggaHJlZj0iI2JyaWRnZS1wYXRoIi8+CiAgICAgIDwvYW5pbWF0ZU1vdGlvbj4KICAgIDwvY2lyY2xlPgogICAgCiAgICA8Y2lyY2xlIHI9IjYiIGZpbGw9IiM4YjlkODMiIGNsYXNzPSJwYXJ0aWNsZS0zIj4KICAgICAgPGFuaW1hdGVNb3Rpb24gZHVyPSI0cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiPgogICAgICAgIDxtcGF0aCBocmVmPSIjYnJpZGdlLXBhdGgiLz4KICAgICAgPC9hbmltYXRlTW90aW9uPgogICAgPC9jaXJjbGU+CiAgICAKICAgIDwhLS0gQ29ubmVjdGlvbiBlbmRwb2ludHMgLS0+CiAgICA8Y2lyY2xlIGN4PSItNzAiIGN5PSIwIiByPSI1IiBmaWxsPSIjZDRhNTc0Ii8+CiAgICA8Y2lyY2xlIGN4PSI3MCIgY3k9IjAiIHI9IjUiIGZpbGw9IiNkNGE1NzQiLz4KICA8L2c+Cjwvc3ZnPg==" alt="ai&i">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-status live">LIVE NOW</div>
+                        <h3>ai&i</h3>
+                        <p>Building the bridge between human potential and AI capability. Custom applications that amplify what you do best, without the complexity.</p>
+                        <a href="https://aiandisolutions.com" class="project-link" target="_blank">aiandisolutions.com →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjU2MCIgdmlld0JveD0iMCAwIDgwMCA1NjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQtcHJvamVjdCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNkNGE1NzQ7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6I2M5NzQ1NjtzdG9wLW9wYWNpdHk6MSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAKICAgIDxzdHlsZT4KICAgICAgQGtleWZyYW1lcyBvcmJpdC1kb3RzIHsKICAgICAgICBmcm9tIHsgdHJhbnNmb3JtOiByb3RhdGUoMGRlZyk7IH0KICAgICAgICB0byB7IHRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7IH0KICAgICAgfQogICAgICAKICAgICAgQGtleWZyYW1lcyBjb3VudGVyLW9yYml0IHsKICAgICAgICBmcm9tIHsgdHJhbnNmb3JtOiByb3RhdGUoMGRlZyk7IH0KICAgICAgICB0byB7IHRyYW5zZm9ybTogcm90YXRlKC0zNjBkZWcpOyB9CiAgICAgIH0KICAgICAgCiAgICAgIEBrZXlmcmFtZXMgZmFkZS1wdWxzZSB7CiAgICAgICAgMCUsIDEwMCUgeyBvcGFjaXR5OiAwLjM7IHRyYW5zZm9ybTogc2NhbGUoMSk7IH0KICAgICAgICA1MCUgeyBvcGFjaXR5OiAxOyB0cmFuc2Zvcm06IHNjYWxlKDEuMSk7IH0KICAgICAgfQogICAgICAKICAgICAgQGtleWZyYW1lcyBjZW50ZXItZ2xvdyB7CiAgICAgICAgMCUsIDEwMCUgeyBvcGFjaXR5OiAwLjY7IH0KICAgICAgICA1MCUgeyBvcGFjaXR5OiAxOyB9CiAgICAgIH0KICAgICAgCiAgICAgIC5vcmJpdC1vdXRlciB7IGFuaW1hdGlvbjogb3JiaXQtZG90cyAxMnMgbGluZWFyIGluZmluaXRlOyB0cmFuc2Zvcm0tb3JpZ2luOiBjZW50ZXI7IH0KICAgICAgLm9yYml0LWlubmVyIHsgYW5pbWF0aW9uOiBjb3VudGVyLW9yYml0IDlzIGxpbmVhciBpbmZpbml0ZTsgdHJhbnNmb3JtLW9yaWdpbjogY2VudGVyOyB9CiAgICAgIC5jZW50ZXItZWxlbWVudCB7IGFuaW1hdGlvbjogY2VudGVyLWdsb3cgMnMgZWFzZS1pbi1vdXQgaW5maW5pdGU7IH0KICAgICAgLmRvdC0xIHsgYW5pbWF0aW9uOiBmYWRlLXB1bHNlIDEuNXMgZWFzZS1pbi1vdXQgaW5maW5pdGU7IGFuaW1hdGlvbi1kZWxheTogMHM7IH0KICAgICAgLmRvdC0yIHsgYW5pbWF0aW9uOiBmYWRlLXB1bHNlIDEuNXMgZWFzZS1pbi1vdXQgaW5maW5pdGU7IGFuaW1hdGlvbi1kZWxheTogMC4zczsgfQogICAgICAuZG90LTMgeyBhbmltYXRpb246IGZhZGUtcHVsc2UgMS41cyBlYXNlLWluLW91dCBpbmZpbml0ZTsgYW5pbWF0aW9uLWRlbGF5OiAwLjZzOyB9CiAgICAgIC5kb3QtNCB7IGFuaW1hdGlvbjogZmFkZS1wdWxzZSAxLjVzIGVhc2UtaW4tb3V0IGluZmluaXRlOyBhbmltYXRpb24tZGVsYXk6IDAuOXM7IH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIAogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNTYwIiBmaWxsPSIjMWEzYTMyIi8+CiAgCiAgPCEtLSBPcmJpdGluZyBlbGVtZW50cyBvdXRlciAtLT4KICA8ZyBjbGFzcz0ib3JiaXQtb3V0ZXIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwMCwgMjgwKSI+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iLTEyMCIgcj0iMTAiIGZpbGw9IiM4YjlkODMiIGNsYXNzPSJkb3QtMSIvPgogICAgPGNpcmNsZSBjeD0iMTIwIiBjeT0iMCIgcj0iMTAiIGZpbGw9IiNkNGE1NzQiIGNsYXNzPSJkb3QtMiIvPgogICAgPGNpcmNsZSBjeD0iMCIgY3k9IjEyMCIgcj0iMTAiIGZpbGw9IiNjOTc0NTYiIGNsYXNzPSJkb3QtMyIvPgogICAgPGNpcmNsZSBjeD0iLTEyMCIgY3k9IjAiIHI9IjEwIiBmaWxsPSIjOGI5ZDgzIiBjbGFzcz0iZG90LTQiLz4KICA8L2c+CiAgCiAgPCEtLSBJbm5lciBvcmJpdCByaW5nIC0tPgogIDxnIGNsYXNzPSJvcmJpdC1pbm5lciIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDAwLCAyODApIj4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSI4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI2dyYWQtcHJvamVjdCkiIHN0cm9rZS13aWR0aD0iMiIgb3BhY2l0eT0iMC4zIiBzdHJva2UtZGFzaGFycmF5PSIxMCAxMCIvPgogIDwvZz4KICAKICA8IS0tIENlbnRlciBxdWVzdGlvbi9wb3NzaWJpbGl0eSBzeW1ib2wgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDAwLCAyODApIiBjbGFzcz0iY2VudGVyLWVsZW1lbnQiPgogICAgPCEtLSBIZXhhZ29uIGZvciBwb3NzaWJpbGl0eSAtLT4KICAgIDxwYXRoIGQ9Ik0gMCwtNDAgTCAzNSwtMjAgTCAzNSwyMCBMIDAsNDAgTCAtMzUsMjAgTCAtMzUsLTIwIFoiIAogICAgICAgICAgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjRmMWU4IiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuOSIvPgogICAgCiAgICA8IS0tIElubmVyIGdlb21ldHJpYyAtLT4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyMCIgZmlsbD0idXJsKCNncmFkLXByb2plY3QpIiBvcGFjaXR5PSIwLjciLz4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjRmMWU4IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIAogICAgPCEtLSBDb3JuZXIgYWNjZW50cyAtLT4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSItNDAiIHI9IjQiIGZpbGw9IiNkNGE1NzQiLz4KICAgIDxjaXJjbGUgY3g9IjM1IiBjeT0iLTIwIiByPSI0IiBmaWxsPSIjOGI5ZDgzIi8+CiAgICA8Y2lyY2xlIGN4PSIzNSIgY3k9IjIwIiByPSI0IiBmaWxsPSIjYzk3NDU2Ii8+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iNDAiIHI9IjQiIGZpbGw9IiNkNGE1NzQiLz4KICAgIDxjaXJjbGUgY3g9Ii0zNSIgY3k9IjIwIiByPSI0IiBmaWxsPSIjOGI5ZDgzIi8+CiAgICA8Y2lyY2xlIGN4PSItMzUiIGN5PSItMjAiIHI9IjQiIGZpbGw9IiNjOTc0NTYiLz4KICA8L2c+Cjwvc3ZnPg==" alt="Your Project">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-status">WHAT'S NEXT</div>
+                        <h3>Your Project</h3>
+                        <p>Got an idea that solves a real problem? Let's build it together.</p>
+                        <a href="#contact" class="project-link">Start the conversation →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Let's build something that matters</h2>
+            
+            <!-- Morse beacon - clickable to return to top -->
+            <a href="#" class="beacon-link-footer" style="display: flex; justify-content: center; margin: 3rem 0; text-decoration: none;">
+                <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @keyframes beacon-rotate-footer {
+        from { transform: rotate(360deg); }
+        to { transform: rotate(0deg); }
+      }
+      
+      @keyframes morse-dot-footer {
+        0%, 90%, 100% { opacity: 0.2; }
+        95% { opacity: 1; }
+      }
+      
+      @keyframes morse-dash-footer {
+        0%, 90%, 100% { opacity: 0.2; }
+        92%, 98% { opacity: 1; }
+      }
+      
+      @keyframes signal-ring-footer {
+        0% { transform: scale(1); opacity: 0.8; }
+        100% { transform: scale(2.5); opacity: 0; }
+      }
+      
+      .beacon-footer { animation: beacon-rotate-footer 8s linear infinite; transform-origin: center; }
+      .ring-footer { animation: signal-ring-footer 2s ease-out infinite; transform-origin: center; }
+      
+      /* S = dot dot dot */
+      .s1-footer { animation: morse-dot-footer 6s ease-in-out infinite; animation-delay: 0s; }
+      .s2-footer { animation: morse-dot-footer 6s ease-in-out infinite; animation-delay: 0.3s; }
+      .s3-footer { animation: morse-dot-footer 6s ease-in-out infinite; animation-delay: 0.6s; }
+      
+      /* O = dash dash dash */
+      .o1-footer { animation: morse-dash-footer 6s ease-in-out infinite; animation-delay: 1.2s; }
+      .o2-footer { animation: morse-dash-footer 6s ease-in-out infinite; animation-delay: 1.8s; }
+      .o3-footer { animation: morse-dash-footer 6s ease-in-out infinite; animation-delay: 2.4s; }
+    </style>
+  </defs>
+  
+  <g transform="translate(150, 150)">
+    
+    <!-- Signal rings - golden/terra cotta -->
+    <g class="ring-footer">
+      <circle cx="0" cy="0" r="40" fill="none" stroke="#e76f51" stroke-width="2"/>
+    </g>
+    <g class="ring-footer" style="animation-delay: 0.5s;">
+      <circle cx="0" cy="0" r="40" fill="none" stroke="#f4a261" stroke-width="2"/>
+    </g>
+    
+    <!-- Rotating beacon base - counter-clockwise, terra cotta -->
+    <g class="beacon-footer">
+      <circle cx="0" cy="0" r="25" fill="#e76f51" opacity="0.4"/>
+      <path d="M 0 0 L 40 -10 L 40 10 Z" fill="#e76f51" opacity="0.8"/>
+    </g>
+    
+    <!-- Central beacon light - golden -->
+    <circle cx="0" cy="0" r="15" fill="#f4a261" opacity="0.9"/>
+    <circle cx="0" cy="0" r="8" fill="#ffd89b"/>
+    
+    <!-- Morse code display - inverted colors -->
+    <g transform="translate(0, 55)">
+      <!-- S (dot dot dot) - terra cotta -->
+      <circle class="s1-footer" cx="-30" cy="0" r="4" fill="#e76f51"/>
+      <circle class="s2-footer" cx="-20" cy="0" r="4" fill="#e76f51"/>
+      <circle class="s3-footer" cx="-10" cy="0" r="4" fill="#e76f51"/>
+      
+      <!-- O (dash dash dash) - golden -->
+      <rect class="o1-footer" x="-2" y="-2" width="12" height="4" fill="#f4a261"/>
+      <rect class="o2-footer" x="14" y="-2" width="12" height="4" fill="#f4a261"/>
+      <rect class="o3-footer" x="30" y="-2" width="12" height="4" fill="#f4a261"/>
+    </g>
+  </g>
+</svg>
+            </a>
+            
+            <div class="contact-links">
+                <a href="mailto:marc@gladetech.uk">Email</a>
+                <a href="https://www.linkedin.com/in/marcwrichards" target="_blank">LinkedIn</a>
+                <a href="https://instagram.com/gladetech_uk" target="_blank">Instagram</a>
+                <a href="https://wa.me/447880577770" target="_blank">WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Glade Tech • Built with care in Poole, UK</p>
+        </div>
+    </footer>
+</body>
+</html>

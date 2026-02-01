@@ -1,0 +1,30 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @keyframes rotate-fav {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes pulse-fav {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      .beacon-fav { animation: rotate-fav 4s linear infinite; transform-origin: center; }
+      .ring-fav { animation: pulse-fav 2s ease-in-out infinite; }
+    </style>
+  </defs>
+  
+  <rect width="64" height="64" fill="#0a1612"/>
+  
+  <g transform="translate(32, 32)">
+    <circle class="ring-fav" cx="0" cy="0" r="20" fill="none" stroke="#f4a261" stroke-width="2" opacity="0.6"/>
+    
+    <g class="beacon-fav">
+      <circle cx="0" cy="0" r="12" fill="#8b9d83" opacity="0.4"/>
+      <path d="M 0 0 L 18 -5 L 18 5 Z" fill="#f4a261" opacity="0.8"/>
+    </g>
+    
+    <circle cx="0" cy="0" r="8" fill="#f4a261" opacity="0.9"/>
+    <circle cx="0" cy="0" r="4" fill="#ffd89b"/>
+  </g>
+</svg>
