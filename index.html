@@ -80,16 +80,10 @@
         }
 
         .beacon-link {
-            display: inline-block;
+            display: flex;
+            justify-content: center;
             margin-top: 2rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
             overflow: visible;
-        }
-
-        .beacon-link:hover {
-            transform: scale(1.1);
-            filter: drop-shadow(0 0 20px rgba(139, 157, 131, 0.6));
         }
 
         .beacon-link-footer {
@@ -106,7 +100,61 @@
 
         .hero-beacon {
             display: block;
+            margin: 0 auto;
             background: transparent !important;
+        }
+
+        .cta-beacon {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            padding: 1rem 2.5rem;
+            background: rgba(244, 162, 97, 0.15);
+            border: 2px solid var(--accent-tertiary);
+            border-radius: 50px;
+            color: var(--cream);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-beacon::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50px;
+            background: radial-gradient(circle, rgba(244, 162, 97, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .cta-beacon:hover {
+            transform: scale(1.05);
+            background: rgba(244, 162, 97, 0.25);
+            box-shadow: 0 0 30px rgba(244, 162, 97, 0.4), 0 0 60px rgba(244, 162, 97, 0.15);
+        }
+
+        .cta-beacon:hover::before {
+            opacity: 1;
+        }
+
+        .cta-beacon-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #f4a261;
+            box-shadow: 0 0 10px rgba(244, 162, 97, 0.8);
+            animation: cta-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes cta-pulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(244, 162, 97, 0.8); transform: scale(1); }
+            50% { box-shadow: 0 0 20px rgba(244, 162, 97, 1); transform: scale(1.2); }
         }
 
         .hero-beacon svg {
@@ -556,6 +604,16 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .hero-beacon {
+                width: 300px;
+                height: 300px;
+            }
+
+            .cta-beacon {
+                font-size: 1rem;
+                padding: 0.85rem 2rem;
+            }
+
             .projects-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -602,8 +660,8 @@
             <h1>GLADE TECH</h1>
             <p class="tagline">Reliable tech solutions for growing businesses.</p>
             <p class="subtitle">Built with care. Rooted in experience.</p>
-            <a href="#contact" class="beacon-link">
-                <svg class="hero-beacon" width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+            <div class="beacon-link" style="pointer-events: none;">
+                <svg class="hero-beacon" width="400" height="400" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" overflow="visible">
   <defs>
     <radialGradient id="fadeHero" cx="50%" cy="50%" r="50%">
       <stop offset="0%" style="stop-color:transparent;stop-opacity:0" />
@@ -681,6 +739,10 @@
     </g>
   </g>
 </svg>
+            </div>
+            <a href="mailto:marc@gladetech.uk" class="cta-beacon">
+                <span class="cta-beacon-dot"></span>
+                Send a Signal
             </a>
         </div>
     </section>
@@ -696,15 +758,16 @@
                 </div>
                 <div class="philosophy-card">
                     <h3>What I Build</h3>
-                    <p>Websites, web applications, booking systems, and working prototypes that bring your ideas to life. All bespoke and carefully crafted to fit exactly what you need.</p>
+                    <p>Websites, web applications, and booking systems — all bespoke and carefully crafted to fit exactly what you need.</p>
+                    <p style="margin-top: 0.75rem; opacity: 0.85;">I also build working prototypes to help bring your ideas to life before committing to a full build.</p>
                 </div>
                 <div class="philosophy-card">
                     <h3>Who It's For</h3>
-                    <p>Solo founders with an idea that needs building. Service businesses tired of clunky systems. Wellness practitioners wanting booking systems that feel like yours. Anyone who needs someone to build it properly.</p>
+                    <p>Anyone who needs a website or web application built properly. Whether you're a solo founder, a growing business, or just someone with an idea — I'm here to help.</p>
                 </div>
                 <div class="philosophy-card">
                     <h3>The Name</h3>
-                    <p>Glade Tech is <span class="highlight">named after a place very dear to me, where music, nature, and community came together.</span></p>
+                    <p>Glade Tech is <span class="highlight">named after The Glade — a stage tucked away in the woods at Glastonbury Festival, where music, nature, and community all came together.</span> That spirit carries through in everything I build.</p>
                 </div>
             </div>
         </div>
@@ -869,7 +932,7 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2>Let's build something that matters</h2>
+            <h2>Let's build something lovely</h2>
             
             <!-- Morse beacon - clickable to return to top -->
             <a href="#" class="beacon-link-footer" style="display: flex; justify-content: center; margin: 3rem 0; text-decoration: none;">
