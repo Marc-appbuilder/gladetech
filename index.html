@@ -122,16 +122,63 @@
         .philosophy h2 {
             font-size: clamp(1.8rem, 4vw, 2.5rem);
             color: var(--cream);
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             font-weight: 700;
         }
 
-        .philosophy p {
-            font-size: 1.15rem;
-            line-height: 1.9;
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .philosophy-card {
+            background: rgba(26, 58, 46, 0.3);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-tertiary);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 rgba(212, 165, 116, 0);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .philosophy-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .philosophy-card:nth-child(2) { transition-delay: 0.15s; }
+        .philosophy-card:nth-child(3) { transition-delay: 0.3s; }
+        .philosophy-card:nth-child(4) { transition-delay: 0.45s; }
+
+        .philosophy-card.visible:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(212, 165, 116, 0.4);
+        }
+
+        .philosophy-card h3 {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .philosophy-card p {
+            font-size: 1.05rem;
+            line-height: 1.7;
             color: var(--cream);
-            margin-bottom: 1.5rem;
-            opacity: 0.95;
+            opacity: 0.9;
+        }
+
+        .philosophy-card.full-width {
+            grid-column: 1 / -1;
+            text-align: center;
+            border-left: none;
+            border-top: 3px solid var(--accent-tertiary);
         }
 
         .highlight {
@@ -634,13 +681,24 @@
     <section class="philosophy">
         <div class="container">
             <h2>Technology needs to serve people, not the other way around.</h2>
-            <p>I spent nearly a decade at JPMorgan Chase as a Software Engineer, building and supporting production systems. I bring that same discipline and quality to every project.</p>
-            
-            <p><strong>What I build:</strong> Websites, web applications, booking systems, and working prototypes that bring your ideas to life. All bespoke and carefully crafted to fit exactly what you need.</p>
-            
-            <p><strong>Who it's for:</strong> Solo founders with an idea that needs building. Service businesses tired of clunky systems that don't fit how you actually work. Wellness practitioners wanting booking systems that feel like yours. Anyone who knows there's a better way and needs someone to build it.</p>
-            
-            <p>Glade Tech is <span class="highlight">named after a place very dear to me, where music, nature, and community came together.</span></p>
+            <div class="philosophy-grid">
+                <div class="philosophy-card">
+                    <h3>Experience</h3>
+                    <p>Nearly a decade as a Software Engineer at a leading global firm — delivering production systems end-to-end across the full development lifecycle in high-pressure environments. That same rigour and quality goes into every project.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>What I Build</h3>
+                    <p>Websites, web applications, booking systems, and working prototypes that bring your ideas to life. All bespoke and carefully crafted to fit exactly what you need.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>Who It's For</h3>
+                    <p>Solo founders with an idea that needs building. Service businesses tired of clunky systems. Wellness practitioners wanting booking systems that feel like yours. Anyone who needs someone to build it properly.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>The Name</h3>
+                    <p>Glade Tech is <span class="highlight">named after a place very dear to me, where music, nature, and community came together.</span></p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -897,7 +955,7 @@
         </div>
     </footer>
 <script>
-const cards = document.querySelectorAll(".project-card, .process-step, .service-card");
+const cards = document.querySelectorAll(".philosophy-card, .project-card, .process-step, .service-card");
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
