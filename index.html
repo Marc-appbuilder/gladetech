@@ -47,7 +47,8 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--forest-darkest) 0%, var(--forest-dark) 50%, var(--forest-green) 100%);
+            background: linear-gradient(135deg, rgba(10, 25, 16, 0.92) 0%, rgba(20, 45, 30, 0.88) 50%, rgba(26, 58, 46, 0.85) 100%),
+                        url('yes.png') center/cover no-repeat fixed;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -604,14 +605,23 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+                padding: 3rem 1.5rem;
+            }
+
             .hero-beacon {
-                width: 300px;
-                height: 300px;
+                width: 250px;
+                height: 250px;
             }
 
             .cta-beacon {
-                font-size: 1rem;
-                padding: 0.85rem 2rem;
+                font-size: 0.95rem;
+                padding: 0.75rem 1.75rem;
+            }
+
+            .philosophy-card p {
+                font-size: 0.95rem;
             }
 
             .projects-grid {
@@ -642,6 +652,15 @@
         }
 
         @media (max-width: 480px) {
+            .hero-beacon {
+                width: 200px;
+                height: 200px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 8vw, 3rem);
+            }
+
             .project-image {
                 height: 180px;
             }
