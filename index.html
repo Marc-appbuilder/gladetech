@@ -19,7 +19,9 @@
             --forest-green: #1a3a2e;
             --forest-mid: #234a3d;
             --charcoal: #1c1c1c;
+            --charcoal-warm: #1f1a17;
             --dark-teal: #1a2f2a;
+            --dark-warm: #2a1f1a;
             --cream: #f4f1e8;
             --accent: #8b9d83;
             --accent-secondary: #c97456;
@@ -47,8 +49,7 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(10, 25, 16, 0.92) 0%, rgba(20, 45, 30, 0.88) 50%, rgba(26, 58, 46, 0.85) 100%),
-                        url('yes.png') center/cover no-repeat fixed;
+            background: linear-gradient(135deg, var(--forest-darkest) 0%, var(--forest-dark) 50%, var(--forest-green) 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -164,13 +165,13 @@
 
         /* Philosophy Section */
         .philosophy {
-            background: linear-gradient(135deg, var(--forest-green) 0%, var(--dark-teal) 100%);
+            background: linear-gradient(135deg, var(--charcoal-warm) 0%, var(--dark-warm) 100%);
             padding: 8rem 0;
         }
 
         .philosophy h2 {
             font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--cream);
+            color: var(--accent-tertiary);
             margin-bottom: 3rem;
             font-weight: 700;
         }
@@ -184,10 +185,10 @@
         }
 
         .philosophy-card {
-            background: rgba(26, 58, 46, 0.3);
+            background: rgba(42, 31, 26, 0.5);
             padding: 2rem;
             border-radius: 8px;
-            border-left: 3px solid var(--accent-tertiary);
+            border-left: 3px solid var(--accent-secondary);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
             box-shadow: 0 0 0 rgba(212, 165, 116, 0);
@@ -211,7 +212,7 @@
 
         .philosophy-card h3 {
             font-size: 1.3rem;
-            color: var(--accent);
+            color: var(--accent-secondary);
             margin-bottom: 1rem;
             font-weight: 700;
         }
@@ -237,15 +238,25 @@
 
         /* Services Section */
         .services {
-            background: linear-gradient(135deg, var(--dark-teal) 0%, var(--charcoal) 100%);
+            background: linear-gradient(135deg, var(--forest-green) 0%, var(--dark-teal) 100%);
             padding: 8rem 0;
         }
 
         .services h2 {
             font-size: clamp(1.8rem, 4vw, 2.5rem);
             color: var(--cream);
-            margin-bottom: 3rem;
+            margin-bottom: 0.5rem;
             font-weight: 700;
+        }
+
+        .services h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-tertiary);
+            margin-top: 1rem;
+            margin-bottom: 2.5rem;
         }
 
         .services-grid {
@@ -283,7 +294,7 @@
 
         .service-card h3 {
             font-size: 1.3rem;
-            color: var(--accent);
+            color: var(--accent-tertiary);
             margin-bottom: 1rem;
             font-weight: 700;
         }
@@ -297,15 +308,25 @@
 
         /* Projects Section */
         .projects {
-            background: linear-gradient(135deg, var(--charcoal) 0%, var(--forest-dark) 100%);
+            background: linear-gradient(135deg, var(--charcoal-warm) 0%, var(--charcoal) 100%);
             padding: 8rem 0;
         }
 
         .projects h2 {
             font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--cream);
-            margin-bottom: 4rem;
+            color: var(--accent-tertiary);
+            margin-bottom: 1rem;
             font-weight: 700;
+        }
+
+        .projects h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-secondary);
+            margin-top: 1rem;
+            margin-bottom: 3rem;
         }
 
         .projects-grid {
@@ -336,6 +357,9 @@
          .project-card:nth-child(3) { transition-delay: 0.3s; }
          .project-card:nth-child(4) { transition-delay: 0.45s; }
          .project-card:nth-child(5) { transition-delay: 0.6s; }
+         .project-card:nth-child(6) { transition-delay: 0.75s; }
+         .project-card:nth-child(7) { transition-delay: 0.9s; }
+         .project-card:nth-child(8) { transition-delay: 1.05s; }
 
         .project-card.visible:hover {
             transform: translateY(-5px);
@@ -398,7 +422,7 @@
 
         .project-card h3 {
             font-size: 1.8rem;
-            color: var(--accent);
+            color: var(--accent-tertiary);
             margin-bottom: 1rem;
             font-weight: 700;
         }
@@ -427,7 +451,7 @@
 
         /* How It Works Section */
         .how-it-works {
-            background: linear-gradient(135deg, var(--forest-darkest) 0%, var(--forest-dark) 100%);
+            background: linear-gradient(135deg, var(--forest-green) 0%, var(--forest-dark) 100%);
             padding: 8rem 0;
             position: relative;
         }
@@ -435,9 +459,18 @@
         .how-it-works h2 {
             font-size: clamp(1.8rem, 4vw, 2.5rem);
             color: var(--cream);
-            margin-bottom: 4rem;
+            margin-bottom: 1rem;
             text-align: center;
             font-weight: 700;
+        }
+
+        .how-it-works h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-tertiary);
+            margin: 1rem auto 3rem;
         }
 
         .process-grid {
@@ -560,14 +593,14 @@
 
         /* Contact Section */
         .contact {
-            background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-darkest) 100%);
+            background: linear-gradient(135deg, var(--charcoal-warm) 0%, var(--forest-darkest) 100%);
             padding: 8rem 0;
             text-align: center;
         }
 
         .contact h2 {
             font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--cream);
+            color: var(--accent-tertiary);
             margin-bottom: 3rem;
             font-weight: 700;
         }
@@ -606,7 +639,6 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero {
-                background-attachment: scroll;
                 padding: 3rem 1.5rem;
             }
 
@@ -769,7 +801,7 @@
     <!-- Philosophy Section -->
     <section class="philosophy">
         <div class="container">
-            <h2>Technology needs to serve people, not the other way around.</h2>
+            <h2>Clean code. Good design. Real solutions.</h2>
             <div class="philosophy-grid">
                 <div class="philosophy-card">
                     <h3>Experience</h3>
@@ -906,6 +938,41 @@
                         <h3>ai&i</h3>
                         <p>Building the bridge between human potential and AI capability. Custom applications that amplify what you do best, without the complexity.</p>
                         <a href="https://aiandisolutions.com" class="project-link" target="_blank">aiandisolutions.com →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #3d2b2b 0%, #5a3a3a 50%, #7a4f4f 100%);">
+                        <svg width="800" height="560" viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="grad-rm" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#d4a574;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#c97456;stop-opacity:1" />
+                                </linearGradient>
+                                <style>
+                                    @keyframes rm-breathe { 0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.08);opacity:1} }
+                                    @keyframes rm-float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)} }
+                                    .rm-ring { animation: rm-breathe 4s ease-in-out infinite; transform-origin: center; }
+                                    .rm-leaf-1 { animation: rm-float 3s ease-in-out infinite; }
+                                    .rm-leaf-2 { animation: rm-float 3s ease-in-out infinite; animation-delay: 0.5s; }
+                                    .rm-leaf-3 { animation: rm-float 3s ease-in-out infinite; animation-delay: 1s; }
+                                </style>
+                            </defs>
+                            <rect width="800" height="560" fill="transparent"/>
+                            <g class="rm-ring"><circle cx="400" cy="280" r="120" fill="none" stroke="#d4a574" stroke-width="2" opacity=".3"/></g>
+                            <g class="rm-ring" style="animation-delay:.5s"><circle cx="400" cy="280" r="90" fill="none" stroke="#c97456" stroke-width="1.5" opacity=".25"/></g>
+                            <circle cx="400" cy="280" r="35" fill="url(#grad-rm)" opacity=".7"/>
+                            <circle cx="400" cy="280" r="20" fill="none" stroke="#f4f1e8" stroke-width="2" opacity=".6"/>
+                            <g class="rm-leaf-1"><ellipse cx="340" cy="240" rx="20" ry="8" fill="#a0b098" opacity=".6" transform="rotate(-30 340 240)"/></g>
+                            <g class="rm-leaf-2"><ellipse cx="460" cy="240" rx="20" ry="8" fill="#8b9d83" opacity=".6" transform="rotate(30 460 240)"/></g>
+                            <g class="rm-leaf-3"><ellipse cx="400" cy="340" rx="22" ry="8" fill="#a0b098" opacity=".5" transform="rotate(0 400 340)"/></g>
+                        </svg>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-status live">LIVE NOW</div>
+                        <h3>Rejuvenated Mother</h3>
+                        <p>Holistic women's health coaching website for a practitioner in Poole. Warm, calming design with booking integration and service showcases.</p>
+                        <a href="https://www.rejuvenatedmother.com" class="project-link" target="_blank">rejuvenatedmother.com →</a>
                     </div>
                 </div>
 
