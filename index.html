@@ -159,53 +159,7 @@
             50% { box-shadow: 0 0 20px rgba(244, 162, 97, 1); transform: scale(1.2); }
         }
 
-        .mic-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 0.75rem;
-            padding: 0.4rem 1.2rem;
-            background: none;
-            border: 1px solid rgba(244, 162, 97, 0.25);
-            border-radius: 50px;
-            color: rgba(244, 241, 232, 0.4);
-            font-size: 0.78rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .mic-btn:hover {
-            border-color: rgba(244, 162, 97, 0.5);
-            color: rgba(244, 241, 232, 0.7);
-        }
-
-        .mic-btn.active {
-            border-color: #f4a261;
-            color: #f4a261;
-            box-shadow: 0 0 12px rgba(244, 162, 97, 0.25);
-        }
-
-        .mic-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: currentColor;
-            flex-shrink: 0;
-        }
-
-        .mic-btn.active .mic-dot {
-            animation: mic-live 1.2s ease-in-out infinite;
-        }
-
-        @keyframes mic-live {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(0.6); }
-        }
-
-        .hero-beacon svg {
+.hero-beacon svg {
             background: transparent !important;
         }
 
@@ -818,11 +772,8 @@
       <path d="M 0 0 L 40 -10 L 40 10 Z" fill="#f4a261" opacity="0.8"/>
     </g>
 
-    <!-- Audio reactive ring (controlled by JS) -->
-    <circle id="hero-audio-ring" cx="0" cy="0" r="40" fill="none" stroke="#f4a261" stroke-width="3" opacity="0"/>
-
     <!-- Central beacon light -->
-    <circle id="hero-light" cx="0" cy="0" r="15" fill="#f4a261" opacity="0.9"/>
+    <circle cx="0" cy="0" r="15" fill="#f4a261" opacity="0.9"/>
     <circle cx="0" cy="0" r="8" fill="#ffd89b"/>
     
     <!-- Morse code display -->
@@ -844,11 +795,6 @@
                 <span class="cta-beacon-dot"></span>
                 Send a Signal
             </a>
-            <br>
-            <button class="mic-btn" id="mic-btn" title="Let the beacon react to sound">
-                <span class="mic-dot"></span>
-                sound mode
-            </button>
         </div>
     </section>
 
@@ -1130,11 +1076,8 @@
       <path d="M 0 0 L 40 -10 L 40 10 Z" fill="#e76f51" opacity="0.8"/>
     </g>
 
-    <!-- Audio reactive ring (controlled by JS) -->
-    <circle id="footer-audio-ring" cx="0" cy="0" r="40" fill="none" stroke="#e76f51" stroke-width="3" opacity="0"/>
-
     <!-- Central beacon light - golden -->
-    <circle id="footer-light" cx="0" cy="0" r="15" fill="#f4a261" opacity="0.9"/>
+    <circle cx="0" cy="0" r="15" fill="#f4a261" opacity="0.9"/>
     <circle cx="0" cy="0" r="8" fill="#ffd89b"/>
     
     <!-- Morse code display - inverted colors -->
@@ -1179,137 +1122,5 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 cards.forEach(card => observer.observe(card));
 
-// =====================
-// Audio Reactive Beacons
-// =====================
-
-const heroLight       = document.getElementById('hero-light');
-const heroAudioRing   = document.getElementById('hero-audio-ring');
-const heroRing1       = document.getElementById('hero-ring-1');
-const heroRing2       = document.getElementById('hero-ring-2');
-const footerLight     = document.getElementById('footer-light');
-const footerAudioRing = document.getElementById('footer-audio-ring');
-const footerRing1     = document.getElementById('footer-ring-1');
-const footerRing2     = document.getElementById('footer-ring-2');
-const micBtn          = document.getElementById('mic-btn');
-
-let audioCtx, analyser, micStream, audioData;
-let audioActive = false;
-
-// Smoothed values
-let smoothVol = 0, smoothKick = 0, smoothMid = 0, smoothVoice = 0;
-let prevKick = 0;
-
-// Noise floor — anything below this is treated as silence
-const NOISE_FLOOR = 0.06;
-
-function bandAvg(arr, start, end) {
-    let sum = 0;
-    const len = Math.min(end, arr.length) - start;
-    for (let i = start; i < Math.min(end, arr.length); i++) sum += arr[i];
-    return sum / len;
-}
-
-function lerp(a, b, t) { return a + (b - a) * t; }
-function gate(v) { return v > NOISE_FLOOR ? v : 0; }
-
-function audioTick() {
-    if (!audioActive) return;
-
-    analyser.getByteFrequencyData(audioData);
-
-    // Frequency bands (FFT 256 = 128 bins, ~172Hz per bin)
-    const rawKick  = gate(bandAvg(audioData, 0, 3)   / 255); // 0–500Hz   kick / bass drum
-    const rawMid   = gate(bandAvg(audioData, 8, 25)  / 255); // 1.4–4kHz  melody / instruments
-    const rawVoice = gate(bandAvg(audioData, 3, 18)  / 255); // 500Hz–3kHz voice
-    const rawVol   = gate(bandAvg(audioData, 0, 50)  / 255); // overall
-
-    // Transient detection for kick — react to the attack, not sustained bass
-    const kickHit = Math.max(0, rawKick - prevKick * 0.75);
-    prevKick = rawKick;
-
-    // Smooth each band at its own rate
-    smoothKick  = lerp(smoothKick,  kickHit,  0.4);  // fast — punchy
-    smoothMid   = lerp(smoothMid,   rawMid,   0.1);  // slow — flowing
-    smoothVoice = lerp(smoothVoice, rawVoice, 0.15); // medium
-    smoothVol   = lerp(smoothVol,   rawVol,   0.07); // very slow — subtle
-
-    // 1. SIGNAL RINGS — thicken on kick (CSS handles expand/fade, we just boost stroke-width)
-    const ringW = (2 + smoothKick * 7).toFixed(1);
-    [heroRing1, heroRing2, footerRing1, footerRing2].forEach(el => {
-        if (el) el.setAttribute('stroke-width', ringW);
-    });
-
-    // 2. AUDIO RING — separate outward pulse on kick
-    const ringR  = (45 + smoothKick * 55).toFixed(1);
-    const ringOp = (smoothKick * 0.9).toFixed(2);
-    [heroAudioRing, footerAudioRing].forEach(el => {
-        if (!el) return;
-        el.setAttribute('r', ringR);
-        el.setAttribute('opacity', ringOp);
-        el.setAttribute('stroke-width', ringW);
-    });
-
-    // 3. CENTRAL LIGHT — breathes with melody
-    const lightR  = (15 + smoothMid * 9).toFixed(1);
-    const lightOp = (0.75 + smoothMid * 0.25).toFixed(2);
-    [heroLight, footerLight].forEach(el => {
-        if (!el) return;
-        el.setAttribute('r', lightR);
-        el.setAttribute('opacity', lightOp);
-    });
-
-    // 4. MORSE DOTS — flicker with voice
-    const morseOp = (0.2 + smoothVoice * 0.8).toFixed(2);
-    document.querySelectorAll(
-        '.s1-hero,.s2-hero,.s3-hero,.o1-hero,.o2-hero,.o3-hero,' +
-        '.s1-footer,.s2-footer,.s3-footer,.o1-footer,.o2-footer,.o3-footer'
-    ).forEach(el => { el.style.opacity = morseOp; });
-
-    requestAnimationFrame(audioTick);
-}
-
-async function startAudio() {
-    try {
-        micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-        audioCtx  = new (window.AudioContext || window.webkitAudioContext)();
-        const source = audioCtx.createMediaStreamSource(micStream);
-        analyser = audioCtx.createAnalyser();
-        analyser.fftSize = 256;
-        analyser.smoothingTimeConstant = 0.85; // browser-level smoothing
-        source.connect(analyser);
-        audioData = new Uint8Array(analyser.frequencyBinCount);
-        audioActive = true;
-        micBtn.classList.add('active');
-        requestAnimationFrame(audioTick);
-    } catch (e) {
-        micBtn.textContent = 'mic unavailable';
-    }
-}
-
-function stopAudio() {
-    audioActive = false;
-    if (micStream) micStream.getTracks().forEach(t => t.stop());
-    if (audioCtx)  audioCtx.close();
-    micBtn.classList.remove('active');
-    // Reset everything to CSS defaults
-    [heroRing1, heroRing2, footerRing1, footerRing2].forEach(el => {
-        if (el) el.setAttribute('stroke-width', '2');
-    });
-    [heroLight, footerLight].forEach(el => {
-        if (el) { el.setAttribute('r', '15'); el.setAttribute('opacity', '0.9'); }
-    });
-    [heroAudioRing, footerAudioRing].forEach(el => {
-        if (el) el.setAttribute('opacity', '0');
-    });
-    document.querySelectorAll(
-        '.s1-hero,.s2-hero,.s3-hero,.o1-hero,.o2-hero,.o3-hero,' +
-        '.s1-footer,.s2-footer,.s3-footer,.o1-footer,.o2-footer,.o3-footer'
-    ).forEach(el => { el.style.opacity = ''; });
-}
-
-if (micBtn) {
-    micBtn.addEventListener('click', () => audioActive ? stopAudio() : startAudio());
-}
 </script></body>
 </html>
