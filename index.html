@@ -806,10 +806,10 @@
     
     <!-- Signal rings -->
     <g class="ring-hero">
-      <circle cx="0" cy="0" r="40" fill="none" stroke="#f4a261" stroke-width="2"/>
+      <circle id="hero-ring-1" cx="0" cy="0" r="40" fill="none" stroke="#f4a261" stroke-width="2"/>
     </g>
     <g class="ring-hero" style="animation-delay: 0.5s;">
-      <circle cx="0" cy="0" r="40" fill="none" stroke="#e76f51" stroke-width="2"/>
+      <circle id="hero-ring-2" cx="0" cy="0" r="40" fill="none" stroke="#e76f51" stroke-width="2"/>
     </g>
     
     <!-- Rotating beacon base -->
@@ -1118,10 +1118,10 @@
     
     <!-- Signal rings - golden/terra cotta -->
     <g class="ring-footer">
-      <circle cx="0" cy="0" r="40" fill="none" stroke="#e76f51" stroke-width="2"/>
+      <circle id="footer-ring-1" cx="0" cy="0" r="40" fill="none" stroke="#e76f51" stroke-width="2"/>
     </g>
     <g class="ring-footer" style="animation-delay: 0.5s;">
-      <circle cx="0" cy="0" r="40" fill="none" stroke="#f4a261" stroke-width="2"/>
+      <circle id="footer-ring-2" cx="0" cy="0" r="40" fill="none" stroke="#f4a261" stroke-width="2"/>
     </g>
     
     <!-- Rotating beacon base - counter-clockwise, terra cotta -->
@@ -1183,12 +1183,14 @@ cards.forEach(card => observer.observe(card));
 // Audio Reactive Beacons
 // =====================
 
-const heroArm         = document.getElementById('hero-arm');
 const heroLight       = document.getElementById('hero-light');
 const heroAudioRing   = document.getElementById('hero-audio-ring');
-const footerArm       = document.getElementById('footer-arm');
+const heroRing1       = document.getElementById('hero-ring-1');
+const heroRing2       = document.getElementById('hero-ring-2');
 const footerLight     = document.getElementById('footer-light');
 const footerAudioRing = document.getElementById('footer-audio-ring');
+const footerRing1     = document.getElementById('footer-ring-1');
+const footerRing2     = document.getElementById('footer-ring-2');
 const micBtn          = document.getElementById('mic-btn');
 
 let audioCtx, analyser, micStream, audioData;
@@ -1232,14 +1234,15 @@ function audioTick() {
     smoothVoice = lerp(smoothVoice, rawVoice, 0.15); // medium
     smoothVol   = lerp(smoothVol,   rawVol,   0.07); // very slow — subtle
 
-    // 1. ROTATION — barely changes, just a gentle breath with overall volume
-    const speed = (8 / (1 + smoothVol * 1.2)).toFixed(2) + 's';
-    [heroArm, footerArm].forEach(el => { if (el) el.style.animationDuration = speed; });
+    // 1. SIGNAL RINGS — thicken on kick (CSS handles expand/fade, we just boost stroke-width)
+    const ringW = (2 + smoothKick * 7).toFixed(1);
+    [heroRing1, heroRing2, footerRing1, footerRing2].forEach(el => {
+        if (el) el.setAttribute('stroke-width', ringW);
+    });
 
-    // 2. KICK RING — punchy pulse on bass drum / kick
-    const ringR  = (45 + smoothKick * 60).toFixed(1);
-    const ringOp = (smoothKick * 0.95).toFixed(2);
-    const ringW  = (2 + smoothKick * 4).toFixed(1);
+    // 2. AUDIO RING — separate outward pulse on kick
+    const ringR  = (45 + smoothKick * 55).toFixed(1);
+    const ringOp = (smoothKick * 0.9).toFixed(2);
     [heroAudioRing, footerAudioRing].forEach(el => {
         if (!el) return;
         el.setAttribute('r', ringR);
@@ -1290,7 +1293,9 @@ function stopAudio() {
     if (audioCtx)  audioCtx.close();
     micBtn.classList.remove('active');
     // Reset everything to CSS defaults
-    [heroArm, footerArm].forEach(el => { if (el) el.style.animationDuration = ''; });
+    [heroRing1, heroRing2, footerRing1, footerRing2].forEach(el => {
+        if (el) el.setAttribute('stroke-width', '2');
+    });
     [heroLight, footerLight].forEach(el => {
         if (el) { el.setAttribute('r', '15'); el.setAttribute('opacity', '0.9'); }
     });
