@@ -159,6 +159,52 @@
             50% { box-shadow: 0 0 20px rgba(244, 162, 97, 1); transform: scale(1.2); }
         }
 
+        .mic-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            padding: 0.4rem 1.2rem;
+            background: none;
+            border: 1px solid rgba(244, 162, 97, 0.25);
+            border-radius: 50px;
+            color: rgba(244, 241, 232, 0.4);
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .mic-btn:hover {
+            border-color: rgba(244, 162, 97, 0.5);
+            color: rgba(244, 241, 232, 0.7);
+        }
+
+        .mic-btn.active {
+            border-color: #f4a261;
+            color: #f4a261;
+            box-shadow: 0 0 12px rgba(244, 162, 97, 0.25);
+        }
+
+        .mic-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+            flex-shrink: 0;
+        }
+
+        .mic-btn.active .mic-dot {
+            animation: mic-live 1.2s ease-in-out infinite;
+        }
+
+        @keyframes mic-live {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.6); }
+        }
+
         .hero-beacon svg {
             background: transparent !important;
         }
@@ -767,13 +813,16 @@
     </g>
     
     <!-- Rotating beacon base -->
-    <g class="beacon-hero">
+    <g class="beacon-hero" id="hero-arm">
       <circle cx="0" cy="0" r="25" fill="#a8c69f" opacity="0.4"/>
       <path d="M 0 0 L 40 -10 L 40 10 Z" fill="#f4a261" opacity="0.8"/>
     </g>
-    
+
+    <!-- Audio reactive ring (controlled by JS) -->
+    <circle id="hero-audio-ring" cx="0" cy="0" r="40" fill="none" stroke="#f4a261" stroke-width="3" opacity="0"/>
+
     <!-- Central beacon light -->
-    <circle cx="0" cy="0" r="15" fill="#f4a261" opacity="0.9"/>
+    <circle id="hero-light" cx="0" cy="0" r="15" fill="#f4a261" opacity="0.9"/>
     <circle cx="0" cy="0" r="8" fill="#ffd89b"/>
     
     <!-- Morse code display -->
@@ -795,6 +844,11 @@
                 <span class="cta-beacon-dot"></span>
                 Send a Signal
             </a>
+            <br>
+            <button class="mic-btn" id="mic-btn" title="Let the beacon react to sound">
+                <span class="mic-dot"></span>
+                sound mode
+            </button>
         </div>
     </section>
 
@@ -1071,13 +1125,16 @@
     </g>
     
     <!-- Rotating beacon base - counter-clockwise, terra cotta -->
-    <g class="beacon-footer">
+    <g class="beacon-footer" id="footer-arm">
       <circle cx="0" cy="0" r="25" fill="#e76f51" opacity="0.4"/>
       <path d="M 0 0 L 40 -10 L 40 10 Z" fill="#e76f51" opacity="0.8"/>
     </g>
-    
+
+    <!-- Audio reactive ring (controlled by JS) -->
+    <circle id="footer-audio-ring" cx="0" cy="0" r="40" fill="none" stroke="#e76f51" stroke-width="3" opacity="0"/>
+
     <!-- Central beacon light - golden -->
-    <circle cx="0" cy="0" r="15" fill="#f4a261" opacity="0.9"/>
+    <circle id="footer-light" cx="0" cy="0" r="15" fill="#f4a261" opacity="0.9"/>
     <circle cx="0" cy="0" r="8" fill="#ffd89b"/>
     
     <!-- Morse code display - inverted colors -->
@@ -1121,5 +1178,95 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.1 });
 cards.forEach(card => observer.observe(card));
+
+// =====================
+// Audio Reactive Beacons
+// =====================
+
+const heroArm        = document.getElementById('hero-arm');
+const heroLight      = document.getElementById('hero-light');
+const heroAudioRing  = document.getElementById('hero-audio-ring');
+const footerArm      = document.getElementById('footer-arm');
+const footerLight    = document.getElementById('footer-light');
+const footerAudioRing = document.getElementById('footer-audio-ring');
+const micBtn         = document.getElementById('mic-btn');
+
+let audioCtx, analyser, micStream, audioData;
+let audioActive = false;
+let smoothVol = 0, smoothBass = 0;
+
+function bandAvg(arr, start, end) {
+    let sum = 0;
+    const len = Math.min(end, arr.length) - start;
+    for (let i = start; i < Math.min(end, arr.length); i++) sum += arr[i];
+    return sum / len;
+}
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+function audioTick() {
+    if (!audioActive) return;
+
+    analyser.getByteFrequencyData(audioData);
+
+    const bass    = bandAvg(audioData, 0, 6)  / 255;
+    const overall = bandAvg(audioData, 0, 60) / 255;
+
+    smoothVol  = lerp(smoothVol,  overall, 0.15);
+    smoothBass = lerp(smoothBass, bass,    0.2);
+
+    // Rotation speed: 8s idle → ~0.8s on loud beat
+    const speed = (8 / (1 + smoothVol * 9)).toFixed(2) + 's';
+    if (heroArm)   heroArm.style.animationDuration   = speed;
+    if (footerArm) footerArm.style.animationDuration = speed;
+
+    // Central light: grows and brightens with volume
+    const lightR   = (15 + smoothBass * 22).toFixed(1);
+    const lightOp  = (0.7 + smoothVol * 0.3).toFixed(2);
+    if (heroLight)   { heroLight.setAttribute('r', lightR);   heroLight.setAttribute('opacity', lightOp); }
+    if (footerLight) { footerLight.setAttribute('r', lightR); footerLight.setAttribute('opacity', lightOp); }
+
+    // Audio ring: pulses outward on bass hits
+    const ringR  = (40 + smoothBass * 90).toFixed(1);
+    const ringOp = (smoothBass * 0.85).toFixed(2);
+    if (heroAudioRing)   { heroAudioRing.setAttribute('r', ringR);   heroAudioRing.setAttribute('opacity', ringOp); }
+    if (footerAudioRing) { footerAudioRing.setAttribute('r', ringR); footerAudioRing.setAttribute('opacity', ringOp); }
+
+    requestAnimationFrame(audioTick);
+}
+
+async function startAudio() {
+    try {
+        micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+        audioCtx  = new (window.AudioContext || window.webkitAudioContext)();
+        const source = audioCtx.createMediaStreamSource(micStream);
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 256;
+        analyser.smoothingTimeConstant = 0.75;
+        source.connect(analyser);
+        audioData = new Uint8Array(analyser.frequencyBinCount);
+        audioActive = true;
+        micBtn.classList.add('active');
+        micBtn.querySelector('.mic-dot').title = 'listening...';
+        requestAnimationFrame(audioTick);
+    } catch (e) {
+        micBtn.textContent = 'mic unavailable';
+    }
+}
+
+function stopAudio() {
+    audioActive = false;
+    if (micStream) micStream.getTracks().forEach(t => t.stop());
+    if (audioCtx)  audioCtx.close();
+    micBtn.classList.remove('active');
+    // Reset beacons to CSS defaults
+    [heroArm, footerArm].forEach(el => { if (el) el.style.animationDuration = ''; });
+    [heroLight, footerLight].forEach(el => { if (el) { el.setAttribute('r', '15'); el.setAttribute('opacity', '0.9'); } });
+    [heroAudioRing, footerAudioRing].forEach(el => { if (el) el.setAttribute('opacity', '0'); });
+}
+
+if (micBtn) {
+    micBtn.addEventListener('click', () => audioActive ? stopAudio() : startAudio());
+}
 </script></body>
 </html>
