@@ -1183,17 +1183,23 @@ cards.forEach(card => observer.observe(card));
 // Audio Reactive Beacons
 // =====================
 
-const heroArm        = document.getElementById('hero-arm');
-const heroLight      = document.getElementById('hero-light');
-const heroAudioRing  = document.getElementById('hero-audio-ring');
-const footerArm      = document.getElementById('footer-arm');
-const footerLight    = document.getElementById('footer-light');
+const heroArm         = document.getElementById('hero-arm');
+const heroLight       = document.getElementById('hero-light');
+const heroAudioRing   = document.getElementById('hero-audio-ring');
+const footerArm       = document.getElementById('footer-arm');
+const footerLight     = document.getElementById('footer-light');
 const footerAudioRing = document.getElementById('footer-audio-ring');
-const micBtn         = document.getElementById('mic-btn');
+const micBtn          = document.getElementById('mic-btn');
 
 let audioCtx, analyser, micStream, audioData;
 let audioActive = false;
-let smoothVol = 0, smoothBass = 0;
+
+// Smoothed values
+let smoothVol = 0, smoothKick = 0, smoothMid = 0, smoothVoice = 0;
+let prevKick = 0;
+
+// Noise floor — anything below this is treated as silence
+const NOISE_FLOOR = 0.06;
 
 function bandAvg(arr, start, end) {
     let sum = 0;
@@ -1203,34 +1209,59 @@ function bandAvg(arr, start, end) {
 }
 
 function lerp(a, b, t) { return a + (b - a) * t; }
+function gate(v) { return v > NOISE_FLOOR ? v : 0; }
 
 function audioTick() {
     if (!audioActive) return;
 
     analyser.getByteFrequencyData(audioData);
 
-    const bass    = bandAvg(audioData, 0, 6)  / 255;
-    const overall = bandAvg(audioData, 0, 60) / 255;
+    // Frequency bands (FFT 256 = 128 bins, ~172Hz per bin)
+    const rawKick  = gate(bandAvg(audioData, 0, 3)   / 255); // 0–500Hz   kick / bass drum
+    const rawMid   = gate(bandAvg(audioData, 8, 25)  / 255); // 1.4–4kHz  melody / instruments
+    const rawVoice = gate(bandAvg(audioData, 3, 18)  / 255); // 500Hz–3kHz voice
+    const rawVol   = gate(bandAvg(audioData, 0, 50)  / 255); // overall
 
-    smoothVol  = lerp(smoothVol,  overall, 0.15);
-    smoothBass = lerp(smoothBass, bass,    0.2);
+    // Transient detection for kick — react to the attack, not sustained bass
+    const kickHit = Math.max(0, rawKick - prevKick * 0.75);
+    prevKick = rawKick;
 
-    // Rotation speed: 8s idle → ~0.8s on loud beat
-    const speed = (8 / (1 + smoothVol * 9)).toFixed(2) + 's';
-    if (heroArm)   heroArm.style.animationDuration   = speed;
-    if (footerArm) footerArm.style.animationDuration = speed;
+    // Smooth each band at its own rate
+    smoothKick  = lerp(smoothKick,  kickHit,  0.4);  // fast — punchy
+    smoothMid   = lerp(smoothMid,   rawMid,   0.1);  // slow — flowing
+    smoothVoice = lerp(smoothVoice, rawVoice, 0.15); // medium
+    smoothVol   = lerp(smoothVol,   rawVol,   0.07); // very slow — subtle
 
-    // Central light: grows and brightens with volume
-    const lightR   = (15 + smoothBass * 22).toFixed(1);
-    const lightOp  = (0.7 + smoothVol * 0.3).toFixed(2);
-    if (heroLight)   { heroLight.setAttribute('r', lightR);   heroLight.setAttribute('opacity', lightOp); }
-    if (footerLight) { footerLight.setAttribute('r', lightR); footerLight.setAttribute('opacity', lightOp); }
+    // 1. ROTATION — barely changes, just a gentle breath with overall volume
+    const speed = (8 / (1 + smoothVol * 1.2)).toFixed(2) + 's';
+    [heroArm, footerArm].forEach(el => { if (el) el.style.animationDuration = speed; });
 
-    // Audio ring: pulses outward on bass hits
-    const ringR  = (40 + smoothBass * 90).toFixed(1);
-    const ringOp = (smoothBass * 0.85).toFixed(2);
-    if (heroAudioRing)   { heroAudioRing.setAttribute('r', ringR);   heroAudioRing.setAttribute('opacity', ringOp); }
-    if (footerAudioRing) { footerAudioRing.setAttribute('r', ringR); footerAudioRing.setAttribute('opacity', ringOp); }
+    // 2. KICK RING — punchy pulse on bass drum / kick
+    const ringR  = (45 + smoothKick * 60).toFixed(1);
+    const ringOp = (smoothKick * 0.95).toFixed(2);
+    const ringW  = (2 + smoothKick * 4).toFixed(1);
+    [heroAudioRing, footerAudioRing].forEach(el => {
+        if (!el) return;
+        el.setAttribute('r', ringR);
+        el.setAttribute('opacity', ringOp);
+        el.setAttribute('stroke-width', ringW);
+    });
+
+    // 3. CENTRAL LIGHT — breathes with melody
+    const lightR  = (15 + smoothMid * 9).toFixed(1);
+    const lightOp = (0.75 + smoothMid * 0.25).toFixed(2);
+    [heroLight, footerLight].forEach(el => {
+        if (!el) return;
+        el.setAttribute('r', lightR);
+        el.setAttribute('opacity', lightOp);
+    });
+
+    // 4. MORSE DOTS — flicker with voice
+    const morseOp = (0.2 + smoothVoice * 0.8).toFixed(2);
+    document.querySelectorAll(
+        '.s1-hero,.s2-hero,.s3-hero,.o1-hero,.o2-hero,.o3-hero,' +
+        '.s1-footer,.s2-footer,.s3-footer,.o1-footer,.o2-footer,.o3-footer'
+    ).forEach(el => { el.style.opacity = morseOp; });
 
     requestAnimationFrame(audioTick);
 }
@@ -1242,12 +1273,11 @@ async function startAudio() {
         const source = audioCtx.createMediaStreamSource(micStream);
         analyser = audioCtx.createAnalyser();
         analyser.fftSize = 256;
-        analyser.smoothingTimeConstant = 0.75;
+        analyser.smoothingTimeConstant = 0.85; // browser-level smoothing
         source.connect(analyser);
         audioData = new Uint8Array(analyser.frequencyBinCount);
         audioActive = true;
         micBtn.classList.add('active');
-        micBtn.querySelector('.mic-dot').title = 'listening...';
         requestAnimationFrame(audioTick);
     } catch (e) {
         micBtn.textContent = 'mic unavailable';
@@ -1259,10 +1289,18 @@ function stopAudio() {
     if (micStream) micStream.getTracks().forEach(t => t.stop());
     if (audioCtx)  audioCtx.close();
     micBtn.classList.remove('active');
-    // Reset beacons to CSS defaults
+    // Reset everything to CSS defaults
     [heroArm, footerArm].forEach(el => { if (el) el.style.animationDuration = ''; });
-    [heroLight, footerLight].forEach(el => { if (el) { el.setAttribute('r', '15'); el.setAttribute('opacity', '0.9'); } });
-    [heroAudioRing, footerAudioRing].forEach(el => { if (el) el.setAttribute('opacity', '0'); });
+    [heroLight, footerLight].forEach(el => {
+        if (el) { el.setAttribute('r', '15'); el.setAttribute('opacity', '0.9'); }
+    });
+    [heroAudioRing, footerAudioRing].forEach(el => {
+        if (el) el.setAttribute('opacity', '0');
+    });
+    document.querySelectorAll(
+        '.s1-hero,.s2-hero,.s3-hero,.o1-hero,.o2-hero,.o3-hero,' +
+        '.s1-footer,.s2-footer,.s3-footer,.o1-footer,.o2-footer,.o3-footer'
+    ).forEach(el => { el.style.opacity = ''; });
 }
 
 if (micBtn) {
