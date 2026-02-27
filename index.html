@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glade Tech | Reliable tech solutions for growing businesses</title>
+    <title>Glade Tech | Custom systems and AI adoption for UK businesses</title>
     <meta name="description" content="Built with care. Rooted in experience.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
@@ -449,6 +449,158 @@
             border-bottom-color: var(--cream);
         }
 
+        /* AI Adoption Section */
+        .ai-adoption {
+            background: linear-gradient(135deg, var(--charcoal-warm) 0%, var(--dark-warm) 100%);
+            padding: 8rem 0;
+        }
+
+        .ai-adoption h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--accent-tertiary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .ai-adoption h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-secondary);
+            margin: 1rem auto 2rem;
+        }
+
+        .ai-adoption-intro {
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            text-align: center;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--cream);
+            opacity: 0.9;
+        }
+
+        .ai-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+        }
+
+        .ai-step {
+            background: rgba(42, 31, 26, 0.5);
+            border-radius: 12px;
+            padding: 2.5rem;
+            position: relative;
+            border-left: 3px solid var(--accent-secondary);
+        }
+
+        .ai-step-number {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 1rem;
+            opacity: 0.25;
+            color: var(--accent-tertiary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .ai-step h3 {
+            font-size: 1.2rem;
+            color: var(--accent-tertiary);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .ai-step p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--cream);
+            opacity: 0.85;
+        }
+
+        .ai-examples {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+        }
+
+        .ai-examples h3 {
+            font-size: 1.2rem;
+            color: var(--cream);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .ai-examples ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .ai-examples li {
+            background: rgba(42, 31, 26, 0.35);
+            border-radius: 8px;
+            padding: 1.1rem 1.4rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--cream);
+            opacity: 0.85;
+            border-left: 2px solid rgba(212, 165, 116, 0.3);
+        }
+
+        .ai-who {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--cream);
+            opacity: 0.75;
+        }
+
+        .ai-cta {
+            text-align: center;
+        }
+
+        .ai-cta a {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-secondary);
+            color: var(--cream);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .ai-cta a:hover {
+            background: var(--accent-tertiary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(201, 116, 86, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .ai-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-examples ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* How It Works Section */
         .how-it-works {
             background: linear-gradient(135deg, var(--forest-green) 0%, var(--forest-dark) 100%);
@@ -709,7 +861,7 @@
     <section class="hero">
         <div class="container">
             <h1>GLADE TECH</h1>
-            <p class="tagline">Reliable tech solutions for growing businesses.</p>
+            <p class="tagline">Custom systems and AI adoption for UK businesses.</p>
             <p class="subtitle">Built with care. Rooted in experience.</p>
             <div class="beacon-link" style="pointer-events: none;">
                 <svg class="hero-beacon" width="400" height="400" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" overflow="visible">
@@ -814,7 +966,7 @@
                 </div>
                 <div class="philosophy-card">
                     <h3>Who It's For</h3>
-                    <p>Anyone who needs a website or web application built properly. Whether you're a solo founder, a growing business, or just someone with an idea — I'm here to help.</p>
+                    <p>Solo founders, growing businesses, and local owner-operated businesses who need either a custom-built system or a practical AI setup — done properly, without the agency overhead.</p>
                 </div>
                 <div class="philosophy-card">
                     <h3>The Name</h3>
@@ -846,9 +998,54 @@
                     <p>Fast, reliable builds that get your ideas into the world.</p>
                 </div>
                 <div class="service-card">
-                    <h3>Business Solutions</h3>
-                    <p>Automation, integrations, and tools that free up your time and reduce manual work.</p>
+                    <h3>AI Adoption</h3>
+                    <p>Half a day with your team finding where time is being lost. Then 3 days implementing practical AI tools — trained, tested, and handed over. No jargon. No dependency on us.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Adoption Section -->
+    <section class="ai-adoption">
+        <div class="container">
+            <h2>AI Adoption for Local Business</h2>
+            <p class="ai-adoption-intro">Most businesses don't need a custom AI product. They need someone to spend time with them, understand where the real friction is, and set up the right tools properly. That's what I do.</p>
+
+            <div class="ai-steps">
+                <div class="ai-step">
+                    <div class="ai-step-number">01</div>
+                    <h3>Half-day discovery</h3>
+                    <p>I come to you. We map the repetitive tasks, the admin drag, the communication bottlenecks.</p>
+                </div>
+                <div class="ai-step">
+                    <div class="ai-step-number">02</div>
+                    <h3>3-day implementation</h3>
+                    <p>I set up and configure the right tools, write the prompts, connect the workflows, train your team.</p>
+                </div>
+                <div class="ai-step">
+                    <div class="ai-step-number">03</div>
+                    <h3>You run it</h3>
+                    <p>Everything is handed over clearly. No monthly retainer required.</p>
+                </div>
+            </div>
+
+            <div class="ai-examples">
+                <h3>Things we've helped businesses automate</h3>
+                <ul>
+                    <li>A tool that reads incoming client enquiries and drafts a personalised reply for the team to review and send</li>
+                    <li>A system that takes a bullet-point brief and produces a full first draft — proposals, listings, reports, social posts</li>
+                    <li>An internal assistant that answers staff questions about processes, policies, and FAQs without interrupting senior staff</li>
+                    <li>A document summariser that condenses long reports, contracts, or application forms into a clear action summary</li>
+                    <li>A follow-up engine that generates personalised check-in messages after appointments or consultations</li>
+                    <li>A lead qualifier that asks the right questions and scores or categorises enquiries before a human picks them up</li>
+                    <li>A content engine that turns one piece of content — a talk, a voice note, a blog — into multiple formats automatically</li>
+                </ul>
+            </div>
+
+            <p class="ai-who">Solicitors, estate agents, mortgage brokers, recruiters, wellness businesses, marketing agencies — any owner-operated business where skilled people are spending time on tasks that could be handled automatically.</p>
+
+            <div class="ai-cta">
+                <a href="mailto:marc@gladetech.uk">Book a free 30-minute call — no pitch, just an honest conversation</a>
             </div>
         </div>
     </section>
@@ -934,10 +1131,10 @@
                         <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjU2MCIgdmlld0JveD0iMCAwIDgwMCA1NjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQtYnJpZGdlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6IzhiOWQ4MztzdG9wLW9wYWNpdHk6MSIgLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojYzk3NDU2O3N0b3Atb3BhY2l0eToxIiAvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIAogICAgPHN0eWxlPgogICAgICBAa2V5ZnJhbWVzIHJvdGF0ZS1yaW5nIHsKICAgICAgICBmcm9tIHsgdHJhbnNmb3JtOiByb3RhdGUoMGRlZyk7IH0KICAgICAgICB0byB7IHRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7IH0KICAgICAgfQogICAgICAKICAgICAgQGtleWZyYW1lcyBmbG93LXBhcnRpY2xlIHsKICAgICAgICAwJSB7IG9mZnNldC1kaXN0YW5jZTogMCU7IG9wYWNpdHk6IDA7IH0KICAgICAgICAxMCUgeyBvcGFjaXR5OiAxOyB9CiAgICAgICAgOTAlIHsgb3BhY2l0eTogMTsgfQogICAgICAgIDEwMCUgeyBvZmZzZXQtZGlzdGFuY2U6IDEwMCU7IG9wYWNpdHk6IDA7IH0KICAgICAgfQogICAgICAKICAgICAgQGtleWZyYW1lcyBwdWxzZS1ub2RlIHsKICAgICAgICAwJSwgMTAwJSB7IHRyYW5zZm9ybTogc2NhbGUoMSk7IG9wYWNpdHk6IDAuODsgfQogICAgICAgIDUwJSB7IHRyYW5zZm9ybTogc2NhbGUoMS4yKTsgb3BhY2l0eTogMTsgfQogICAgICB9CiAgICAgIAogICAgICAub3V0ZXItY2lyY2xlIHsgYW5pbWF0aW9uOiByb3RhdGUtcmluZyAyMHMgbGluZWFyIGluZmluaXRlOyB0cmFuc2Zvcm0tb3JpZ2luOiBjZW50ZXI7IH0KICAgICAgLnBhcnRpY2xlLTEgeyBhbmltYXRpb246IGZsb3ctcGFydGljbGUgMi41cyBlYXNlLWluLW91dCBpbmZpbml0ZTsgYW5pbWF0aW9uLWRlbGF5OiAwczsgfQogICAgICAucGFydGljbGUtMiB7IGFuaW1hdGlvbjogZmxvdy1wYXJ0aWNsZSAyLjVzIGVhc2UtaW4tb3V0IGluZmluaXRlOyBhbmltYXRpb24tZGVsYXk6IDAuOHM7IH0KICAgICAgLnBhcnRpY2xlLTMgeyBhbmltYXRpb246IGZsb3ctcGFydGljbGUgMi41cyBlYXNlLWluLW91dCBpbmZpbml0ZTsgYW5pbWF0aW9uLWRlbGF5OiAxLjZzOyB9CiAgICAgIC5ub2RlLWxlZnQgeyBhbmltYXRpb246IHB1bHNlLW5vZGUgMS41cyBlYXNlLWluLW91dCBpbmZpbml0ZTsgYW5pbWF0aW9uLWRlbGF5OiAwczsgfQogICAgICAubm9kZS1yaWdodCB7IGFuaW1hdGlvbjogcHVsc2Utbm9kZSAxLjVzIGVhc2UtaW4tb3V0IGluZmluaXRlOyBhbmltYXRpb24tZGVsYXk6IDAuNzVzOyB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICAKICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjU2MCIgZmlsbD0iIzFhM2EzMiIvPgogIAogIDwhLS0gUm90YXRpbmcgb3V0ZXIgc3RydWN0dXJlIC0tPgogIDxnIGNsYXNzPSJvdXRlci1jaXJjbGUiPgogICAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMjgwIiByPSIxNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhiOWQ4MyIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjIiIHN0cm9rZS1kYXNoYXJyYXk9IjE1IDE1Ii8+CiAgPC9nPgogIAogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwMCwgMjgwKSI+CiAgICA8IS0tIExlZnQgbm9kZSAoaHVtYW4pIC0tPgogICAgPGcgY2xhc3M9Im5vZGUtbGVmdCI+CiAgICAgIDxjaXJjbGUgY3g9Ii0xMDAiIGN5PSIwIiByPSIzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjRmMWU4IiBzdHJva2Utd2lkdGg9IjMiLz4KICAgICAgPGNpcmNsZSBjeD0iLTEwMCIgY3k9IjAiIHI9IjE1IiBmaWxsPSIjOGI5ZDgzIiBvcGFjaXR5PSIwLjYiLz4KICAgIDwvZz4KICAgIAogICAgPCEtLSBSaWdodCBub2RlIChBSSkgLS0+CiAgICA8ZyBjbGFzcz0ibm9kZS1yaWdodCI+CiAgICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjAiIHI9IjMwIiBmaWxsPSJub25lIiBzdHJva2U9IiNjOTc0NTYiIHN0cm9rZS13aWR0aD0iMyIvPgogICAgICA8Y2lyY2xlIGN4PSIxMDAiIGN5PSIwIiByPSIxNSIgZmlsbD0iI2M5NzQ1NiIgb3BhY2l0eT0iMC42Ii8+CiAgICA8L2c+CiAgICAKICAgIDwhLS0gQnJpZGdlIGNvbm5lY3Rpb24gLS0+CiAgICA8cGF0aCBkPSJNIC03MCAwIFEgMCAtNjAgNzAgMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI2dyYWQtYnJpZGdlKSIgc3Ryb2tlLXdpZHRoPSIzIiBvcGFjaXR5PSIwLjciIGlkPSJicmlkZ2UtcGF0aCIvPgogICAgCiAgICA8IS0tIEZsb3dpbmcgcGFydGljbGVzIG9uIGJyaWRnZSAtLT4KICAgIDxjaXJjbGUgcj0iNiIgZmlsbD0iI2Q0YTU3NCIgY2xhc3M9InBhcnRpY2xlLTEiPgogICAgICA8YW5pbWF0ZU1vdGlvbiBkdXI9IjRzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSI+CiAgICAgICAgPG1wYXRoIGhyZWY9IiNicmlkZ2UtcGF0aCIvPgogICAgICA8L2FuaW1hdGVNb3Rpb24+CiAgICA8L2NpcmNsZT4KICAgIAogICAgPGNpcmNsZSByPSI2IiBmaWxsPSIjZjRmMWU4IiBjbGFzcz0icGFydGljbGUtMiI+CiAgICAgIDxhbmltYXRlTW90aW9uIGR1cj0iNHMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIj4KICAgICAgICA8bXBhdGggaHJlZj0iI2JyaWRnZS1wYXRoIi8+CiAgICAgIDwvYW5pbWF0ZU1vdGlvbj4KICAgIDwvY2lyY2xlPgogICAgCiAgICA8Y2lyY2xlIHI9IjYiIGZpbGw9IiM4YjlkODMiIGNsYXNzPSJwYXJ0aWNsZS0zIj4KICAgICAgPGFuaW1hdGVNb3Rpb24gZHVyPSI0cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiPgogICAgICAgIDxtcGF0aCBocmVmPSIjYnJpZGdlLXBhdGgiLz4KICAgICAgPC9hbmltYXRlTW90aW9uPgogICAgPC9jaXJjbGU+CiAgICAKICAgIDwhLS0gQ29ubmVjdGlvbiBlbmRwb2ludHMgLS0+CiAgICA8Y2lyY2xlIGN4PSItNzAiIGN5PSIwIiByPSI1IiBmaWxsPSIjZDRhNTc0Ii8+CiAgICA8Y2lyY2xlIGN4PSI3MCIgY3k9IjAiIHI9IjUiIGZpbGw9IiNkNGE1NzQiLz4KICA8L2c+Cjwvc3ZnPg==" alt="ai&i">
                     </div>
                     <div class="project-content">
-                        <div class="project-status live">LIVE NOW</div>
+                        <div class="project-status">ORIGIN</div>
                         <h3>ai&i</h3>
-                        <p>Building the bridge between human potential and AI capability. Custom applications that amplify what you do best, without the complexity.</p>
-                        <a href="https://aiandisolutions.com" class="project-link" target="_blank">aiandisolutions.com →</a>
+                        <p>AI adoption consultancy for small businesses — the work that became a core Glade Tech service.</p>
+                        <a href="#contact" class="project-link">Get in touch →</a>
                     </div>
                 </div>
 
