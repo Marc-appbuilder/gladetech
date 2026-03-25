@@ -184,6 +184,25 @@
             margin: 0 auto;
         }
 
+        .philosophy-prose {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .philosophy-prose p {
+            font-size: clamp(1rem, 1.8vw, 1.15rem);
+            line-height: 1.8;
+            color: var(--cream);
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .philosophy-prose p:last-child {
+            margin-bottom: 0;
+            opacity: 0.6;
+            font-size: 0.95rem;
+        }
+
         .philosophy-card {
             background: rgba(42, 31, 26, 0.5);
             padding: 2rem;
@@ -826,6 +845,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .service-card h3 {
+                font-size: 1rem;
+            }
+
             .philosophy-grid {
                 grid-template-columns: 1fr;
             }
@@ -952,23 +975,11 @@
     <!-- Philosophy Section -->
     <section class="philosophy">
         <div class="container">
-            <div class="philosophy-grid">
-                <div class="philosophy-card">
-                    <h3>The Approach</h3>
-                    <p>Creative with tech — nearly a decade of production engineering meets a genuine understanding of how people actually work. We build things that last, not things that look good in a demo.</p>
-                </div>
-                <div class="philosophy-card">
-                    <h3>Who It's For</h3>
-                    <p>Founders, small businesses, local organisations. If you've got something worth building, we want to hear about it.</p>
-                </div>
-                <div class="philosophy-card">
-                    <h3>The Name</h3>
-                    <p><span class="highlight">Named after The Glade — a stage tucked away in the woods at Glastonbury, where music, nature and community collided. Same energy here.</span></p>
-                </div>
-                <div class="philosophy-card">
-                    <h3>AI, done right.</h3>
-                    <p>We're not here to sell you an AI product you don't need. We're here to work out where it actually helps and build something around that.</p>
-                </div>
+            <div class="philosophy-prose">
+                <p>Creative with tech — nearly a decade of production engineering meets a genuine understanding of how people actually work. We build things that last, not things that look good in a demo.</p>
+                <p>Founders, small businesses, local organisations. If you've got something worth building, we want to hear about it.</p>
+                <p>We're not here to sell you an AI product you don't need. We're here to work out where it actually helps and build something around that.</p>
+                <p class="highlight">Named after The Glade — a stage tucked away in the woods at Glastonbury, where music, nature and community collided. Same energy here.</p>
             </div>
         </div>
     </section>
