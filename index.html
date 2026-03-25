@@ -185,22 +185,36 @@
         }
 
         .philosophy-prose {
-            max-width: 680px;
+            max-width: 720px;
             margin: 0 auto;
+            padding-top: 2.5rem;
+            border-top: 2px solid var(--accent-secondary);
         }
 
         .philosophy-prose p {
-            font-size: clamp(1rem, 1.8vw, 1.15rem);
-            line-height: 1.8;
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            line-height: 1.85;
             color: var(--cream);
             opacity: 0.9;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .philosophy-prose p:first-child {
+            font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+            line-height: 1.65;
+            opacity: 1;
+            font-weight: 500;
+            letter-spacing: -0.01em;
         }
 
         .philosophy-prose p:last-child {
             margin-bottom: 0;
-            opacity: 0.6;
-            font-size: 0.95rem;
+            opacity: 0.55;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            font-style: italic;
+            letter-spacing: 0;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(244, 241, 232, 0.12);
         }
 
         .philosophy-card {
