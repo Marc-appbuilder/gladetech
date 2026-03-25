@@ -420,6 +420,9 @@
         .project-card:nth-child(6) { transition-delay: 0.40s; }
         .project-card:nth-child(7) { transition-delay: 0.48s; }
         .project-card:nth-child(8) { transition-delay: 0.56s; }
+        .project-card:nth-child(9) { transition-delay: 0.64s; }
+        .project-card:nth-child(10) { transition-delay: 0.72s; }
+        .project-card:nth-child(11) { transition-delay: 0.80s; }
 
         .project-card.visible:hover {
             transform: translateY(-6px) scale(1.01);
@@ -834,13 +837,60 @@
             border-top: 1px solid rgba(244, 241, 232, 0.08);
         }
 
-        .service-num {
-            font-size: 0.8rem;
-            color: var(--accent-secondary);
-            letter-spacing: 0.12em;
-            font-weight: 500;
-            padding-top: 0.35rem;
+        .service-beacon {
+            display: flex;
+            align-items: flex-start;
+            padding-top: 0.55rem;
+            position: relative;
         }
+
+        .service-beacon-dot {
+            display: block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #f4a261;
+            box-shadow: 0 0 10px rgba(244, 162, 97, 0.8);
+            position: relative;
+            animation: service-beacon-pulse 2.5s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        .service-beacon-dot::before,
+        .service-beacon-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1.5px solid rgba(244, 162, 97, 0.5);
+            animation: service-beacon-ring 2.5s ease-out infinite;
+        }
+
+        .service-beacon-dot::after {
+            animation-delay: 0.8s;
+        }
+
+        @keyframes service-beacon-pulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(244, 162, 97, 0.8); transform: scale(1); }
+            50% { box-shadow: 0 0 18px rgba(244, 162, 97, 1); transform: scale(1.15); }
+        }
+
+        @keyframes service-beacon-ring {
+            0% { width: 14px; height: 14px; opacity: 0.6; }
+            100% { width: 44px; height: 44px; opacity: 0; }
+        }
+
+        .service-item:nth-child(2) .service-beacon-dot { animation-delay: 0.6s; }
+        .service-item:nth-child(2) .service-beacon-dot::before { animation-delay: 0.6s; }
+        .service-item:nth-child(2) .service-beacon-dot::after { animation-delay: 1.4s; }
+        .service-item:nth-child(3) .service-beacon-dot { animation-delay: 1.2s; }
+        .service-item:nth-child(3) .service-beacon-dot::before { animation-delay: 1.2s; }
+        .service-item:nth-child(3) .service-beacon-dot::after { animation-delay: 2.0s; }
+        .service-item:nth-child(4) .service-beacon-dot { animation-delay: 1.8s; }
+        .service-item:nth-child(4) .service-beacon-dot::before { animation-delay: 1.8s; }
+        .service-item:nth-child(4) .service-beacon-dot::after { animation-delay: 2.6s; }
 
         .service-body h3 {
             font-size: clamp(1.1rem, 2vw, 1.35rem);
@@ -1138,28 +1188,28 @@
             <h2>What We Do</h2>
             <div class="services-list">
                 <div class="service-item">
-                    <span class="service-num">01</span>
+                    <span class="service-beacon"><span class="service-beacon-dot"></span></span>
                     <div class="service-body">
                         <h3>Apps</h3>
                         <p>Quoting tools, client dashboards, lead qualifiers, internal systems. If you've got a process that needs a product built around it, that's us.</p>
                     </div>
                 </div>
                 <div class="service-item">
-                    <span class="service-num">02</span>
+                    <span class="service-beacon"><span class="service-beacon-dot"></span></span>
                     <div class="service-body">
                         <h3>Websites</h3>
                         <p>Landing pages to full platforms — designed properly, built fast, easy to manage. No templates, no shortcuts.</p>
                     </div>
                 </div>
                 <div class="service-item">
-                    <span class="service-num">03</span>
+                    <span class="service-beacon"><span class="service-beacon-dot"></span></span>
                     <div class="service-body">
                         <h3>Virtual Assistants</h3>
                         <p>AI assistants built around your brand — your name, your tone, your workflow. White label, fully bespoke, and actually useful.</p>
                     </div>
                 </div>
                 <div class="service-item">
-                    <span class="service-num">04</span>
+                    <span class="service-beacon"><span class="service-beacon-dot"></span></span>
                     <div class="service-body">
                         <h3>AI Tools</h3>
                         <p>Practical automation for the admin, repetitive tasks, and busywork that eats your day. We'll show you where it fits — or build something bespoke if that's what's needed.</p>
@@ -1265,6 +1315,28 @@
                         <h3>ai&amp;i</h3>
                         <p>The AI adoption consultancy work that became a core Glade Tech service.</p>
                         <a href="https://aiandisolutions.com" class="project-link" target="_blank">aiandisolutions.com →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="ghost.png" alt="Ghostwriter">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-status live">LIVE</div>
+                        <h3>Ghostwriter</h3>
+                        <p>Talk, and it writes. Voice to LinkedIn posts — your words, your ideas, shaped into content you'd actually be proud to publish.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="reinvent.png" alt="Vent it">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-status">IN DEVELOPMENT</div>
+                        <h3>Vent it</h3>
+                        <p>Co-parenting communication without the conflict. A space to say what you need to say, before it gets sent.</p>
                     </div>
                 </div>
 
