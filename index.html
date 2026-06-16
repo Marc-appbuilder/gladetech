@@ -987,24 +987,40 @@
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 2.5rem;
+            gap: 3.5rem;
             flex-wrap: wrap;
-            font-size: 0.9rem;
+            font-size: 0.82rem;
         }
 
         .contact-links a {
             color: var(--cream);
-            opacity: 0.4;
+            opacity: 0.35;
             text-decoration: none;
             font-weight: 400;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            transition: opacity 0.3s ease;
-            padding: 0.5rem 0;
+            letter-spacing: 0.09em;
+            position: relative;
+            padding-bottom: 3px;
+            transition: opacity 0.45s ease, color 0.45s ease;
+        }
+
+        .contact-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-tertiary);
+            transition: width 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .contact-links a:hover {
-            opacity: 1;
+            opacity: 0.9;
+            color: var(--accent-tertiary);
+        }
+
+        .contact-links a:hover::after {
+            width: 100%;
         }
 
         /* Footer */
