@@ -115,56 +115,22 @@
         }
 
         .cta-beacon {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-            padding: 1rem 2.5rem;
-            background: rgba(244, 162, 97, 0.15);
-            border: 2px solid var(--accent-tertiary);
-            border-radius: 50px;
-            color: var(--cream);
-            font-size: 1.1rem;
-            font-weight: 600;
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--accent-tertiary);
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            font-weight: 500;
             text-decoration: none;
-            letter-spacing: 0.5px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-beacon::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50px;
-            background: radial-gradient(circle, rgba(244, 162, 97, 0.3) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding-bottom: 3px;
+            border-bottom: 1px solid rgba(212, 165, 116, 0.4);
+            transition: color 0.3s ease, border-color 0.3s ease;
         }
 
         .cta-beacon:hover {
-            transform: scale(1.05);
-            background: rgba(244, 162, 97, 0.25);
-            box-shadow: 0 0 30px rgba(244, 162, 97, 0.4), 0 0 60px rgba(244, 162, 97, 0.15);
-        }
-
-        .cta-beacon:hover::before {
-            opacity: 1;
-        }
-
-        .cta-beacon-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #f4a261;
-            box-shadow: 0 0 10px rgba(244, 162, 97, 0.8);
-            animation: cta-pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes cta-pulse {
-            0%, 100% { box-shadow: 0 0 10px rgba(244, 162, 97, 0.8); transform: scale(1); }
-            50% { box-shadow: 0 0 20px rgba(244, 162, 97, 1); transform: scale(1.2); }
+            color: var(--cream);
+            border-bottom-color: rgba(244, 241, 232, 0.5);
         }
 
 .hero-beacon svg {
@@ -963,15 +929,60 @@
         /* Contact Section */
         .contact {
             background: linear-gradient(135deg, var(--charcoal-warm) 0%, var(--forest-darkest) 100%);
-            padding: 8rem 0;
+            padding: 10rem 0 8rem;
             text-align: center;
         }
 
-        .contact h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--accent-tertiary);
-            margin-bottom: 3rem;
+        .contact-eyebrow {
+            font-size: clamp(0.8rem, 1.4vw, 0.9rem);
+            color: var(--cream);
+            opacity: 0.4;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .contact-body {
+            max-width: 480px;
+            margin: 0 auto 3.5rem;
+            font-size: clamp(1rem, 1.8vw, 1.1rem);
+            line-height: 1.85;
+            color: var(--cream);
+            opacity: 0.55;
+            font-weight: 400;
+        }
+
+        .cta-signal {
+            display: inline-block;
+            font-size: clamp(2rem, 5vw, 3.2rem);
             font-weight: 700;
+            color: var(--accent-tertiary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 5rem;
+            position: relative;
+            transition: color 0.35s ease;
+        }
+
+        .cta-signal::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: currentColor;
+            transition: width 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .cta-signal:hover {
+            color: var(--cream);
+        }
+
+        .cta-signal:hover::after {
+            width: 100%;
         }
 
         .contact-links {
@@ -979,21 +990,22 @@
             justify-content: center;
             gap: 2.5rem;
             flex-wrap: wrap;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
         }
 
         .contact-links a {
-            color: var(--accent-tertiary);
+            color: var(--cream);
+            opacity: 0.4;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: opacity 0.3s ease;
             padding: 0.5rem 0;
-            border-bottom: 2px solid transparent;
         }
 
         .contact-links a:hover {
-            color: var(--cream);
-            border-bottom-color: var(--accent-tertiary);
+            opacity: 1;
         }
 
         /* Footer */
@@ -1437,10 +1449,7 @@
   </g>
 </svg>
             </div>
-            <a href="mailto:marc@gladetech.uk" class="cta-beacon">
-                <span class="cta-beacon-dot"></span>
-                Send a Signal
-            </a>
+            <a href="#contact" class="cta-beacon">Send a Signal →</a>
         </div>
     </section>
 
@@ -1703,84 +1712,9 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2>Let's talk</h2>
-            
-            <!-- Morse beacon - clickable to return to top -->
-            <a href="#" class="beacon-link-footer" style="display: flex; justify-content: center; margin: 3rem 0; text-decoration: none;">
-                <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" overflow="visible">
-  <defs>
-    <style>
-      @keyframes beacon-rotate-footer {
-        from { transform: rotate(360deg); }
-        to { transform: rotate(0deg); }
-      }
-      
-      @keyframes morse-dot-footer {
-        0%, 90%, 100% { opacity: 0.2; }
-        95% { opacity: 1; }
-      }
-      
-      @keyframes morse-dash-footer {
-        0%, 90%, 100% { opacity: 0.2; }
-        92%, 98% { opacity: 1; }
-      }
-      
-      @keyframes signal-ring-footer {
-        0% { transform: scale(1); opacity: 0.8; }
-        100% { transform: scale(2.5); opacity: 0; }
-      }
-      
-      .beacon-footer { animation: beacon-rotate-footer 8s linear infinite; transform-origin: center; }
-      .ring-footer { animation: signal-ring-footer 2s ease-out infinite; transform-origin: center; }
-      
-      /* S = dot dot dot */
-      .s1-footer { animation: morse-dot-footer 6s ease-in-out infinite; animation-delay: 0s; }
-      .s2-footer { animation: morse-dot-footer 6s ease-in-out infinite; animation-delay: 0.3s; }
-      .s3-footer { animation: morse-dot-footer 6s ease-in-out infinite; animation-delay: 0.6s; }
-      
-      /* O = dash dash dash */
-      .o1-footer { animation: morse-dash-footer 6s ease-in-out infinite; animation-delay: 1.2s; }
-      .o2-footer { animation: morse-dash-footer 6s ease-in-out infinite; animation-delay: 1.8s; }
-      .o3-footer { animation: morse-dash-footer 6s ease-in-out infinite; animation-delay: 2.4s; }
-    </style>
-  </defs>
-  
-  <g transform="translate(150, 150)">
-    
-    <!-- Signal rings - golden/terra cotta -->
-    <g class="ring-footer">
-      <circle id="footer-ring-1" cx="0" cy="0" r="40" fill="none" stroke="#e76f51" stroke-width="2"/>
-    </g>
-    <g class="ring-footer" style="animation-delay: 0.5s;">
-      <circle id="footer-ring-2" cx="0" cy="0" r="40" fill="none" stroke="#f4a261" stroke-width="2"/>
-    </g>
-    
-    <!-- Rotating beacon base - counter-clockwise, terra cotta -->
-    <g class="beacon-footer" id="footer-arm">
-      <circle cx="0" cy="0" r="25" fill="#e76f51" opacity="0.4"/>
-      <path d="M 0 0 L 40 -10 L 40 10 Z" fill="#e76f51" opacity="0.8"/>
-    </g>
-
-    <!-- Central beacon light - golden -->
-    <circle cx="0" cy="0" r="15" fill="#f4a261" opacity="0.9"/>
-    <circle cx="0" cy="0" r="8" fill="#ffd89b"/>
-    
-    <!-- Morse code display - inverted colors -->
-    <g transform="translate(0, 55)">
-      <!-- S (dot dot dot) - terra cotta -->
-      <circle class="s1-footer" cx="-30" cy="0" r="4" fill="#e76f51"/>
-      <circle class="s2-footer" cx="-20" cy="0" r="4" fill="#e76f51"/>
-      <circle class="s3-footer" cx="-10" cy="0" r="4" fill="#e76f51"/>
-      
-      <!-- O (dash dash dash) - golden -->
-      <rect class="o1-footer" x="-2" y="-2" width="12" height="4" fill="#f4a261"/>
-      <rect class="o2-footer" x="14" y="-2" width="12" height="4" fill="#f4a261"/>
-      <rect class="o3-footer" x="30" y="-2" width="12" height="4" fill="#f4a261"/>
-    </g>
-  </g>
-</svg>
-            </a>
-            
+            <p class="contact-eyebrow">Got an idea worth building?</p>
+            <p class="contact-body">Whether it's a lead generation tool, AI product, website or something entirely different — let's talk.</p>
+            <a href="mailto:marc@gladetech.uk" class="cta-signal">Send a Signal →</a>
             <div class="contact-links">
                 <a href="mailto:marc@gladetech.uk">Email</a>
                 <a href="https://www.linkedin.com/in/marcwrichards" target="_blank">LinkedIn</a>
@@ -1789,6 +1723,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- Footer -->
     <footer>
