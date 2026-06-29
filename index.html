@@ -1425,10 +1425,10 @@
             <div class="beacon-link" style="pointer-events: none;">
                 <svg class="hero-beacon" width="400" height="400" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" overflow="visible">
   <defs>
-    <radialGradient id="beaconCoreHero" cx="38%" cy="32%" r="68%">
-      <stop offset="0%" stop-color="#fff8ec"/>
-      <stop offset="40%" stop-color="#f4a261"/>
-      <stop offset="100%" stop-color="#c96f3e"/>
+    <radialGradient id="beaconCoreHero" cx="50%" cy="42%" r="62%">
+      <stop offset="0%" stop-color="#f0a868"/>
+      <stop offset="65%" stop-color="#d4884c"/>
+      <stop offset="100%" stop-color="#a8602f"/>
     </radialGradient>
 
     <radialGradient id="clearingGlowHero" cx="50%" cy="50%" r="50%">
@@ -1449,8 +1449,8 @@
       }
 
       @keyframes beacon-core-pulse-hero {
-        0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(244, 162, 97, 0.55)); }
-        50% { transform: scale(1.07); filter: drop-shadow(0 0 18px rgba(244, 162, 97, 0.85)); }
+        0%, 100% { transform: scale(1); filter: drop-shadow(0 0 6px rgba(212, 136, 76, 0.4)); }
+        50% { transform: scale(1.05); filter: drop-shadow(0 0 13px rgba(212, 136, 76, 0.6)); }
       }
 
       @keyframes clearing-glow-drift-hero {
@@ -1504,7 +1504,7 @@
     <!-- Central beacon light -->
     <g class="beacon-core-hero">
       <circle cx="0" cy="0" r="17" fill="url(#beaconCoreHero)"/>
-      <circle cx="-3" cy="-4" r="5" fill="#fff8ec" opacity="0.85"/>
+      <circle cx="0" cy="0" r="17" fill="none" stroke="#fff8ec" stroke-width="0.5" opacity="0.25"/>
     </g>
 
   </g>
