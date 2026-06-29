@@ -1431,16 +1431,6 @@
       <stop offset="100%" stop-color="#a8602f"/>
     </radialGradient>
 
-    <radialGradient id="clearingGlowHero" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#f4a261" stop-opacity="0.22"/>
-      <stop offset="55%" stop-color="#f4a261" stop-opacity="0.07"/>
-      <stop offset="100%" stop-color="#f4a261" stop-opacity="0"/>
-    </radialGradient>
-
-    <filter id="softBlurHero" x="-60%" y="-60%" width="220%" height="220%">
-      <feGaussianBlur stdDeviation="14"/>
-    </filter>
-
     <filter id="fireflyHaloHero" x="-250%" y="-250%" width="600%" height="600%">
       <feGaussianBlur stdDeviation="1"/>
     </filter>
@@ -1479,35 +1469,16 @@
         50% { transform: scale(1.05); filter: drop-shadow(0 0 13px rgba(212, 136, 76, 0.6)); }
       }
 
-      @keyframes clearing-glow-drift-hero {
-        0%, 100% { transform: scale(1) translate(0px, 0px); opacity: 0.8; }
-        50% { transform: scale(1.12) translate(4px, -3px); opacity: 1; }
-      }
-
       .beacon-core-hero {
         transform-box: fill-box;
         transform-origin: center;
         animation: beacon-core-pulse-hero 3.4s ease-in-out infinite;
         animation-fill-mode: backwards;
       }
-
-      .clearing-glow-hero {
-        transform-box: fill-box;
-        transform-origin: center;
-        animation: clearing-glow-drift-hero 9s ease-in-out infinite;
-        animation-fill-mode: backwards;
-      }
     </style>
   </defs>
 
   <g transform="translate(150, 150)">
-
-    <!-- Forest clearing glow - soft dappled light behind the beacon -->
-    <g class="clearing-glow-hero">
-      <ellipse cx="0" cy="0" rx="150" ry="128" fill="url(#clearingGlowHero)"/>
-      <circle cx="-42" cy="-58" r="55" fill="url(#clearingGlowHero)" filter="url(#softBlurHero)"/>
-      <circle cx="58" cy="42" r="45" fill="url(#clearingGlowHero)" filter="url(#softBlurHero)"/>
-    </g>
 
     <!-- Root network - thin branching connections, like a mycorrhizal network under a glade -->
     <g>
