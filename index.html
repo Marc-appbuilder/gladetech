@@ -99,18 +99,40 @@
             height: 5px;
             border-radius: 50%;
             background: rgba(244, 241, 232, 0.32);
-            animation-name: lead-particle-flow;
             animation-timing-function: linear;
             animation-iteration-count: infinite;
         }
 
-        @keyframes lead-particle-flow {
+        /* Strong slow-down after crossing - fast approach, settles right after the line */
+        @keyframes lead-particle-flow-a {
             0% { left: -4%; opacity: 0; transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
             8% { opacity: 0.5; }
-            49.7% { transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
-            50% { transform: scale(2.1); background: #ffb877; box-shadow: 0 0 10px 3px rgba(255, 184, 119, 1), 0 0 22px rgba(244, 162, 97, 0.8); }
-            54% { transform: scale(1.4); background: #ffa84d; box-shadow: 0 0 8px 2px rgba(255, 168, 77, 0.9), 0 0 16px rgba(244, 162, 97, 0.6); }
-            92% { opacity: 0.8; }
+            34.7% { left: 49.5%; transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
+            35% { left: 50%; transform: scale(2.1); background: #ffb877; box-shadow: 0 0 10px 3px rgba(255, 184, 119, 1), 0 0 22px rgba(244, 162, 97, 0.8); }
+            40% { left: 54%; transform: scale(1.4); background: #ffa84d; box-shadow: 0 0 8px 2px rgba(255, 168, 77, 0.9), 0 0 16px rgba(244, 162, 97, 0.6); }
+            92% { left: 96%; opacity: 0.8; }
+            100% { left: 104%; opacity: 0; }
+        }
+
+        /* Moderate slow-down after crossing */
+        @keyframes lead-particle-flow-b {
+            0% { left: -4%; opacity: 0; transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
+            8% { opacity: 0.5; }
+            44.7% { left: 49.5%; transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
+            45% { left: 50%; transform: scale(2.1); background: #ffb877; box-shadow: 0 0 10px 3px rgba(255, 184, 119, 1), 0 0 22px rgba(244, 162, 97, 0.8); }
+            49% { left: 53%; transform: scale(1.4); background: #ffa84d; box-shadow: 0 0 8px 2px rgba(255, 168, 77, 0.9), 0 0 16px rgba(244, 162, 97, 0.6); }
+            92% { left: 96%; opacity: 0.8; }
+            100% { left: 104%; opacity: 0; }
+        }
+
+        /* Stays fast throughout - little slow-down, for variation */
+        @keyframes lead-particle-flow-c {
+            0% { left: -4%; opacity: 0; transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
+            8% { opacity: 0.5; }
+            49.7% { left: 49.5%; transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
+            50% { left: 50%; transform: scale(2.1); background: #ffb877; box-shadow: 0 0 10px 3px rgba(255, 184, 119, 1), 0 0 22px rgba(244, 162, 97, 0.8); }
+            54% { left: 54.5%; transform: scale(1.4); background: #ffa84d; box-shadow: 0 0 8px 2px rgba(255, 168, 77, 0.9), 0 0 16px rgba(244, 162, 97, 0.6); }
+            92% { left: 98%; opacity: 0.8; }
             100% { left: 104%; opacity: 0; }
         }
 
@@ -1437,14 +1459,14 @@
     <section class="hero">
         <div class="lead-stream-hero">
             <div class="lead-filter-hero"></div>
-            <span class="lead-particle-hero" style="top: 8%; animation-duration: 8.5s; animation-delay: -1s;"></span>
-            <span class="lead-particle-hero" style="top: 20%; animation-duration: 10s; animation-delay: -4.5s;"></span>
-            <span class="lead-particle-hero" style="top: 32%; animation-duration: 9.2s; animation-delay: -2.3s;"></span>
-            <span class="lead-particle-hero" style="top: 45%; animation-duration: 7.8s; animation-delay: -6s;"></span>
-            <span class="lead-particle-hero" style="top: 58%; animation-duration: 9.6s; animation-delay: -3.1s;"></span>
-            <span class="lead-particle-hero" style="top: 70%; animation-duration: 8.2s; animation-delay: -5.4s;"></span>
-            <span class="lead-particle-hero" style="top: 82%; animation-duration: 10.4s; animation-delay: -1.8s;"></span>
-            <span class="lead-particle-hero" style="top: 92%; animation-duration: 9s; animation-delay: -7s;"></span>
+            <span class="lead-particle-hero" style="top: 8%; animation-name: lead-particle-flow-a; animation-duration: 8.5s; animation-delay: -1s;"></span>
+            <span class="lead-particle-hero" style="top: 20%; animation-name: lead-particle-flow-c; animation-duration: 10s; animation-delay: -4.5s;"></span>
+            <span class="lead-particle-hero" style="top: 32%; animation-name: lead-particle-flow-b; animation-duration: 9.2s; animation-delay: -2.3s;"></span>
+            <span class="lead-particle-hero" style="top: 45%; animation-name: lead-particle-flow-a; animation-duration: 7.8s; animation-delay: -6s;"></span>
+            <span class="lead-particle-hero" style="top: 58%; animation-name: lead-particle-flow-c; animation-duration: 9.6s; animation-delay: -3.1s;"></span>
+            <span class="lead-particle-hero" style="top: 70%; animation-name: lead-particle-flow-b; animation-duration: 8.2s; animation-delay: -5.4s;"></span>
+            <span class="lead-particle-hero" style="top: 82%; animation-name: lead-particle-flow-a; animation-duration: 10.4s; animation-delay: -1.8s;"></span>
+            <span class="lead-particle-hero" style="top: 92%; animation-name: lead-particle-flow-b; animation-duration: 9s; animation-delay: -7s;"></span>
         </div>
         <div class="container">
             <h1>GLADE TECH</h1>
