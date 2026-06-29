@@ -56,6 +56,52 @@
             justify-content: center;
             text-align: center;
             padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .lead-stream-hero {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .lead-filter-hero {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent 8%, rgba(244, 162, 97, 0.3) 50%, transparent 92%);
+            transform: translateX(-50%);
+        }
+
+        .lead-particle-hero {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(244, 241, 232, 0.32);
+            animation-name: lead-particle-flow;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes lead-particle-flow {
+            0% { left: -4%; opacity: 0; transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
+            8% { opacity: 0.5; }
+            47% { transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
+            50% { transform: scale(1.9); background: #f4a261; box-shadow: 0 0 12px rgba(244, 162, 97, 0.9); }
+            54% { transform: scale(1.25); background: #f4a261; box-shadow: 0 0 7px rgba(244, 162, 97, 0.55); }
+            92% { opacity: 0.65; }
+            100% { left: 104%; opacity: 0; }
         }
 
         .hero h1 {
@@ -89,31 +135,6 @@
             margin-bottom: 3rem;
         }
 
-        .beacon-link {
-            display: flex;
-            justify-content: center;
-            margin-top: 2rem;
-            overflow: visible;
-        }
-
-        .beacon-link-footer {
-            display: inline-block;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            overflow: visible;
-        }
-
-        .beacon-link-footer:hover {
-            transform: scale(1.1);
-            filter: drop-shadow(0 0 20px rgba(201, 116, 86, 0.6));
-        }
-
-        .hero-beacon {
-            display: block;
-            margin: 0 auto;
-            background: transparent !important;
-        }
-
         .cta-beacon {
             display: inline-block;
             margin-top: 2rem;
@@ -131,10 +152,6 @@
         .cta-beacon:hover {
             color: var(--cream);
             border-bottom-color: rgba(244, 241, 232, 0.5);
-        }
-
-.hero-beacon svg {
-            background: transparent !important;
         }
 
         /* Philosophy Section */
@@ -1050,11 +1067,6 @@
                 padding: 3rem 1.5rem;
             }
 
-            .hero-beacon {
-                width: 250px;
-                height: 250px;
-            }
-
             .cta-beacon {
                 font-size: 0.95rem;
                 padding: 0.75rem 1.75rem;
@@ -1096,11 +1108,6 @@
         }
 
         @media (max-width: 480px) {
-            .hero-beacon {
-                width: 200px;
-                height: 200px;
-            }
-
             .hero h1 {
                 font-size: clamp(2rem, 8vw, 3rem);
             }
@@ -1418,54 +1425,21 @@
 <body>
     <!-- Hero Section -->
     <section class="hero">
+        <div class="lead-stream-hero">
+            <div class="lead-filter-hero"></div>
+            <span class="lead-particle-hero" style="top: 8%; animation-duration: 8.5s; animation-delay: -1s;"></span>
+            <span class="lead-particle-hero" style="top: 20%; animation-duration: 10s; animation-delay: -4.5s;"></span>
+            <span class="lead-particle-hero" style="top: 32%; animation-duration: 9.2s; animation-delay: -2.3s;"></span>
+            <span class="lead-particle-hero" style="top: 45%; animation-duration: 7.8s; animation-delay: -6s;"></span>
+            <span class="lead-particle-hero" style="top: 58%; animation-duration: 9.6s; animation-delay: -3.1s;"></span>
+            <span class="lead-particle-hero" style="top: 70%; animation-duration: 8.2s; animation-delay: -5.4s;"></span>
+            <span class="lead-particle-hero" style="top: 82%; animation-duration: 10.4s; animation-delay: -1.8s;"></span>
+            <span class="lead-particle-hero" style="top: 92%; animation-duration: 9s; animation-delay: -7s;"></span>
+        </div>
         <div class="container">
             <h1>GLADE TECH</h1>
             <p class="tagline">Building tools that solve real problems.</p>
             <p class="tagline-sub">Lead Gen Tools · Apps · AI</p>
-            <div class="beacon-link" style="pointer-events: none;">
-                <svg class="hero-beacon" width="400" height="400" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" overflow="visible">
-  <defs>
-    <radialGradient id="fadeHero" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" style="stop-color:transparent;stop-opacity:0" />
-      <stop offset="50%" style="stop-color:transparent;stop-opacity:0" />
-      <stop offset="100%" style="stop-color:transparent;stop-opacity:0" />
-    </radialGradient>
-
-    <radialGradient id="beaconCoreHero" cx="35%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="#ffd89b"/>
-      <stop offset="55%" stop-color="#f4a261"/>
-      <stop offset="100%" stop-color="#e76f51"/>
-    </radialGradient>
-
-    <style>
-      @keyframes signal-ring-hero {
-        0% { transform: scale(1); opacity: 0.8; }
-        100% { transform: scale(2.5); opacity: 0; }
-      }
-
-      .ring-hero { animation: signal-ring-hero 2s ease-out infinite; transform-origin: center; }
-    </style>
-  </defs>
-
-  <g transform="translate(150, 150)">
-
-    <!-- Signal rings -->
-    <g class="ring-hero">
-      <circle id="hero-ring-1" cx="0" cy="0" r="40" fill="none" stroke="#f4a261" stroke-width="2"/>
-    </g>
-    <g class="ring-hero" style="animation-delay: 0.5s;">
-      <circle id="hero-ring-2" cx="0" cy="0" r="40" fill="none" stroke="#e76f51" stroke-width="2"/>
-    </g>
-    <g class="ring-hero" style="animation-delay: 1s;">
-      <circle id="hero-ring-3" cx="0" cy="0" r="40" fill="none" stroke="#f4a261" stroke-width="2"/>
-    </g>
-
-    <!-- Central beacon light -->
-    <circle cx="0" cy="0" r="16" fill="url(#beaconCoreHero)"/>
-
-  </g>
-</svg>
-            </div>
             <a href="#contact" class="cta-beacon">Send a Signal →</a>
         </div>
     </section>
