@@ -1431,6 +1431,12 @@
       <stop offset="100%" style="stop-color:transparent;stop-opacity:0" />
     </radialGradient>
 
+    <radialGradient id="beaconCoreHero" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffd89b"/>
+      <stop offset="55%" stop-color="#f4a261"/>
+      <stop offset="100%" stop-color="#e76f51"/>
+    </radialGradient>
+
     <style>
       @keyframes signal-ring-hero {
         0% { transform: scale(1); opacity: 0.8; }
@@ -1450,10 +1456,12 @@
     <g class="ring-hero" style="animation-delay: 0.5s;">
       <circle id="hero-ring-2" cx="0" cy="0" r="40" fill="none" stroke="#e76f51" stroke-width="2"/>
     </g>
+    <g class="ring-hero" style="animation-delay: 1s;">
+      <circle id="hero-ring-3" cx="0" cy="0" r="40" fill="none" stroke="#f4a261" stroke-width="2"/>
+    </g>
 
     <!-- Central beacon light -->
-    <circle cx="0" cy="0" r="15" fill="#f4a261" opacity="0.9"/>
-    <circle cx="0" cy="0" r="8" fill="#ffd89b"/>
+    <circle cx="0" cy="0" r="16" fill="url(#beaconCoreHero)"/>
 
   </g>
 </svg>
