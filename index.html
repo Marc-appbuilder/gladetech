@@ -1450,44 +1450,24 @@
     </filter>
 
     <style>
-      @keyframes firefly-flicker-a {
-        0%, 100% { opacity: 0; transform: translate(0px, 0px) scale(0.6); }
-        10% { opacity: 0.9; transform: translate(2px, -2px) scale(1); }
-        18% { opacity: 0.1; transform: translate(3px, -4px) scale(0.8); }
-        30% { opacity: 0.8; transform: translate(-2px, -6px) scale(1); }
-        40% { opacity: 0.05; }
-        58% { opacity: 0.7; transform: translate(3px, -9px) scale(0.9); }
-        68% { opacity: 0.1; }
-        85% { opacity: 0.5; transform: translate(-1px, -5px) scale(0.7); }
-        95% { opacity: 0; transform: translate(0px, -2px) scale(0.5); }
+      @keyframes network-node-pulse-hero {
+        0%, 100% { opacity: 0.5; transform: scale(1); }
+        50% { opacity: 0.85; transform: scale(1.18); }
       }
 
-      @keyframes firefly-flicker-b {
-        0%, 100% { opacity: 0; transform: translate(0px, 0px) scale(0.6); }
-        14% { opacity: 0.85; transform: translate(-3px, -3px) scale(1); }
-        24% { opacity: 0.08; }
-        38% { opacity: 0.75; transform: translate(2px, -7px) scale(0.95); }
-        50% { opacity: 0.1; }
-        66% { opacity: 0.65; transform: translate(-3px, -10px) scale(0.85); }
-        78% { opacity: 0.1; }
-        92% { opacity: 0.4; transform: translate(1px, -4px) scale(0.6); }
-      }
-
-      @keyframes firefly-flicker-c {
-        0%, 100% { opacity: 0; transform: translate(0px, 0px) scale(0.55); }
-        16% { opacity: 0.8; transform: translate(3px, -4px) scale(0.95); }
-        28% { opacity: 0.07; }
-        44% { opacity: 0.7; transform: translate(-2px, -8px) scale(0.9); }
-        56% { opacity: 0.05; }
-        72% { opacity: 0.6; transform: translate(2px, -11px) scale(0.8); }
-        84% { opacity: 0.08; }
-        96% { opacity: 0.35; transform: translate(-1px, -5px) scale(0.55); }
-      }
-
-      .firefly-hero {
+      .network-node-hero {
         transform-box: fill-box;
         transform-origin: center;
+        animation: network-node-pulse-hero 4s ease-in-out infinite;
         animation-fill-mode: backwards;
+      }
+
+      .root-path-hero {
+        fill: none;
+        stroke: #d4a574;
+        stroke-width: 1;
+        stroke-linecap: round;
+        opacity: 0.2;
       }
 
       @keyframes beacon-core-pulse-hero {
@@ -1525,43 +1505,49 @@
       <circle cx="58" cy="42" r="45" fill="url(#clearingGlowHero)" filter="url(#softBlurHero)"/>
     </g>
 
-    <!-- Fireflies - soft hovering, blinking light near the beacon -->
-    <g transform="translate(-55,-25)">
-      <g class="firefly-hero" style="animation: firefly-flicker-a 4.2s ease-in-out infinite; animation-delay: 0s;">
-        <circle r="5" fill="#e3da6e" opacity="0.45" filter="url(#fireflyHaloHero)"/>
-        <circle r="1.3" fill="#fff8d6"/>
-      </g>
+    <!-- Root network - thin branching connections, like a mycorrhizal network under a glade -->
+    <g>
+      <path class="root-path-hero" d="M 0,0 Q -25,-10 -65,-35"/>
+      <path class="root-path-hero" d="M 0,0 Q 25,-8 60,-30"/>
+      <path class="root-path-hero" d="M 0,0 Q -15,30 -45,55"/>
+      <path class="root-path-hero" d="M 0,0 Q 20,22 55,48"/>
+      <path class="root-path-hero" d="M 0,0 Q -45,-5 -78,12"/>
+      <path class="root-path-hero" d="M 0,0 Q 5,-40 20,-70"/>
     </g>
-    <g transform="translate(48,-18)">
-      <g class="firefly-hero" style="animation: firefly-flicker-b 5.1s ease-in-out infinite; animation-delay: -1.6s;">
-        <circle r="4.5" fill="#e3da6e" opacity="0.42" filter="url(#fireflyHaloHero)"/>
-        <circle r="1.1" fill="#fff8d6"/>
-      </g>
-    </g>
-    <g transform="translate(-30,38)">
-      <g class="firefly-hero" style="animation: firefly-flicker-c 4.7s ease-in-out infinite; animation-delay: -3s;">
-        <circle r="5" fill="#e3da6e" opacity="0.45" filter="url(#fireflyHaloHero)"/>
-        <circle r="1.2" fill="#fff8d6"/>
-      </g>
-    </g>
-    <g transform="translate(52,35)">
-      <g class="firefly-hero" style="animation: firefly-flicker-a 5.6s ease-in-out infinite; animation-delay: -0.9s;">
-        <circle r="4.2" fill="#e3da6e" opacity="0.4" filter="url(#fireflyHaloHero)"/>
-        <circle r="1" fill="#fff8d6"/>
-      </g>
-    </g>
-    <g transform="translate(-62,12)">
-      <g class="firefly-hero" style="animation: firefly-flicker-b 4.4s ease-in-out infinite; animation-delay: -2.4s;">
-        <circle r="4.6" fill="#e3da6e" opacity="0.42" filter="url(#fireflyHaloHero)"/>
-        <circle r="1.1" fill="#fff8d6"/>
-      </g>
-    </g>
-    <g transform="translate(20,-55)">
-      <g class="firefly-hero" style="animation: firefly-flicker-c 5.3s ease-in-out infinite; animation-delay: -3.5s;">
-        <circle r="4.3" fill="#e3da6e" opacity="0.4" filter="url(#fireflyHaloHero)"/>
-        <circle r="1" fill="#fff8d6"/>
-      </g>
-    </g>
+
+    <!-- Satellite nodes - other points in the network, gently pulsing -->
+    <g class="network-node-hero" style="animation-delay: -0.5s;"><circle cx="-65" cy="-35" r="3.5" fill="url(#beaconCoreHero)" filter="url(#beaconSoftEdgeHero)"/></g>
+    <g class="network-node-hero" style="animation-delay: -1.8s;"><circle cx="60" cy="-30" r="3.2" fill="url(#beaconCoreHero)" filter="url(#beaconSoftEdgeHero)"/></g>
+    <g class="network-node-hero" style="animation-delay: -3.1s;"><circle cx="-45" cy="55" r="3.4" fill="url(#beaconCoreHero)" filter="url(#beaconSoftEdgeHero)"/></g>
+    <g class="network-node-hero" style="animation-delay: -0.9s;"><circle cx="55" cy="48" r="3" fill="url(#beaconCoreHero)" filter="url(#beaconSoftEdgeHero)"/></g>
+    <g class="network-node-hero" style="animation-delay: -2.4s;"><circle cx="-78" cy="12" r="3.3" fill="url(#beaconCoreHero)" filter="url(#beaconSoftEdgeHero)"/></g>
+    <g class="network-node-hero" style="animation-delay: -3.6s;"><circle cx="20" cy="-70" r="3.1" fill="url(#beaconCoreHero)" filter="url(#beaconSoftEdgeHero)"/></g>
+
+    <!-- Traveling signal pulses - communication passing between nodes -->
+    <circle r="2" fill="#fff3d6" filter="url(#fireflyHaloHero)">
+      <animateMotion path="M 0,0 Q -25,-10 -65,-35" dur="4.4s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.15;0.8;1" dur="4.4s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="1.8" fill="#fff3d6" filter="url(#fireflyHaloHero)">
+      <animateMotion path="M 0,0 Q 25,-8 60,-30" dur="5.2s" begin="-1.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.15;0.8;1" dur="5.2s" begin="-1.4s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="2" fill="#fff3d6" filter="url(#fireflyHaloHero)">
+      <animateMotion path="M 0,0 Q -15,30 -45,55" dur="3.8s" begin="-2.6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.15;0.8;1" dur="3.8s" begin="-2.6s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="1.7" fill="#fff3d6" filter="url(#fireflyHaloHero)">
+      <animateMotion path="M 0,0 Q 20,22 55,48" dur="4.8s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.15;0.8;1" dur="4.8s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="1.9" fill="#fff3d6" filter="url(#fireflyHaloHero)">
+      <animateMotion path="M 0,0 Q -45,-5 -78,12" dur="5.6s" begin="-3.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.15;0.8;1" dur="5.6s" begin="-3.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="1.8" fill="#fff3d6" filter="url(#fireflyHaloHero)">
+      <animateMotion path="M 0,0 Q 5,-40 20,-70" dur="4.2s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.15;0.8;1" dur="4.2s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
 
     <!-- Central beacon light - soft glowing orb, no hard edge -->
     <g class="beacon-core-hero">
