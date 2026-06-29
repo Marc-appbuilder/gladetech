@@ -136,6 +136,14 @@
             100% { left: 104%; opacity: 0; }
         }
 
+        /* Passes straight through - never qualifies, stays dim throughout */
+        @keyframes lead-particle-flow-dim {
+            0% { left: -4%; opacity: 0; }
+            8% { opacity: 0.45; }
+            92% { opacity: 0.45; }
+            100% { left: 104%; opacity: 0; }
+        }
+
         .hero h1 {
             font-size: clamp(3rem, 10vw, 6rem);
             font-weight: 800;
@@ -1460,13 +1468,13 @@
         <div class="lead-stream-hero">
             <div class="lead-filter-hero"></div>
             <span class="lead-particle-hero" style="top: 8%; animation-name: lead-particle-flow-a; animation-duration: 8.5s; animation-delay: -1s;"></span>
-            <span class="lead-particle-hero" style="top: 20%; animation-name: lead-particle-flow-c; animation-duration: 10s; animation-delay: -4.5s;"></span>
+            <span class="lead-particle-hero" style="top: 20%; animation-name: lead-particle-flow-dim; animation-duration: 10s; animation-delay: -4.5s;"></span>
             <span class="lead-particle-hero" style="top: 32%; animation-name: lead-particle-flow-b; animation-duration: 9.2s; animation-delay: -2.3s;"></span>
             <span class="lead-particle-hero" style="top: 45%; animation-name: lead-particle-flow-a; animation-duration: 7.8s; animation-delay: -6s;"></span>
-            <span class="lead-particle-hero" style="top: 58%; animation-name: lead-particle-flow-c; animation-duration: 9.6s; animation-delay: -3.1s;"></span>
+            <span class="lead-particle-hero" style="top: 58%; animation-name: lead-particle-flow-dim; animation-duration: 9.6s; animation-delay: -3.1s;"></span>
             <span class="lead-particle-hero" style="top: 70%; animation-name: lead-particle-flow-b; animation-duration: 8.2s; animation-delay: -5.4s;"></span>
-            <span class="lead-particle-hero" style="top: 82%; animation-name: lead-particle-flow-a; animation-duration: 10.4s; animation-delay: -1.8s;"></span>
-            <span class="lead-particle-hero" style="top: 92%; animation-name: lead-particle-flow-b; animation-duration: 9s; animation-delay: -7s;"></span>
+            <span class="lead-particle-hero" style="top: 82%; animation-name: lead-particle-flow-c; animation-duration: 10.4s; animation-delay: -1.8s;"></span>
+            <span class="lead-particle-hero" style="top: 92%; animation-name: lead-particle-flow-dim; animation-duration: 9s; animation-delay: -7s;"></span>
         </div>
         <div class="container">
             <h1>GLADE TECH</h1>
