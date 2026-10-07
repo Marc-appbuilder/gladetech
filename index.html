@@ -1,1809 +1,447 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glade Tech | Custom systems and AI adoption for UK businesses</title>
-    <meta name="description" content="Built with care. Rooted in experience.">
+    <title>Glade Tech — We build useful things</title>
+    <meta name="description" content="Glade Tech is an independent technology studio in Poole, UK, building practical software, digital products and educational experiences — including Chatacus, Guru Simulator and Noob Games.">
+    <link rel="canonical" href="https://gladetech.uk/">
+    <meta name="theme-color" content="#f2eee5">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Glade Tech">
+    <meta property="og:title" content="Glade Tech — We build useful things">
+    <meta property="og:description" content="An independent technology studio building practical software, digital products and educational experiences.">
+    <meta property="og:url" content="https://gladetech.uk/">
+    <meta property="og:image" content="https://gladetech.uk/img/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_GB">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Glade Tech — We build useful things">
+    <meta name="twitter:description" content="An independent technology studio building practical software, digital products and educational experiences.">
+    <meta name="twitter:image" content="https://gladetech.uk/img/og.png">
+
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --forest-darkest: #0a1612;
-            --forest-dark: #0d1f1a;
-            --forest-green: #1a3a2e;
-            --forest-mid: #234a3d;
-            --charcoal: #1c1c1c;
-            --charcoal-warm: #1f1a17;
-            --dark-teal: #1a2f2a;
-            --dark-warm: #2a1f1a;
-            --cream: #f4f1e8;
-            --accent: #8b9d83;
-            --accent-secondary: #c97456;
-            --accent-tertiary: #d4a574;
-            --soft-accent: #a0b098;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            color: var(--cream);
-            line-height: 1.7;
-            overflow-x: hidden;
-            background: var(--forest-darkest);
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--forest-darkest) 0%, var(--forest-dark) 50%, var(--forest-green) 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 4rem 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .lead-stream-hero {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .lead-filter-hero {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: linear-gradient(
-                to bottom,
-                transparent 8%,
-                rgba(244, 162, 97, 0.3) 22%,
-                rgba(244, 162, 97, 0.3) 34%,
-                transparent 42%,
-                transparent 58%,
-                rgba(244, 162, 97, 0.3) 66%,
-                rgba(244, 162, 97, 0.3) 78%,
-                transparent 92%
-            );
-            transform: translateX(-50%);
-        }
-
-        .lead-particle-hero {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: rgba(244, 241, 232, 0.32);
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-        }
-
-        /* Strong slow-down after crossing - fast approach, settles right after the line */
-        @keyframes lead-particle-flow-a {
-            0% { left: -4%; opacity: 0; transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
-            8% { opacity: 0.5; }
-            34.7% { left: 49.5%; transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
-            35% { left: 50%; transform: scale(2.1); background: #ffb877; box-shadow: 0 0 10px 3px rgba(255, 184, 119, 1), 0 0 22px rgba(244, 162, 97, 0.8); }
-            40% { left: 54%; transform: scale(1.4); background: #ffa84d; box-shadow: 0 0 8px 2px rgba(255, 168, 77, 0.9), 0 0 16px rgba(244, 162, 97, 0.6); }
-            92% { left: 96%; opacity: 0.8; }
-            100% { left: 104%; opacity: 0; }
-        }
-
-        /* Moderate slow-down after crossing */
-        @keyframes lead-particle-flow-b {
-            0% { left: -4%; opacity: 0; transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
-            8% { opacity: 0.5; }
-            44.7% { left: 49.5%; transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
-            45% { left: 50%; transform: scale(2.1); background: #ffb877; box-shadow: 0 0 10px 3px rgba(255, 184, 119, 1), 0 0 22px rgba(244, 162, 97, 0.8); }
-            49% { left: 53%; transform: scale(1.4); background: #ffa84d; box-shadow: 0 0 8px 2px rgba(255, 168, 77, 0.9), 0 0 16px rgba(244, 162, 97, 0.6); }
-            92% { left: 96%; opacity: 0.8; }
-            100% { left: 104%; opacity: 0; }
-        }
-
-        /* Stays fast throughout - little slow-down, for variation */
-        @keyframes lead-particle-flow-c {
-            0% { left: -4%; opacity: 0; transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
-            8% { opacity: 0.5; }
-            49.7% { left: 49.5%; transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
-            50% { left: 50%; transform: scale(2.1); background: #ffb877; box-shadow: 0 0 10px 3px rgba(255, 184, 119, 1), 0 0 22px rgba(244, 162, 97, 0.8); }
-            54% { left: 54.5%; transform: scale(1.4); background: #ffa84d; box-shadow: 0 0 8px 2px rgba(255, 168, 77, 0.9), 0 0 16px rgba(244, 162, 97, 0.6); }
-            92% { left: 98%; opacity: 0.8; }
-            100% { left: 104%; opacity: 0; }
-        }
-
-        /* Speeds up after crossing - slower approach, accelerates once qualified */
-        @keyframes lead-particle-flow-d {
-            0% { left: -4%; opacity: 0; transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
-            8% { opacity: 0.5; }
-            59.7% { left: 49.5%; transform: scale(0.85); background: rgba(244, 241, 232, 0.32); box-shadow: none; }
-            60% { left: 50%; transform: scale(2.1); background: #ffb877; box-shadow: 0 0 10px 3px rgba(255, 184, 119, 1), 0 0 22px rgba(244, 162, 97, 0.8); }
-            63% { left: 58%; transform: scale(1.4); background: #ffa84d; box-shadow: 0 0 8px 2px rgba(255, 168, 77, 0.9), 0 0 16px rgba(244, 162, 97, 0.6); }
-            92% { left: 98%; opacity: 0.8; }
-            100% { left: 104%; opacity: 0; }
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 800;
-            color: var(--cream);
-            letter-spacing: -0.03em;
-            margin-bottom: 2rem;
-            line-height: 1;
-        }
-
-        .hero .tagline {
-            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-            color: var(--accent-tertiary);
-            margin-bottom: 0.75rem;
-            font-weight: 400;
-        }
-
-        .hero .tagline-sub {
-            font-size: clamp(0.8rem, 1.5vw, 0.95rem);
-            color: var(--cream);
-            opacity: 0.65;
-            letter-spacing: 0.08em;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero .subtitle {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            color: var(--cream);
-            opacity: 0.85;
-            margin-bottom: 3rem;
-        }
-
-        .cta-beacon {
-            display: inline-block;
-            margin-top: 2rem;
-            color: var(--accent-tertiary);
-            font-size: clamp(0.9rem, 1.5vw, 1rem);
-            font-weight: 500;
-            text-decoration: none;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding-bottom: 3px;
-            border-bottom: 1px solid rgba(212, 165, 116, 0.4);
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .cta-beacon:hover {
-            color: var(--cream);
-            border-bottom-color: rgba(244, 241, 232, 0.5);
-        }
-
-        /* Philosophy Section */
-        .philosophy {
-            background: linear-gradient(135deg, var(--charcoal-warm) 0%, var(--dark-warm) 100%);
-            padding: 8rem 0;
-        }
-
-        .philosophy h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--accent-tertiary);
-            margin-bottom: 3rem;
-            font-weight: 700;
-        }
-
-        .philosophy-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .philosophy-prose {
-            max-width: 720px;
-            margin: 0 auto;
-            padding-top: 2.5rem;
-            border-top: 2px solid var(--accent-tertiary);
-        }
-
-        .philosophy-prose p {
-            font-size: clamp(1.1rem, 2vw, 1.35rem);
-            line-height: 1.85;
-            color: var(--cream);
-            opacity: 0.9;
-            margin-bottom: 1.8rem;
-        }
-
-        .philosophy-prose p:first-child {
-            font-size: clamp(1.25rem, 2.5vw, 1.6rem);
-            line-height: 1.65;
-            opacity: 1;
-            font-weight: 500;
-            letter-spacing: -0.01em;
-        }
-
-        .philosophy-prose p:last-child {
-            margin-bottom: 0;
-            opacity: 0.55;
-            font-size: clamp(0.9rem, 1.5vw, 1rem);
-            font-style: italic;
-            letter-spacing: 0;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(244, 241, 232, 0.12);
-        }
-
-        .philosophy-card {
-            background: rgba(42, 31, 26, 0.5);
-            padding: 2rem;
-            border-radius: 8px;
-            border-left: 3px solid var(--accent-tertiary);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            box-shadow: 0 0 0 rgba(212, 165, 116, 0);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .philosophy-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .philosophy-card:nth-child(2) { transition-delay: 0.15s; }
-        .philosophy-card:nth-child(3) { transition-delay: 0.3s; }
-        .philosophy-card:nth-child(4) { transition-delay: 0.45s; }
-
-        .philosophy-card.visible:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(212, 165, 116, 0.4);
-        }
-
-        .philosophy-card h3 {
-            font-size: 1.3rem;
-            color: var(--accent-tertiary);
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .philosophy-card p {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: var(--cream);
-            opacity: 0.9;
-        }
-
-        .philosophy-card.full-width {
-            grid-column: 1 / -1;
-            text-align: center;
-            border-left: none;
-            border-top: 3px solid var(--accent-tertiary);
-        }
-
-        .highlight {
-            color: var(--accent-tertiary);
-            font-weight: 500;
-        }
-
-        /* Get AI-ready Section */
-        .ai-ready {
-            background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-green) 100%);
-            padding: 6rem 0;
-            text-align: center;
-        }
-
-        .ai-ready h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--accent-tertiary);
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-
-        .ai-ready p {
-            max-width: 680px;
-            margin: 0 auto;
-            font-size: clamp(1rem, 1.8vw, 1.1rem);
-            line-height: 1.8;
-            color: var(--cream);
-            opacity: 0.9;
-        }
-
-        /* Audit CTA Section */
-        .audit-cta {
-            background: linear-gradient(135deg, var(--charcoal-warm) 0%, var(--forest-darkest) 100%);
-            padding: 7rem 0;
-            text-align: center;
-        }
-
-        .audit-cta .cta-signal {
-            margin-bottom: 0;
-        }
-
-        /* Services Section */
-        .services {
-            background: linear-gradient(135deg, var(--forest-green) 0%, var(--dark-teal) 100%);
-            padding: 8rem 0;
-        }
-
-        .services h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--cream);
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        .services h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--accent-tertiary);
-            margin-top: 1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: rgba(26, 58, 46, 0.3);
-            padding: 2rem;
-            border-radius: 8px;
-            border-left: 3px solid var(--accent-tertiary);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            box-shadow: 0 0 0 rgba(212, 165, 116, 0);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .service-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-        .service-card:nth-child(2) { transition-delay: 0.15s; }
-        .service-card:nth-child(3) { transition-delay: 0.3s; }
-        .service-card:nth-child(4) { transition-delay: 0.45s; }
-
-        .service-card.visible:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(212, 165, 116, 0.4);
-        }
-
-        .service-card h3 {
-            font-size: 1.3rem;
-            color: var(--accent-tertiary);
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .service-card p {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: var(--cream);
-            opacity: 0.9;
-        }
-
-        /* Projects Section */
-        .projects {
-            background: linear-gradient(135deg, var(--charcoal-warm) 0%, var(--charcoal) 100%);
-            padding: 8rem 0;
-        }
-
-        .projects h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--accent-tertiary);
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .projects h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--accent-tertiary);
-            margin-top: 1rem;
-            margin-bottom: 3rem;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: rgba(26, 58, 46, 0.2);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(212, 165, 116, 0.2);
-            width: 100%;
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                        box-shadow 0.4s ease,
-                        border-color 0.4s ease;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.25);
-            opacity: 0;
-            transform: translateY(48px) scale(0.97);
-        }
-
-        .project-card.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .project-card:nth-child(2) { transition-delay: 0.08s; }
-        .project-card:nth-child(3) { transition-delay: 0.16s; }
-        .project-card:nth-child(4) { transition-delay: 0.24s; }
-        .project-card:nth-child(5) { transition-delay: 0.32s; }
-        .project-card:nth-child(6) { transition-delay: 0.40s; }
-        .project-card:nth-child(7) { transition-delay: 0.48s; }
-        .project-card:nth-child(8) { transition-delay: 0.56s; }
-        .project-card:nth-child(9) { transition-delay: 0.64s; }
-        .project-card:nth-child(10) { transition-delay: 0.72s; }
-        .project-card:nth-child(11) { transition-delay: 0.80s; }
-
-        .project-card.visible:hover {
-            transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(201, 169, 97, 0.35);
-            border-color: rgba(201, 169, 97, 0.35);
-        }
-
-        .project-image {
-            height: 280px;
-            background: linear-gradient(135deg, #8b7355 0%, #b8956a 50%, #d4a574 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .project-image svg {
-            width: 60%;
-            height: 60%;
-        }
-
-        .project-content {
-            padding: 2rem;
-            min-height: 200px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-status {
-            display: inline-block;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--accent-tertiary);
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        /* Pulse animation for LIVE NOW badges */
-        @keyframes pulse {
-            0%, 100% {
-                text-shadow: 0 0 10px rgba(212, 165, 116, 0.5);
-                transform: scale(1);
-            }
-            50% {
-                text-shadow: 0 0 25px rgba(212, 165, 116, 1), 0 0 35px rgba(212, 165, 116, 0.8);
-                transform: scale(1.05);
-            }
-        }
-
-        .project-status.live {
-            animation: pulse 2s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        .project-card h3 {
-            font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-            color: var(--accent-tertiary);
-            margin-bottom: 0.6rem;
-            font-weight: 600;
-        }
-
-        .project-card p {
-            font-size: 0.95rem;
-            color: var(--cream);
-            line-height: 1.75;
-            margin-bottom: 1.25rem;
-            opacity: 0.85;
-        }
-
-        .project-link {
-            color: var(--accent-tertiary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid transparent;
-            word-break: break-word;
-        }
-
-        .project-link:hover {
-            color: var(--cream);
-            border-bottom-color: var(--cream);
-        }
-
-        /* AI Adoption Section */
-        .ai-adoption {
-            background: linear-gradient(135deg, var(--charcoal-warm) 0%, var(--dark-warm) 100%);
-            padding: 8rem 0;
-        }
-
-        .ai-adoption h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--accent-tertiary);
-            margin-bottom: 1rem;
-            font-weight: 700;
-            text-align: center;
-        }
-
-        .ai-adoption h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--accent-tertiary);
-            margin: 1rem auto 2rem;
-        }
-
-        .ai-adoption-intro {
-            max-width: 700px;
-            margin: 0 auto 4rem;
-            text-align: center;
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: var(--cream);
-            opacity: 0.9;
-        }
-
-        .ai-steps {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto 4rem;
-        }
-
-        .ai-step {
-            background: rgba(42, 31, 26, 0.5);
-            border-radius: 12px;
-            padding: 2.5rem;
-            position: relative;
-            border-left: 3px solid var(--accent-tertiary);
-        }
-
-        .ai-step-number {
-            font-size: 3rem;
-            font-weight: 800;
-            line-height: 1;
-            margin-bottom: 1rem;
-            opacity: 0.25;
-            color: var(--accent-tertiary);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        }
-
-        .ai-step h3 {
-            font-size: 1.2rem;
-            color: var(--accent-tertiary);
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-        }
-
-        .ai-step p {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: var(--cream);
-            opacity: 0.85;
-        }
-
-        .ai-examples {
-            max-width: 900px;
-            margin: 0 auto 4rem;
-        }
-
-        .ai-examples h3 {
-            font-size: 1.2rem;
-            color: var(--cream);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            opacity: 0.7;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-
-        .ai-examples ul {
-            list-style: none;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .ai-examples li {
-            background: rgba(42, 31, 26, 0.35);
-            border-radius: 8px;
-            padding: 1.1rem 1.4rem;
-            font-size: 1rem;
-            line-height: 1.6;
-            color: var(--cream);
-            opacity: 0.85;
-            border-left: 2px solid rgba(212, 165, 116, 0.3);
-        }
-
-        .ai-who {
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            text-align: center;
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: var(--cream);
-            opacity: 0.75;
-        }
-
-        .ai-cta {
-            text-align: center;
-        }
-
-        .ai-cta a {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: rgba(212, 165, 116, 0.15);
-            border: 2px solid var(--accent-tertiary);
-            color: var(--cream);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            letter-spacing: 0.3px;
-        }
-
-        .ai-cta a:hover {
-            background: rgba(212, 165, 116, 0.28);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(212, 165, 116, 0.3);
-        }
-
-        @media (max-width: 768px) {
-            .ai-steps {
-                grid-template-columns: 1fr;
-            }
-
-            .ai-examples ul {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* How It Works Section */
-        .how-it-works {
-            background: linear-gradient(135deg, var(--forest-green) 0%, var(--forest-dark) 100%);
-            padding: 8rem 0;
-            position: relative;
-        }
-
-        .how-it-works h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--cream);
-            margin-bottom: 1rem;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        .how-it-works h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--accent-tertiary);
-            margin: 1rem auto 3rem;
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-            max-width: 1000px;
-            margin: 0 auto 3rem;
-        }
-
-        .process-step {
-            background: rgba(26, 58, 46, 0.3);
-            border-radius: 12px;
-            padding: 2.5rem;
-            position: relative;
-            border: 1px solid rgba(212, 165, 116, 0.15);
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .process-step.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-        .process-step:nth-child(2) { transition-delay: 0.15s; }
-        .process-step:nth-child(3) { transition-delay: 0.3s; }
-        .process-step:nth-child(4) { transition-delay: 0.45s; }
-
-        .process-step.visible:hover {
-            transform: translateY(-5px);
-            border-color: rgba(212, 165, 116, 0.35);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .step-number {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1;
-            margin-bottom: 1rem;
-            opacity: 0.3;
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        }
-
-        .step-1 .step-number { color: var(--accent-tertiary); }
-        .step-2 .step-number { color: var(--accent-tertiary); }
-        .step-3 .step-number { color: var(--accent-tertiary); }
-        .step-4 .step-number { color: var(--accent-tertiary); }
-
-        .step-1 { border-left: 3px solid var(--accent-tertiary); }
-        .step-2 { border-left: 3px solid var(--accent-tertiary); }
-        .step-3 { border-left: 3px solid var(--accent-tertiary); }
-        .step-4 { border-left: 3px solid var(--accent-tertiary); }
-
-        .process-step h3 {
-            font-size: 1.4rem;
-            color: var(--cream);
-            margin-bottom: 1rem;
-            font-weight: 700;
-            position: relative;
-            z-index: 1;
-        }
-
-        .process-step p {
-            font-size: 1.05rem;
-            color: var(--cream);
-            line-height: 1.7;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
-        }
-
-        .process-cta {
-            text-align: center;
-            margin-top: 3rem;
-            padding: 2rem;
-            background: rgba(26, 58, 46, 0.2);
-            border-radius: 12px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .process-cta p {
-            font-size: 1.15rem;
-            color: var(--cream);
-            margin: 0;
-        }
-
-        .process-cta a {
-            color: var(--accent-tertiary);
-            text-decoration: underline;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .process-cta a:hover {
-            color: var(--cream);
-        }
-
-        @media (max-width: 768px) {
-            .process-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .step-number {
-                font-size: 2.5rem;
-                top: 1rem;
-                right: 1rem;
-            }
-
-            .process-step {
-                padding: 2rem;
-            }
-        }
-
-        /* What We Do Section */
-        .services {
-            background: var(--forest-dark);
-            padding: 8rem 0;
-        }
-
-        .services h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--cream);
-            margin-bottom: 0;
-        }
-
-        .services-list {
-            margin-top: 3rem;
-        }
-
-        .service-item {
-            display: grid;
-            grid-template-columns: 36px 1fr;
-            gap: 2rem;
-            padding: 2.5rem 0;
-            border-bottom: 1px solid rgba(244, 241, 232, 0.08);
-            align-items: start;
-            transition: background 0.3s ease;
-        }
-
-        .service-item:first-child {
-            border-top: 1px solid rgba(244, 241, 232, 0.08);
-        }
-
-        .service-beacon {
-            display: flex;
-            align-items: flex-start;
-            padding-top: 0.55rem;
-            position: relative;
-        }
-
-        .service-beacon-dot {
-            display: block;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: #f4a261;
-            box-shadow: 0 0 10px rgba(244, 162, 97, 0.8);
-            position: relative;
-            animation: service-beacon-pulse 2.5s ease-in-out infinite;
-            flex-shrink: 0;
-        }
-
-        @keyframes service-beacon-pulse {
-            0%, 100% { box-shadow: 0 0 10px rgba(244, 162, 97, 0.8); transform: scale(1); }
-            50% { box-shadow: 0 0 18px rgba(244, 162, 97, 1); transform: scale(1.15); }
-        }
-
-        .service-item:nth-child(2) .service-beacon-dot { animation-delay: 0.6s; }
-        .service-item:nth-child(2) .service-beacon-dot::before { animation-delay: 0.6s; }
-        .service-item:nth-child(2) .service-beacon-dot::after { animation-delay: 1.4s; }
-        .service-item:nth-child(3) .service-beacon-dot { animation-delay: 1.2s; }
-        .service-item:nth-child(3) .service-beacon-dot::before { animation-delay: 1.2s; }
-        .service-item:nth-child(3) .service-beacon-dot::after { animation-delay: 2.0s; }
-        .service-item:nth-child(4) .service-beacon-dot { animation-delay: 1.8s; }
-        .service-item:nth-child(4) .service-beacon-dot::before { animation-delay: 1.8s; }
-        .service-item:nth-child(4) .service-beacon-dot::after { animation-delay: 2.6s; }
-
-        .service-body h3 {
-            font-size: clamp(1.1rem, 2vw, 1.35rem);
-            color: var(--cream);
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .service-body p {
-            font-size: 1rem;
-            line-height: 1.75;
-            color: var(--cream);
-            opacity: 0.75;
-            margin: 0;
-        }
-
-        /* About Section */
-        .about {
-            background: linear-gradient(135deg, var(--charcoal-warm) 0%, var(--dark-warm) 100%);
-            padding: 8rem 0;
-        }
-
-        .about-inner {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 5rem;
-            align-items: start;
-            max-width: 860px;
-            margin: 0 auto;
-            padding-top: 2.5rem;
-            border-top: 2px solid var(--accent-tertiary);
-        }
-
-        .about-photo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-bottom: 1.25rem;
-            border: 2px solid rgba(201, 169, 97, 0.35);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-        }
-
-        .about-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-        }
-
-        .about-name {
-            font-size: clamp(1.3rem, 2.5vw, 1.7rem);
-            color: var(--cream);
-            font-weight: 600;
-            line-height: 1.2;
-            margin: 0 0 0.6rem;
-        }
-
-        .about-role {
-            font-size: 0.78rem;
-            color: var(--accent-tertiary);
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            margin: 0;
-        }
-
-        .about-text p {
-            font-size: clamp(1rem, 1.8vw, 1.2rem);
-            line-height: 1.85;
-            color: var(--cream);
-            opacity: 0.85;
-            margin: 0;
-        }
-
-        @media (max-width: 640px) {
-            .about-inner {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
-
-        /* Contact Section */
-        .contact {
-            background: linear-gradient(135deg, var(--charcoal-warm) 0%, var(--forest-darkest) 100%);
-            padding: 10rem 0 8rem;
-            text-align: center;
-        }
-
-        .contact-eyebrow {
-            font-size: clamp(0.85rem, 1.4vw, 0.95rem);
-            color: var(--accent-tertiary);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .contact-body {
-            max-width: 480px;
-            margin: 0 auto 3.5rem;
-            font-size: clamp(1rem, 1.8vw, 1.1rem);
-            line-height: 1.85;
-            color: var(--cream);
-            opacity: 0.55;
-            font-weight: 400;
-        }
-
-        .cta-signal {
-            display: inline-block;
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            font-weight: 700;
-            color: var(--accent-tertiary);
-            text-decoration: none;
-            letter-spacing: -0.02em;
-            line-height: 1;
-            margin-bottom: 5rem;
-            position: relative;
-            transition: color 0.35s ease;
-        }
-
-        .cta-signal::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: currentColor;
-            transition: width 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .cta-signal:hover {
-            color: var(--cream);
-        }
-
-        .cta-signal:hover::after {
-            width: 100%;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 3.5rem;
-            flex-wrap: wrap;
-            font-size: 0.82rem;
-        }
-
-        .contact-links a {
-            color: var(--cream);
-            opacity: 0.52;
-            text-decoration: none;
-            font-weight: 400;
-            letter-spacing: 0.09em;
-            position: relative;
-            padding-bottom: 3px;
-            transition: opacity 0.45s ease, color 0.45s ease;
-        }
-
-        .contact-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent-tertiary);
-            transition: width 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .contact-links a:hover {
-            opacity: 0.9;
-            color: var(--accent-tertiary);
-        }
-
-        .contact-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--forest-darkest);
-            text-align: center;
-            padding: 2rem;
-            color: rgba(244, 241, 232, 0.4);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(201, 169, 97, 0.1);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 3rem 1.5rem;
-            }
-
-            .cta-beacon {
-                font-size: 0.95rem;
-                padding: 0.75rem 1.75rem;
-            }
-
-            .philosophy-card p {
-                font-size: 0.95rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .project-image {
-                height: 220px;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .service-card h3 {
-                font-size: 1rem;
-            }
-
-            .philosophy-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .philosophy-card.full-width {
-                grid-column: auto;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: clamp(2rem, 8vw, 3rem);
-            }
-
-            .project-image {
-                height: 180px;
-            }
-
-            .project-image svg {
-                width: 70%;
-                height: 70%;
-            }
-        }
-
-        /* Recent Results Section */
-        .results {
-            background: linear-gradient(135deg, var(--forest-darkest) 0%, var(--forest-dark) 60%, var(--forest-green) 100%);
-            padding: 8rem 0;
-        }
-
-        .results h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--cream);
-            font-weight: 700;
-            margin-bottom: 0;
-        }
-
-        .results h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--accent-tertiary);
-            margin-top: 1rem;
-            margin-bottom: 4rem;
-        }
-
-        .results-featured {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-            margin-bottom: 4rem;
-        }
-
-        .result-phone {
-            max-width: 280px;
-            margin: 0 auto;
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow: 0 32px 80px rgba(0,0,0,0.6);
-            background: #000;
-        }
-
-        .result-phone-inner {
-            position: relative;
-            padding-bottom: 177.78%;
-            height: 0;
-            overflow: hidden;
-        }
-
-        .result-phone-inner iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .result-tag {
-            font-size: 0.7rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--accent-tertiary);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            opacity: 0.85;
-        }
-
-        .result-quote-large {
-            font-size: clamp(1.3rem, 2.5vw, 1.65rem);
-            font-weight: 500;
-            color: var(--cream);
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .result-desc {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: var(--cream);
-            opacity: 0.72;
-            margin-bottom: 1.5rem;
-        }
-
-        .result-ext-link {
-            color: var(--accent-tertiary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s ease;
-        }
-
-        .result-ext-link:hover {
-            border-bottom-color: var(--accent-tertiary);
-        }
-
-        .results-testimonials {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-        }
-
-        .result-card {
-            background: rgba(26, 58, 46, 0.25);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(212, 165, 116, 0.18);
-        }
-
-        .result-card-image {
-            height: 280px;
-            overflow: hidden;
-            line-height: 0;
-        }
-
-        .result-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            display: block;
-        }
-
-        .result-card-body {
-            padding: 2rem;
-        }
-
-        .result-quote {
-            font-size: clamp(0.95rem, 1.6vw, 1.05rem);
-            font-style: italic;
-            color: var(--cream);
-            line-height: 1.75;
-            opacity: 0.9;
-            margin-bottom: 1.25rem;
-        }
-
-        .result-cite {
-            font-size: 0.8rem;
-            color: var(--accent-tertiary);
-            font-style: normal;
-            letter-spacing: 0.06em;
-            font-weight: 500;
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 768px) {
-            .results-featured {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .result-phone {
-                max-width: 240px;
-            }
-
-            .results-testimonials {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .result-card-image {
-                height: auto;
-            }
-
-            .result-card-image img {
-                height: auto;
-                object-fit: contain;
-                background: var(--forest-darkest);
-            }
-        }
-
-        /* What We Do - Card Grid */
-        .services-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 3.5rem;
-        }
-
-        .service-product-card {
-            background: rgba(18, 42, 34, 0.6);
-            border-radius: 14px;
-            padding: 2rem 1.75rem;
-            border: 1px solid rgba(212, 165, 116, 0.12);
-            transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1),
-                        box-shadow 0.55s cubic-bezier(0.23, 1, 0.32, 1),
-                        border-color 0.4s ease;
-            backdrop-filter: blur(8px);
-            opacity: 0;
-            transform: translateY(28px);
-        }
-
-        .service-product-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .service-product-card:nth-child(2) { transition-delay: 0.1s; }
-        .service-product-card:nth-child(3) { transition-delay: 0.2s; }
-        .service-product-card:nth-child(4) { transition-delay: 0.3s; }
-        .service-product-card:nth-child(5) { transition-delay: 0.4s; }
-        .service-product-card:nth-child(6) { transition-delay: 0.5s; }
-
-        .service-product-card.visible:hover {
-            transform: translateY(-10px) scale(1.015);
-            box-shadow: 0 28px 64px rgba(0,0,0,0.45), 0 0 0 1px rgba(212, 165, 116, 0.3);
-            border-color: rgba(212, 165, 116, 0.3);
-        }
-
-        .service-card-icon {
-            transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .service-product-card.visible:hover .service-card-icon {
-            transform: translateY(-3px);
-        }
-
-        .service-card-icon {
-            width: 32px;
-            height: 32px;
-            margin-bottom: 1.25rem;
-            color: var(--accent-tertiary);
-            flex-shrink: 0;
-        }
-
-        .service-product-card h3 {
-            font-size: 1.05rem;
-            color: var(--cream);
-            font-weight: 600;
-            margin-bottom: 0.6rem;
-            letter-spacing: -0.01em;
-        }
-
-        .service-product-card p {
-            font-size: 0.93rem;
-            line-height: 1.75;
-            color: var(--cream);
-            opacity: 0.7;
-            margin: 0;
-        }
-
-        @media (max-width: 900px) {
-            .services-cards {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 560px) {
-            .services-cards {
-                grid-template-columns: 1fr;
-                gap: 1.25rem;
-            }
-        }
-
-        /* Your Project card beacon */
-        .project-image-beacon {
-            background: var(--forest-darkest);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .your-project-svg {
-            width: 160px;
-            height: 160px;
-            overflow: visible;
-        }
-
-        @keyframes yp-ring-out {
-            0% { transform: scale(0.15); opacity: 1; }
-            100% { transform: scale(1); opacity: 0; }
-        }
-
-        @keyframes yp-center-pulse {
-            0%, 100% { opacity: 0.9; r: 10; }
-            50% { opacity: 1; r: 12; }
-        }
-
-        .yp-ring {
-            fill: none;
-            stroke: #d4a574;
-            stroke-width: 1.5;
-            transform-origin: 80px 80px;
-            animation: yp-ring-out 3s ease-out infinite;
-        }
-
-        .yp-ring-2 { animation-delay: 1s; }
-        .yp-ring-3 { animation-delay: 2s; }
-
-        @keyframes yp-dot-glow {
-            0%, 100% { filter: drop-shadow(0 0 6px rgba(244,162,97,0.8)); }
-            50% { filter: drop-shadow(0 0 14px rgba(244,162,97,1)); }
-        }
-
-        .yp-dot {
-            fill: #f4a261;
-            animation: yp-dot-glow 2s ease-in-out infinite;
-        }
-    </style>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Schibsted+Grotesk:wght@400..900&display=swap">
+    <link rel="stylesheet" href="styles.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Glade Tech",
+        "url": "https://gladetech.uk/",
+        "logo": "https://gladetech.uk/apple-touch-icon.png",
+        "slogan": "We build useful things.",
+        "description": "An independent technology studio building practical software, digital products and educational experiences.",
+        "email": "marc@gladetech.uk",
+        "address": { "@type": "PostalAddress", "addressLocality": "Poole", "addressCountry": "GB" },
+        "founder": {
+            "@type": "Person",
+            "name": "Marc Richards",
+            "url": "https://marc-richards.com/",
+            "sameAs": ["https://www.linkedin.com/in/marcwrichards"]
+        },
+        "brand": [
+            { "@type": "Brand", "name": "Chatacus", "url": "https://chatacus.co/", "slogan": "Conversations that turn into customers." }
+        ]
+    }
+    </script>
+    <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="lead-stream-hero">
-            <div class="lead-filter-hero"></div>
-            <span class="lead-particle-hero" style="top: 4%; animation-name: lead-particle-flow-a; animation-duration: 8.5s; animation-delay: -1s;"></span>
-            <span class="lead-particle-hero" style="top: 10%; animation-name: lead-particle-flow-c; animation-duration: 9.8s; animation-delay: -3.6s;"></span>
-            <span class="lead-particle-hero" style="top: 16%; animation-name: lead-particle-flow-d; animation-duration: 10s; animation-delay: -4.5s;"></span>
-            <span class="lead-particle-hero" style="top: 23%; animation-name: lead-particle-flow-b; animation-duration: 8.8s; animation-delay: -0.6s;"></span>
-            <span class="lead-particle-hero" style="top: 30%; animation-name: lead-particle-flow-b; animation-duration: 9.2s; animation-delay: -2.3s;"></span>
-            <span class="lead-particle-hero" style="top: 37%; animation-name: lead-particle-flow-a; animation-duration: 11s; animation-delay: -6.8s;"></span>
-            <span class="lead-particle-hero" style="top: 45%; animation-name: lead-particle-flow-c; animation-duration: 7.8s; animation-delay: -6s;"></span>
-            <span class="lead-particle-hero" style="top: 51%; animation-name: lead-particle-flow-d; animation-duration: 9.4s; animation-delay: -2.9s;"></span>
-            <span class="lead-particle-hero" style="top: 58%; animation-name: lead-particle-flow-d; animation-duration: 9.6s; animation-delay: -3.1s;"></span>
-            <span class="lead-particle-hero" style="top: 64%; animation-name: lead-particle-flow-b; animation-duration: 7.5s; animation-delay: -5.2s;"></span>
-            <span class="lead-particle-hero" style="top: 70%; animation-name: lead-particle-flow-b; animation-duration: 8.2s; animation-delay: -5.4s;"></span>
-            <span class="lead-particle-hero" style="top: 76%; animation-name: lead-particle-flow-a; animation-duration: 10.6s; animation-delay: -1.4s;"></span>
-            <span class="lead-particle-hero" style="top: 82%; animation-name: lead-particle-flow-c; animation-duration: 10.4s; animation-delay: -1.8s;"></span>
-            <span class="lead-particle-hero" style="top: 88%; animation-name: lead-particle-flow-d; animation-duration: 8.6s; animation-delay: -4.1s;"></span>
-            <span class="lead-particle-hero" style="top: 92%; animation-name: lead-particle-flow-a; animation-duration: 9s; animation-delay: -7s;"></span>
-            <span class="lead-particle-hero" style="top: 97%; animation-name: lead-particle-flow-c; animation-duration: 9.1s; animation-delay: -5.9s;"></span>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Nav -->
+    <header class="nav">
+        <div class="wrap nav-inner">
+            <a href="#top" class="wordmark" aria-label="Glade Tech — back to top">
+                <span class="wordmark-mark" aria-hidden="true"></span>
+                Glade Tech
+            </a>
+            <nav aria-label="Main">
+                <ul class="nav-links">
+                    <li><a href="#areas">Technology</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="https://marc-richards.com/" class="btn btn-ink" target="_blank" rel="noopener">Work with Marc ↗</a></li>
+                </ul>
+                <details class="menu">
+                    <summary>Menu</summary>
+                    <div class="menu-panel">
+                        <a href="#areas">Technology</a>
+                        <a href="#products">Products</a>
+                        <a href="#education">Education</a>
+                        <a href="#work">Work</a>
+                        <a href="#about">About</a>
+                        <a href="#contact">Contact</a>
+                        <a href="https://marc-richards.com/" target="_blank" rel="noopener">Work with Marc ↗</a>
+                    </div>
+                </details>
+            </nav>
         </div>
-        <div class="container">
-            <h1>GLADE TECH</h1>
-            <p class="tagline">Building tools that solve real problems.</p>
-            <p class="tagline-sub">Lead Gen Tools · Apps · AI</p>
-            <a href="#contact" class="cta-beacon">Send a Signal →</a>
-        </div>
-    </section>
+    </header>
 
-    <!-- Audit CTA Section -->
-    <section class="audit-cta">
-        <div class="container">
-            <p class="contact-eyebrow">How much time is your team losing to repetitive work?</p>
-            <p class="contact-body">Answer 5 quick questions and we'll show you exactly where the hours — and the money — are going, plus what's worth fixing first.</p>
-            <a href="https://audit.gladetech.uk" class="cta-signal" target="_blank">Take the Audit →</a>
-        </div>
-    </section>
+    <main id="main">
 
-    <!-- What We Do Section -->
-    <section class="services">
-        <div class="container">
-            <h2>What We Do</h2>
-            <div class="services-cards">
-
-                <div class="service-product-card">
-                    <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 4h18l-7 9v6l-4-2v-4L3 4z"/>
-                    </svg>
-                    <h3>Lead Generation Tools</h3>
-                    <p>Purpose-built tools that capture, qualify and deliver better enquiries — so your team focuses on opportunities, not admin.</p>
+        <!-- Hero -->
+        <section class="hero" id="top">
+            <div class="wrap hero-grid">
+                <div>
+                    <p class="eyebrow"><span>Glade Tech</span><span>Independent technology studio</span><span>Poole, UK</span></p>
+                    <h1>We build <span class="serif">useful</span> things.</h1>
+                    <p class="lede hero-sub">Technology, products and experiences that solve real problems.</p>
+                    <div class="hero-actions">
+                        <a href="#products" class="btn btn-ink">See what we're building →</a>
+                        <a href="https://marc-richards.com/" class="btn btn-line" target="_blank" rel="noopener">Work with Marc ↗</a>
+                    </div>
                 </div>
 
-                <div class="service-product-card">
-                    <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="3"/>
-                        <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-                    </svg>
-                    <h3>AI Consultancy</h3>
-                    <p>Practical AI advice, audits and implementation from someone building AI products every day.</p>
+                <div class="collage" aria-hidden="true">
+                    <figure class="cut cut-house">
+                        <figcaption>Vaughan · Chatacus</figcaption>
+                        <img src="img/hero-vaughan.webp" alt="" width="1000" height="750">
+                    </figure>
+                    <figure class="cut cut-guru">
+                        <img src="img/guru-simulator-03.webp" alt="" width="433" height="544">
+                        <figcaption>Guru Simulator</figcaption>
+                    </figure>
+                    <figure class="cut cut-bloom">
+                        <img src="img/hero-bloom.webp" alt="" width="600" height="600">
+                        <figcaption>Bloom · Chatacus</figcaption>
+                    </figure>
                 </div>
-
-                <div class="service-product-card">
-                    <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                    </svg>
-                    <h3>AI Tools</h3>
-                    <p>Custom automations that remove repetitive work and give your team time back for what actually matters.</p>
-                </div>
-
-                <div class="service-product-card">
-                    <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="3" width="20" height="14" rx="2"/>
-                        <path d="M8 21h8M12 17v4"/>
-                    </svg>
-                    <h3>Apps &amp; Websites</h3>
-                    <p>Websites, web apps and internal tools built properly and designed to last — from concept through to delivery.</p>
-                </div>
-
-                <div class="service-product-card">
-                    <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                        <circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/>
-                        <circle cx="12" cy="10" r="1" fill="currentColor" stroke="none"/>
-                        <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/>
-                    </svg>
-                    <h3>Virtual Agents</h3>
-                    <p>AI agents trained on your business, brand and processes — deployed where your customers and team actually are.</p>
-                </div>
-
-                <div class="service-product-card">
-                    <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/>
-                    </svg>
-                    <h3>Digital Strategy</h3>
-                    <p>Practical guidance on technology, AI and product development — from idea through to implementation.</p>
-                </div>
-
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Recent Results Section -->
-    <section class="results">
-        <div class="container">
-            <h2>Recent Results</h2>
+        <!-- Three areas -->
+        <section class="section" id="areas" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="section-head reveal"><p class="section-label"><b>GT</b>How the studio works</p></div>
+                <div class="studio-intro reveal">
+                    <p class="studio-claim">Glade Tech builds things.</p>
+                    <p class="lede">Sometimes for businesses and organisations. Sometimes by turning our own ideas into products. Sometimes as digital experiences that help people understand the world they live in.</p>
+                </div>
+                <ol class="index">
+                    <li class="index-row reveal" id="technology">
+                        <span class="index-num">01</span>
+                        <h2 class="index-title">Technology<small>Practical technology for businesses and organisations.</small></h2>
+                        <div class="index-body">
+                            <p>We build, improve and untangle digital things — from automation and websites to apps and bespoke tools.</p>
+                            <p>Client work is delivered personally by <strong>Marc Richards</strong>.</p>
+                        </div>
+                        <a href="https://marc-richards.com/" class="index-cta link-arrow" target="_blank" rel="noopener">Work with Marc ↗</a>
+                    </li>
+                    <li class="index-row reveal">
+                        <span class="index-num">02</span>
+                        <h2 class="index-title">Products<small>Ideas we turn into products.</small></h2>
+                        <div class="index-body">
+                            <p><strong>Chatacus</strong> is our current commercial product: software that helps businesses turn website conversations into enquiries.</p>
+                        </div>
+                        <a href="https://chatacus.co/" class="index-cta link-arrow" target="_blank" rel="noopener">Explore Chatacus ↗</a>
+                    </li>
+                    <li class="index-row reveal">
+                        <span class="index-num">03</span>
+                        <h2 class="index-title">Education<small>Digital experiences that teach.</small></h2>
+                        <div class="index-body">
+                            <p>We're also developing interactive games and experiences that help people understand manipulation, scams, online threats and the technology around them.</p>
+                            <span class="tag tag-dev">In development</span>
+                        </div>
+                        <a href="#education" class="index-cta link-arrow">Guru Simulator &amp; Noob Games ↓</a>
+                    </li>
+                </ol>
+            </div>
+        </section>
 
-            <div class="results-featured">
-                <div class="result-video-col">
-                    <div class="result-phone">
-                        <div class="result-phone-inner">
-                            <iframe
-                                src="https://www.youtube.com/embed/MGap0YC91uA?rel=0&modestbranding=1"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                            </iframe>
+        <!-- Chatacus -->
+        <section class="section" id="products" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="section-head reveal"><p class="section-label"><b>02</b>Products</p></div>
+
+                <div class="chatacus-intro reveal">
+                    <div>
+                        <p class="product-name">Chatacus</p>
+                        <h2 class="h2">Conversations that turn into <span class="serif">customers.</span></h2>
+                        <p class="lede">Chatacus is the software product business developed by Glade Tech. Its assistants sit on a business's website, answer questions in that business's voice and turn conversations into real enquiries — day or night.</p>
+                        <a href="https://chatacus.co/" class="btn btn-ink chatacus-cta" target="_blank" rel="noopener">Explore Chatacus ↗</a>
+                    </div>
+                    <div class="tree" aria-label="How the products fit together">
+                        <p class="tree-title">How it fits together</p>
+                        <ul>
+                            <li><span class="t-strong">Glade Tech</span> <span class="t-note">— the studio</span>
+                                <ul>
+                                    <li><span class="t-strong t-here">Chatacus</span> <span class="t-note">— the product</span>
+                                        <ul>
+                                            <li><span class="t-strong">Vaughan</span> <span class="t-note">· Property</span></li>
+                                            <li><span class="t-strong">Sunny Jim</span> <span class="t-note">· Solar</span></li>
+                                            <li><span class="t-strong">Bloom</span> <span class="t-note">· Aesthetics</span></li>
+                                            <li><span class="t-strong">Impeccable</span> <span class="t-note">· Customer service</span></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cx-grid">
+                    <article class="cx reveal">
+                        <div class="cx-visual">
+                            <figure class="cx-main"><img src="img/vaughan-house.webp" alt="A modern white house against a blue sky" width="900" height="1125" loading="lazy"></figure>
+                            <figure class="cx-inset"><img src="img/vaughan-keys.webp" alt="House keys hanging over rows of model houses" width="640" height="480" loading="lazy"></figure>
+                            <span class="cx-num">01</span>
+                        </div>
+                        <p class="spec">Chatacus · Property</p>
+                        <h3>Vaughan</h3>
+                        <p>Property's conversation specialist. Vaughan qualifies vendors, landlords and buyers in the agency's name and tone — so the team only calls people who are ready to move.</p>
+                    </article>
+                    <article class="cx reveal">
+                        <div class="cx-visual">
+                            <figure class="cx-main"><img src="img/sunnyjim-panels.webp" alt="Solar panels on a roof under a clear sky" width="900" height="1125" loading="lazy"></figure>
+                            <figure class="cx-inset"><img src="img/sunnyjim-roof.webp" alt="A person sitting on the edge of a flat roof against a blue sky" width="640" height="480" loading="lazy"></figure>
+                            <span class="cx-num">02</span>
+                        </div>
+                        <p class="spec">Chatacus · Solar</p>
+                        <h3>Sunny Jim</h3>
+                        <p>Solar's lead specialist. Sunny Jim answers homeowners' questions about solar and turns those conversations into enquiries for installers.</p>
+                    </article>
+                    <article class="cx reveal">
+                        <div class="cx-visual">
+                            <figure class="cx-main"><img src="img/bloom-clinic.webp" alt="A calm, bright clinic waiting area" width="900" height="1125" loading="lazy"></figure>
+                            <figure class="cx-inset"><img src="img/bloom-skincare.webp" alt="Skincare creams and serums with a green leaf" width="640" height="480" loading="lazy"></figure>
+                            <span class="cx-num">03</span>
+                        </div>
+                        <p class="spec">Chatacus · Aesthetics</p>
+                        <h3>Bloom</h3>
+                        <p>A smarter way to handle aesthetic enquiries. Bloom answers clinic questions with care and turns interest into enquiries.</p>
+                    </article>
+                    <article class="cx reveal">
+                        <div class="cx-visual">
+                            <figure class="cx-main"><img src="img/impeccable-host.webp" alt="A smiling host holding a folder at a café entrance" width="900" height="1125" loading="lazy"></figure>
+                            <figure class="cx-inset"><img src="img/impeccable-open.webp" alt="A “Yes, we're open” sign hanging in a window" width="640" height="480" loading="lazy"></figure>
+                            <span class="cx-num">04</span>
+                        </div>
+                        <p class="spec">Chatacus · Bespoke customer service</p>
+                        <h3>Impeccable</h3>
+                        <p>Customer service for any business — questions, requests, and knowing when to bring in a person.</p>
+                    </article>
+                </div>
+
+                <div class="proof reveal">
+                    <div class="proof-head">
+                        <div>
+                            <span class="tag tag-live">Real-world use</span>
+                            <h3 class="proof-title">Vaughan is already being used by estate agencies including Tailor Made in Sandbanks and Avenue Estates.</h3>
+                        </div>
+                        <a href="https://chatacus.co/" class="btn btn-ink" target="_blank" rel="noopener">Explore Chatacus ↗</a>
+                    </div>
+                    <div class="proof-shots">
+                        <figure class="shot shot-main">
+                            <img src="img/vaughan-tailor-made.webp" alt="Vaughan's chat assistant open on the Tailor Made Estate Agents website, asking: Are you looking to buy or sell today?" width="1300" height="752" loading="lazy">
+                            <figcaption>Tailor Made · Sandbanks</figcaption>
+                        </figure>
+                        <div class="proof-side">
+                            <figure class="shot">
+                                <img src="img/vaughan-avenue-estates.webp" alt="Vaughan's chat assistant open on the Avenue Estates website, offering to help sell, let or find a property" width="900" height="491" loading="lazy">
+                                <figcaption>Avenue Estates</figcaption>
+                            </figure>
+                            <blockquote class="proof-quote-small">
+                                <p>“Vaughan paid for itself <span class="serif">already.</span>”</p>
+                                <cite>Avenue Estates</cite>
+                            </blockquote>
                         </div>
                     </div>
                 </div>
-                <div class="result-text-col">
-                    <div class="result-tag">LIVE · AVENUE ESTATES, BOURNEMOUTH</div>
-                    <p class="result-quote-large">"Vaughan paid for itself already."</p>
-                    <p class="result-desc">AI lead qualification tool implemented for Avenue Estates, Bournemouth. Captures and qualifies vendors, landlords and buyers automatically through the agency's website before passing opportunities to the team.</p>
-                    <a href="https://vaughanai.co" class="result-ext-link" target="_blank">vaughanai.co →</a>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="section education" id="education">
+            <div class="wrap">
+                <div class="section-head reveal"><p class="section-label"><b>03</b>Education</p></div>
+
+                <div class="edu-head reveal">
+                    <h2 class="h2">Games that teach <span class="serif">digital life.</span></h2>
+                    <p class="lede">We're building interactive games that help young people recognise manipulation, navigate digital life and develop practical digital literacy.</p>
+                </div>
+
+                <article class="edu reveal">
+                    <div class="edu-art">
+                        <figure>
+                            <img src="img/guru-simulator-03.webp" alt="Guru Simulator 03 artwork: The Perfect Life" width="433" height="544" loading="lazy">
+                            <figcaption>Guru Simulator 03 — The Perfect Life</figcaption>
+                        </figure>
+                    </div>
+                    <div class="edu-copy">
+                        <div class="tag-row"><span class="tag tag-product">Guru Simulator <b>12–17</b></span><span class="tag tag-dev">In development</span></div>
+                        <h3>What if the best way to understand manipulation was to <span class="serif">experience it?</span></h3>
+                        <p><strong>Guru Simulator</strong> is an interactive educational experience exploring manipulation, persuasion, influence and digital literacy.</p>
+                        <p>It takes inspiration from prebunking research and applies it to the kinds of manipulation young people may encounter online — persuasion, social pressure, influencer tactics, scams and other forms of manipulation.</p>
+                        <p class="spec">Guru Simulator · In development · For schools and educational settings</p>
+                    </div>
+                </article>
+
+                <article class="edu edu-flip reveal">
+                    <div class="edu-art edu-art-wide">
+                        <figure>
+                            <img src="img/noob-games.webp" alt="Noob Games screenshot: a colourful game lobby with a chat panel and a floating island" width="963" height="528" loading="lazy">
+                            <figcaption>Noob Games — work in progress</figcaption>
+                        </figure>
+                    </div>
+                    <div class="edu-copy">
+                        <div class="tag-row"><span class="tag tag-product">Noob Games <b>7–11</b></span><span class="tag tag-dev">In development</span></div>
+                        <h3>Noob Games</h3>
+                        <p>A developing family of games exploring digital life, cyber safety, scams, online threats and technology.</p>
+                        <p class="spec">Noob Games · In development · For schools and educational settings</p>
+                    </div>
+                </article>
+
+                <div class="why reveal">
+                    <div class="why-intro">
+                        <p class="mono why-label">Why we're building this</p>
+                        <h3>Spot the trick before it's <span class="serif">played on you.</span></h3>
+                        <p>Research into <strong>prebunking</strong> suggests that practising recognising manipulation techniques before encountering them can help build resistance to misinformation and manipulation.</p>
+                        <p>Researchers at the University of Cambridge have explored this approach through games including <em>Bad News</em> and <em>Go Viral!</em>, with research finding that gameplay can improve people's ability to recognise manipulative misinformation.</p>
+                    </div>
+                    <ul class="refs">
+                        <li class="ref">
+                            <p class="spec">Bad News · University of Cambridge · 2019</p>
+                            <p class="ref-title">Fake news game confers psychological resistance against online misinformation</p>
+                            <a href="https://doi.org/10.1057/s41599-019-0279-9" class="link-arrow" target="_blank" rel="noopener">Research →</a>
+                        </li>
+                        <li class="ref">
+                            <p class="spec">Go Viral! · University of Cambridge · 2021</p>
+                            <p class="ref-title">Towards psychological herd immunity: cross-cultural evidence for two prebunking interventions</p>
+                            <a href="https://doi.org/10.1177/20539517211013868" class="link-arrow" target="_blank" rel="noopener">Research →</a>
+                        </li>
+                    </ul>
+                    <ol class="steps">
+                        <li><span class="mono">01 · The idea</span><p>Games can make digital manipulation something young people can experience and recognise.</p></li>
+                        <li><span class="mono">02 · The research</span><p>Prebunking research gives us a reason to believe this approach is worth exploring.</p></li>
+                        <li><span class="mono">03 · Our approach</span><p>We're applying those ideas to the situations young people actually encounter online.</p></li>
+                        <li><span class="mono">04 · Where it's going</span><p>Developing and testing now, with planned release for schools and educational settings.</p></li>
+                    </ol>
+                </div>
+
+                <p class="edu-note reveal">The Cambridge research supports the underlying approach. Our own games are being developed and tested now.</p>
+            </div>
+        </section>
+
+        <!-- Selected work -->
+        <section class="section" id="work">
+            <div class="wrap">
+                <div class="section-head reveal"><p class="section-label"><b>01</b>Selected work</p></div>
+                <div class="work-head reveal">
+                    <h2 class="h2">We don't just advise people about technology. <span class="serif">We build things.</span></h2>
+                    <p class="lede">Two examples of the studio's client work, kept here as proof that we build real things — not as a portfolio.</p>
+                </div>
+                <div class="items">
+                    <article class="item reveal">
+                        <figure class="item-media"><img src="img/community-fabric.webp" alt="Community Fabric website: a community for people making places work and people feel like they belong" width="1000" height="684" loading="lazy"></figure>
+                        <p class="spec">Platform · Live</p>
+                        <h3 class="item-title">Community Fabric</h3>
+                        <p>A digital platform connecting grassroots organisers with tools, resources and community support to drive neighbourhood-level change.</p>
+                        <div class="links"><a href="https://communityfabric.co" class="link-arrow" target="_blank" rel="noopener">communityfabric.co ↗</a></div>
+                    </article>
+                    <article class="item reveal">
+                        <figure class="item-media"><img src="img/rejuvenated-mother.webp" alt="Rejuvenated Mother website: Your Body Knows How to Heal" width="1000" height="684" loading="lazy"></figure>
+                        <p class="spec">Client project · Live · Poole</p>
+                        <h3 class="item-title">Rejuvenated Mother</h3>
+                        <p>The digital side of a Poole-based women's health coaching practice — online booking, a service-led customer journey and a calm, considered presence.</p>
+                        <div class="links"><a href="https://rejuvenatedmother.com" class="link-arrow" target="_blank" rel="noopener">rejuvenatedmother.com ↗</a></div>
+                    </article>
                 </div>
             </div>
+        </section>
 
-            <div class="results-testimonials">
-                <div class="result-card">
-                    <div class="result-card-image">
-                        <img src="a.png" alt="Rejuvenated Mother">
-                    </div>
-                    <div class="result-card-body">
-                        <div class="result-tag">WEBSITE · POOLE</div>
-                        <p class="result-quote">"Working with Marc was brilliant from start to finish. He took my ideas, improved them, and delivered a website that exceeded my expectations. The site feels professional, calm and completely aligned with my business."</p>
-                        <cite class="result-cite">Daniella · Rejuvenated Mother</cite>
-                    </div>
-                </div>
-                <div class="result-card">
-                    <div class="result-card-image">
-                        <img src="b.png" alt="Drama Peace">
-                    </div>
-                    <div class="result-card-body">
-                        <div class="result-tag">WEBSITE · LONDON</div>
-                        <p class="result-quote">"I wanted a website that reflected both me and my work, and Marc absolutely delivered. He listened carefully, offered thoughtful suggestions and created something I'm genuinely proud to share. The feedback has been fantastic."</p>
-                        <cite class="result-cite">Dr Sharon Coyne · Drama Peace</cite>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects">
-        <div class="container">
-            <h2>Things We've Built</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="vaughan1.png" alt="Vaughan">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-status live">LIVE</div>
-                        <h3>Vaughan</h3>
-                        <p>AI lead qualification tool built exclusively for UK estate agents. Qualifies vendors, landlords and buyers in your name, your tone, your colours — so your team only calls people who are ready to move.</p>
-                        <a href="https://vaughanai.co" class="project-link" target="_blank">vaughanai.co →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="fab.png" alt="Community Fabric">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-status live">LIVE</div>
-                        <h3>Community Fabric</h3>
-                        <p>Digital platform connecting grassroots organisers with tools, resources and community support to drive neighbourhood-level change.</p>
-                        <a href="https://communityfabric.co" class="project-link" target="_blank">communityfabric.co →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="reju.png" alt="Rejuvenated Mother">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-status live">LIVE</div>
-                        <h3>Rejuvenated Mother</h3>
-                        <p>Holistic women's health coaching site for a Poole-based practitioner. Website redesign, booking integration and service-led user experience.</p>
-                        <a href="https://rejuvenatedmother.com" class="project-link" target="_blank">rejuvenatedmother.com →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="solarD.png" alt="SolarDesk">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-status live">LIVE</div>
-                        <h3>SolarDesk</h3>
-                        <p>A quoting and lead management tool for solar installers. Instant proposals, pipeline tracking, and follow-up automation — built around the realities of running a solar installation business.</p>
-                        <a href="https://solardesk.co.uk" class="project-link" target="_blank">solardesk.co.uk →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="wescan.png" alt="WeScan">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-status live">LIVE</div>
-                        <h3>WeScan</h3>
-                        <p>AI compliance checker that scans documents and flags issues instantly. Built for teams that can't afford to miss things.</p>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="drama.png" alt="Drama Peace">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-status live">LIVE</div>
-                        <h3>Drama Peace</h3>
-                        <p>Website for Dr Sharon Coyne's applied theatre practice — community work, marginalised populations, and her book Theatre of the Lost and Found.</p>
-                        <a href="https://dramapeace.co.uk" class="project-link" target="_blank">dramapeace.co.uk →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="gentle.png" alt="Gentle Nudge" style="object-position: center top;">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-status">IN DEVELOPMENT</div>
-                        <h3>Gentle Nudge</h3>
-                        <p>SMS reminders for coaches and counsellors. Warm, professional check-ins that keep clients engaged without the admin.</p>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="aiandi.png" alt="ai&amp;i">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-status">ORIGIN</div>
-                        <h3>ai&amp;i</h3>
-                        <p>The AI adoption consultancy work that became a core Glade Tech service.</p>
-                        <a href="https://aiandisolutions.com" class="project-link" target="_blank">aiandisolutions.com →</a>
-                    </div>
-                </div>
-
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="Ezequote.png" alt="EzeQuote" style="object-position: center bottom;">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-status live">LIVE</div>
-                        <h3>EzeQuote</h3>
-                        <p>Voice-to-quote for tradespeople. Speak your job details, get a professional quote ready before you've left the driveway.</p>
-                        <a href="https://ezequote.app" class="project-link" target="_blank">ezequote.app →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image project-image-beacon">
-                        <svg class="your-project-svg" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
-                            <circle class="yp-ring" cx="80" cy="80" r="70"/>
-                            <circle class="yp-ring yp-ring-2" cx="80" cy="80" r="70"/>
-                            <circle class="yp-ring yp-ring-3" cx="80" cy="80" r="70"/>
-                            <circle class="yp-dot" cx="80" cy="80" r="10"/>
-                        </svg>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-status">WHAT'S NEXT</div>
-                        <h3>Your Project</h3>
-                        <p>Got an idea worth building? Let's talk.</p>
-                        <a href="#contact" class="project-link">Send a Signal →</a>
+        <!-- About -->
+        <section class="section" id="about" style="padding-top: 0;">
+            <div class="wrap">
+                <div class="section-head reveal"><p class="section-label"><b>GT</b>About the studio</p></div>
+                <div class="about-grid">
+                    <figure class="portrait reveal">
+                        <span class="portrait-blue" aria-hidden="true"></span>
+                        <span class="portrait-yellow" aria-hidden="true"></span>
+                        <div class="portrait-frame">
+                            <div class="portrait-photo">
+                                <img src="img/marc-richards.webp" alt="Marc Richards, the person behind Glade Tech, wearing a hand-drawn crown" width="900" height="891" loading="lazy">
+                            </div>
+                            <svg class="crown" viewBox="0 0 60 38" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 34 L2 12 L16 24 L28 1 L42 25 L56 10 L55 34 Z"/><path d="M3 34 L56 33"/></svg>
+                        </div>
+                        <figcaption class="portrait-label">Marc Richards · the person behind the studio</figcaption>
+                    </figure>
+                    <div class="about-copy reveal">
+                        <h2 class="h2">The studio, and the person <span class="serif">behind it.</span></h2>
+                        <p><strong>Glade Tech is the independent technology studio of Marc Richards.</strong></p>
+                        <p>Glade Tech is the business — where the building happens: client technology work, our own products like Chatacus, and educational experiences in development. Marc is the person behind it, and the person who delivers its client technology work.</p>
+                        <p>He spent nearly a decade building production systems at one of the world's leading banks. He's also a coach, an author, and someone who believes technology should solve real problems for real people.</p>
+                        <p>The studio is named after a place very dear to him, where music, nature and community came together.</p>
+                        <div class="handoff">
+                            <p><span class="mono">Need hands-on technology help?</span>That's Marc Richards — technology, on your terms.</p>
+                            <a href="https://marc-richards.com/" class="btn btn-ink" target="_blank" rel="noopener">marc-richards.com ↗</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section class="about">
-        <div class="container">
-            <div class="about-inner">
-                <div class="about-identity">
-                    <div class="about-photo">
-                        <img src="marc.jpeg" alt="Marc Richards">
-                    </div>
-                    <p class="about-name">Marc Richards</p>
-                    <p class="about-role">Founder</p>
-                </div>
-                <div class="about-text">
-                    <p>Marc spent nearly a decade building production systems at one of the world's leading banks. He's also a coach, an author, and someone who believes technology should solve real problems for real people.</p>
-                    <p style="margin-top: 1.25rem;">The combination of enterprise engineering and human understanding is what Glade Tech is built on.</p>
-                </div>
+        <!-- Contact -->
+        <section class="contact" id="contact">
+            <div class="wrap">
+                <div class="section-head reveal"><p class="section-label"><b>GT</b>Contact</p></div>
+                <h2 class="contact-title reveal">Got something worth <span class="serif">building?</span></h2>
+                <p class="lede reveal">A product idea, a digital project, or something that doesn't fit a category yet — tell us about it.</p>
+                <a href="mailto:marc@gladetech.uk" class="contact-email reveal">marc@gladetech.uk</a>
+                <ul class="contact-links reveal">
+                    <li><a href="mailto:marc@gladetech.uk">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/marcwrichards" target="_blank" rel="noopener">LinkedIn</a></li>
+                    <li><a href="https://wa.me/447404259301" target="_blank" rel="noopener">WhatsApp</a></li>
+                </ul>
+                <p class="contact-aside reveal">Looking for day-to-day tech help or automation for your business? Head to <a href="https://marc-richards.com/" class="link-arrow" target="_blank" rel="noopener">marc-richards.com ↗</a></p>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <p class="contact-eyebrow">Got an idea worth building?</p>
-            <p class="contact-body">Whether it's a lead generation tool, AI product, website or something entirely different — let's talk.</p>
-            <a href="mailto:marc@gladetech.uk" class="cta-signal">Send a Signal →</a>
-            <div class="contact-links">
-                <a href="mailto:marc@gladetech.uk">Email</a>
-                <a href="https://www.linkedin.com/in/marcwrichards" target="_blank">LinkedIn</a>
-                <a href="https://instagram.com/gladetech_uk" target="_blank">Instagram</a>
-                <a href="https://wa.me/447404259301" target="_blank">WhatsApp</a>
+    <footer class="site-footer">
+        <div class="wrap footer-grid">
+            <div>
+                <p>© 2026 Glade Tech · Built in Poole, UK</p>
+                <p>Glade Tech is a trading name of Marc Richards</p>
             </div>
-        </div>
-    </section>
-
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>© 2026 Glade Tech • Built with care in Poole, UK</p>
-            <p style="margin-top: 0.5rem; font-size: 0.85em; opacity: 0.7;">Glade Tech is a trading name of Marc William Richards</p>
+            <p class="footer-family">
+                Glade Tech → <a href="https://chatacus.co/" target="_blank" rel="noopener">Chatacus</a> · <a href="#education">Guru Simulator</a> · <a href="#education">Noob Games</a>
+            </p>
         </div>
     </footer>
+
 <script>
-const cards = document.querySelectorAll(".philosophy-card, .project-card, .process-step, .service-card, .service-product-card");
-const observer = new IntersectionObserver((entries) => {
+// Sticky nav rule once the page scrolls
+const nav = document.querySelector(".nav");
+const onScroll = () => nav.classList.toggle("is-scrolled", window.scrollY > 8);
+window.addEventListener("scroll", onScroll, { passive: true });
+onScroll();
+
+// Close the mobile menu after choosing a link
+const menu = document.querySelector(".menu");
+menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => menu.removeAttribute("open")));
+
+// Reveal on scroll
+const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.1 });
-cards.forEach(card => observer.observe(card));
-
+}, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 </script>
 </body>
 </html>

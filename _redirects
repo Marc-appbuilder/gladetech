@@ -1,0 +1,3 @@
+# The old About page now lives in the homepage About section
+/about.html  /#about  301
+/about       /#about  301
