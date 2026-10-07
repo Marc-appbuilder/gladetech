@@ -346,34 +346,15 @@ a { color: inherit; }
 
 /* ---------- Catalogue ---------- */
 
-.work-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 2rem; align-items: end; margin-bottom: clamp(3rem, 6vw, 5rem); }
-.work-head .h2 { max-width: 18ch; }
 
 
-.items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem); }
-.items-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
-.item { display: flex; flex-direction: column; }
-.item-media {
-    position: relative; background: var(--card); padding: 7px;
-    box-shadow: var(--shadow-cut); margin-bottom: 1.25rem;
-    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.item-media img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: left top; }
-.items .item:nth-child(odd) .item-media { transform: rotate(-0.6deg); }
-.items .item:nth-child(even) .item-media { transform: rotate(0.7deg); }
-.items .item:hover .item-media { transform: rotate(0deg) translateY(-4px); }
 
-.item .spec { margin-bottom: 0.45rem; }
-.item > p { color: var(--ink-soft); }
-.item .links { margin-top: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; align-items: center; }
-.item .tag { align-self: flex-start; margin-bottom: 0.75rem; }
 
 
 
 .studio-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem 3rem; align-items: end; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
 .studio-claim { font-size: clamp(2.3rem, 5.6vw, 4.6rem); font-weight: 800; letter-spacing: -0.045em; line-height: 0.95; }
-.item-title { font-size: clamp(1.45rem, 2.2vw, 1.8rem); font-weight: 800; letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 0.55rem; }
 
 
 /* ---------- Education ---------- */
@@ -497,11 +478,10 @@ a { color: inherit; }
     .index-row { grid-template-columns: 4rem minmax(0, 1fr); }
     .index-body, .index-cta { grid-column: 2; }
     .index-body { padding-top: 0; }
-    .chatacus-intro, .work-head, .edu-head, .studio-intro { grid-template-columns: 1fr; align-items: start; }
+    .chatacus-intro, .edu-head, .studio-intro { grid-template-columns: 1fr; align-items: start; }
     .tree { max-width: 30rem; }
     .proof-head, .proof-shots { grid-template-columns: 1fr; }
     .proof-head .btn { justify-self: start; }
-    .items-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .edu, .edu-flip { grid-template-columns: 1fr; }
     .edu-flip .edu-art { order: 0; }
     .edu-art { max-width: 320px; }
@@ -512,7 +492,7 @@ a { color: inherit; }
 
 @media (max-width: 680px) {
     body { font-size: 1rem; }
-    .items, .items-3, .cx-grid { grid-template-columns: 1fr; }
+    .cx-grid { grid-template-columns: 1fr; }
     .cx:nth-child(even) { margin-top: 0; }
     .index-row { grid-template-columns: 1fr; gap: 0.9rem; padding: 1.75rem 0; }
     .index-body, .index-cta { grid-column: 1; }
