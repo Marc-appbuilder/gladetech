@@ -573,3 +573,10 @@ a { color: inherit; }
     .collage { order: 4; margin: 0 auto 2.25rem; max-width: 400px; }
     .hero-actions { order: 5; }
 }
+
+/* External-link arrow (drawn, so phones don't swap in an emoji) */
+.arr {
+    display: inline-block; width: 0.8em; height: 0.8em; margin-left: 0.3em; vertical-align: -0.06em;
+    fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: square; flex-shrink: 0;
+}
+.btn .arr { margin-left: -0.15em; }
