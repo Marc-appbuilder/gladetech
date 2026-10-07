@@ -558,3 +558,18 @@ a { color: inherit; }
 .tag-product { background: var(--ink); color: var(--paper); padding-left: 0.65rem; gap: 0.55rem; }
 .tag-product::before { content: none; }
 .tag-product b { font-weight: 500; background: var(--yellow); color: var(--ink); padding: 0 0.35rem; margin-right: -0.2rem; }
+
+/* Mobile hero: bring the collage up into the first screen */
+@media (max-width: 680px) {
+    .hero { padding: 1.5rem 0 3.5rem; }
+    .hero-grid { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+    .hero-copy { display: contents; }
+    .hero .eyebrow { order: 1; margin-bottom: 1rem; font-size: 0.7rem; gap: 0.3rem 0.6rem; flex-wrap: nowrap; white-space: nowrap; }
+    .hero .eyebrow span + span::before { margin-right: 0.6rem; }
+    .hero .eyebrow span:first-child { display: none; }
+    .hero .eyebrow span:nth-child(2)::before { content: none; }
+    .hero h1 { order: 2; margin-bottom: 0.9rem; }
+    .hero .hero-sub { order: 3; margin-bottom: 1.75rem; font-size: 1.15rem; }
+    .collage { order: 4; margin: 0 auto 2.25rem; max-width: 400px; }
+    .hero-actions { order: 5; }
+}
