@@ -576,7 +576,6 @@ a { color: inherit; }
 /* Proof lifted to the top of the page */
 .proof-lead { margin-top: 0; padding-top: 0; border-top: 0; }
 .proof-note { margin-top: 0.75rem; color: var(--ink-soft); }
-.edu-links { margin-top: 1rem; }
 
 /* Work with Marc */
 .marc-cta { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1.5rem 3rem; align-items: end; }
