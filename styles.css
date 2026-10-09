@@ -582,3 +582,12 @@ a { color: inherit; }
 .marc-cta { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1.5rem 3rem; align-items: end; }
 .marc-cta .lede { margin-bottom: 1.75rem; }
 @media (max-width: 1020px) { .marc-cta { grid-template-columns: 1fr; align-items: start; } }
+
+/* Hero collage cards are links: whole card clickable, gentle lift on hover */
+.cut-link { position: absolute; inset: 0; z-index: 5; }
+.cut-link:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+.collage .cut { transition: translate 0.25s ease, box-shadow 0.25s ease; }
+.collage .cut:has(.cut-link:hover), .collage .cut:has(.cut-link:focus-visible) {
+    translate: 0 -6px; box-shadow: 0 1px 0 rgba(22, 21, 19, 0.08), 0 28px 38px -22px rgba(22, 21, 19, 0.5);
+}
+@media (prefers-reduced-motion: reduce) { .collage .cut:has(.cut-link:hover) { translate: none; } }
