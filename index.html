@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glade Tech — We build useful things</title>
-    <meta name="description" content="Glade Tech is an independent technology studio in Poole, UK, building practical software, digital products and educational experiences — including Chatacus, Guru Simulator and Noob Games.">
+    <title>Glade Tech — Technology Studio in Poole, Bournemouth &amp; Dorset</title>
+    <meta name="description" content="Glade Tech is an independent technology studio in Poole, Dorset, building business tools, digital products and experiences for businesses and organisations across Bournemouth, Poole and Dorset.">
     <link rel="canonical" href="https://gladetech.uk/">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Marc Richards">
     <meta name="theme-color" content="#f2eee5">
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Glade Tech">
-    <meta property="og:title" content="Glade Tech — We build useful things">
-    <meta property="og:description" content="An independent technology studio building practical software, digital products and educational experiences.">
+    <meta property="og:title" content="Glade Tech — Technology Studio in Poole, Bournemouth &amp; Dorset">
+    <meta property="og:description" content="Glade Tech is an independent technology studio in Poole, Dorset, building business tools, digital products and experiences for businesses and organisations across Bournemouth, Poole and Dorset.">
     <meta property="og:url" content="https://gladetech.uk/">
     <meta property="og:image" content="https://gladetech.uk/img/og.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Glade Tech — We build useful things. Business tools, products and digital experiences.">
     <meta property="og:locale" content="en_GB">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Glade Tech — We build useful things">
-    <meta name="twitter:description" content="An independent technology studio building practical software, digital products and educational experiences.">
+    <meta name="twitter:title" content="Glade Tech — Technology Studio in Poole, Bournemouth &amp; Dorset">
+    <meta name="twitter:description" content="Glade Tech is an independent technology studio in Poole, Dorset, building business tools, digital products and experiences for businesses and organisations across Bournemouth, Poole and Dorset.">
     <meta name="twitter:image" content="https://gladetech.uk/img/og.png">
+    <meta name="twitter:image:alt" content="Glade Tech — We build useful things. Business tools, products and digital experiences.">
 
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
@@ -33,26 +37,84 @@
     <link rel="stylesheet" href="styles.css">
 
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Glade Tech",
-        "url": "https://gladetech.uk/",
-        "logo": "https://gladetech.uk/apple-touch-icon.png",
-        "slogan": "We build useful things.",
-        "description": "An independent technology studio building practical software, digital products and educational experiences.",
-        "email": "marc@gladetech.uk",
-        "address": { "@type": "PostalAddress", "addressLocality": "Poole", "addressCountry": "GB" },
-        "founder": {
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "ProfessionalService",
+            "@id": "https://gladetech.uk/#studio",
+            "name": "Glade Tech",
+            "description": "Glade Tech is an independent technology studio in Poole, Dorset, building business tools, digital products and experiences for businesses and organisations across Bournemouth, Poole and Dorset.",
+            "slogan": "We build useful things.",
+            "url": "https://gladetech.uk/",
+            "logo": "https://gladetech.uk/apple-touch-icon.png",
+            "image": "https://gladetech.uk/img/og.png",
+            "email": "marc@gladetech.uk",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Poole",
+                "addressRegion": "Dorset",
+                "addressCountry": "GB"
+            },
+            "areaServed": [
+                {
+                    "@type": "City",
+                    "name": "Poole"
+                },
+                {
+                    "@type": "City",
+                    "name": "Bournemouth"
+                },
+                {
+                    "@type": "AdministrativeArea",
+                    "name": "Dorset"
+                }
+            ],
+            "founder": {
+                "@id": "https://gladetech.uk/#marc"
+            },
+            "brand": [
+                {
+                    "@type": "Brand",
+                    "name": "Chatacus",
+                    "url": "https://chatacus.co/",
+                    "slogan": "Conversations that turn into customers."
+                },
+                {
+                    "@type": "Brand",
+                    "name": "Guru Simulator"
+                },
+                {
+                    "@type": "Brand",
+                    "name": "Noob Games"
+                }
+            ]
+        },
+        {
             "@type": "Person",
+            "@id": "https://gladetech.uk/#marc",
             "name": "Marc Richards",
             "url": "https://marc-richards.com/",
-            "sameAs": ["https://www.linkedin.com/in/marcwrichards"]
+            "jobTitle": "Founder",
+            "worksFor": {
+                "@id": "https://gladetech.uk/#studio"
+            },
+            "sameAs": [
+                "https://www.linkedin.com/in/marcwrichards"
+            ]
         },
-        "brand": [
-            { "@type": "Brand", "name": "Chatacus", "url": "https://chatacus.co/", "slogan": "Conversations that turn into customers." }
-        ]
-    }
+        {
+            "@type": "WebSite",
+            "@id": "https://gladetech.uk/#website",
+            "url": "https://gladetech.uk/",
+            "name": "Glade Tech",
+            "inLanguage": "en-GB",
+            "publisher": {
+                "@id": "https://gladetech.uk/#studio"
+            }
+        }
+    ]
+}
     </script>
     <script>document.documentElement.classList.add("js");</script>
 </head>
