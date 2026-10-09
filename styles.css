@@ -419,13 +419,6 @@ a { color: inherit; }
 .about-copy p + p { margin-top: 1rem; }
 .about-copy p strong { color: var(--ink); font-weight: 600; }
 
-.handoff {
-    margin-top: 2.25rem; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem 1.5rem; align-items: center;
-    border: 1.5px solid var(--ink); padding: 1.25rem 1.4rem; background: var(--card); max-width: 40rem;
-    box-shadow: 6px 6px 0 var(--yellow);
-}
-.handoff p { font-size: 1rem !important; color: var(--ink) !important; margin: 0 !important; }
-.handoff .mono { display: block; color: var(--ink-faint); margin-bottom: 0.25rem; }
 
 /* ---------- Contact ---------- */
 
@@ -497,7 +490,6 @@ a { color: inherit; }
     .index-row { grid-template-columns: 1fr; gap: 0.9rem; padding: 1.75rem 0; }
     .index-body, .index-cta { grid-column: 1; }
     .index-num { margin-top: 0; }
-    .handoff { grid-template-columns: 1fr; }
         .hero-actions .btn { width: 100%; justify-content: center; }
 }
 .hero .hero-sub { font-size: clamp(1.25rem, 2.1vw, 1.65rem); line-height: 1.4; max-width: 30ch; }
@@ -580,3 +572,13 @@ a { color: inherit; }
     fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: square; flex-shrink: 0;
 }
 .btn .arr { margin-left: -0.15em; }
+
+/* Proof lifted to the top of the page */
+.proof-lead { margin-top: 0; padding-top: 0; border-top: 0; }
+.proof-note { margin-top: 0.75rem; color: var(--ink-soft); }
+.edu-links { margin-top: 1rem; }
+
+/* Work with Marc */
+.marc-cta { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1.5rem 3rem; align-items: end; }
+.marc-cta .lede { margin-bottom: 1.75rem; }
+@media (max-width: 1020px) { .marc-cta { grid-template-columns: 1fr; align-items: start; } }
